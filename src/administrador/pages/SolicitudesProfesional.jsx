@@ -1,31 +1,32 @@
 import ModalProfesional from '../modales/ModalProfesional';
+import MotivoRecProf from '../modales/MotivoRecProf'
 import Imgnav from "../../assets/img/imgnav.jpg";
 // import users from "../../assets/img/users.png";
 import search from '../../assets/img/icons/search.svg';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { solicitudesprofesional } from '../data/DataAdmin';
+import { solicitudesRechazadasProfesional, solicitudesprofesional } from '../data/DataAdmin';
 
 
 const Profesional = () => {
 const [data, setData] = useState([])
+const [solirechazadas, setSoliRechazadas] = useState([])
 const [dataPro, setDataPro] = useState({})
-
 useEffect(() => {
 const datos = async () =>{
-const data = await solicitudesprofesional()
-setData(data)
+const solicitudesProfesional = await solicitudesprofesional()
+const soliRechazadasProfesional = await solicitudesRechazadasProfesional();
+setSoliRechazadas(soliRechazadasProfesional)
+setData(solicitudesProfesional)
 }
 datos()
 }, [])
-console.log(data,"data")
 
-const enviarDataPro=(nombre,apellido,tipoDoc,numDoc,profesion,correo,telefono,id)=>{
+const enviarDataPro=(nombre,apellido,tipoDoc,numDoc,profesion,correo,telefono,id,motivoRechazo)=>{
 const dataProfesional = {
-  nombre,apellido,tipoDoc,numDoc,profesion,correo,telefono,id
+  nombre,apellido,tipoDoc,numDoc,profesion,correo,telefono,id,motivoRechazo
 }
 setDataPro(dataProfesional)
-console.log(dataProfesional);
 
 }
 
@@ -88,6 +89,24 @@ console.log(dataProfesional);
 
                 ))
               }
+                           {
+                solirechazadas.map((d)=>(
+                  <tr>
+                  <td data-label="paciente">{d.nombres}{" "}{d.apellidos}</td>
+                  <td data-label="Nit">{d.documento.numeroDocumento}</td>
+                  <td data-label="profesion">{d.profesion}</td>
+                  <td className=" link-light ">
+                    <div >
+                      <p className="bg-danger rounded-pill text-center w-75">Rechazada</p>
+                    </div>
+                  </td>
+                  <td data-label="descripcion">
+                    <Link className="text-decoration-none" data-bs-toggle="modal" data-bs-target="#rechazoProfesional" onClick={()=>enviarDataPro(d.nombres,d.apellidos,d.documento.tipo,d.documento.numeroDocumento,d.profesion,d.correo,d.numTelefono,d._id,d.motivoRechazo)} style={{ cursor: "pointer" }}> Ver mas...</Link>
+                  </td>
+                </tr>
+
+                ))
+              }
 
             </tbody>
           </table>
@@ -95,6 +114,7 @@ console.log(dataProfesional);
       </main>
                 {/* Modales */}
                 <ModalProfesional dataProfesional={dataPro}/>
+                <MotivoRecProf dataProfesional={dataPro}/>
 
     </>
   );

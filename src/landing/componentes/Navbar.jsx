@@ -8,8 +8,8 @@ import BtnInicio from '../data/BtnInicioSesion'
 import InicioSesion from '../modales/InicioSesion'
 import DatosAjustes from '../modales/Ajustes'
 import NotificacionAseptar from '../modales/AceptarRechazarCharla'
-import Registrarse from '../modales/Registrarse'
-
+import RegistroAprendiz from '../modales/RegistroAprendiz'
+import RegistroProfesional from '../modales/RegistroProfesional'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 
@@ -88,7 +88,8 @@ const Navbar = () => {
       <InicioSesion />
       <DatosAjustes />
       <NotificacionAseptar />
-      <Registrarse />
+      <RegistroAprendiz />
+      <RegistroProfesional/>
 
       <Outlet />
       <Footer />

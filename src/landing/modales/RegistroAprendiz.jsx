@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { registroAprendiz } from '../../landing/data/DataRegistro'
+import { registroAprendiz } from '../data/DataRegistro'
 import axios from 'axios'
 const Registrase = () => {
 
@@ -38,7 +38,7 @@ const Registrase = () => {
     return (
         <>
             {/* <!-- Modal Registro Aprendiz --> */}
-            <div className="modal" id="modalRegistrarse" >
+            <div className="modal" id="registroAprendiz" >
                 <div className="contenedores-modal position-relative  ">
                     <div id="modal-usuario-registro ">
                         <div className="modal-dialog ">

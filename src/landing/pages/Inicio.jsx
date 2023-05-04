@@ -5,7 +5,6 @@ import Psicologa2 from '../../assets/img/psicologa2.jfif'
 import Psicologo1 from '../../assets/img/psicologo1.webp'
 import {Link} from 'react-router-dom'
 import Slider from '../componentes/SliderInicioSesion'
-import axios from 'axios'
 import { datosInicio } from "../data/DataInicioSesion";
 
 

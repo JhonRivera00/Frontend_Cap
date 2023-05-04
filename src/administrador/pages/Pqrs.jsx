@@ -2,10 +2,30 @@ import Imgnav from '../../assets/img/imgnav.jpg'
 import Person from '../../assets/img/icons/person-lines-fill.svg'
 import Pencil from '../../assets/img/icons/pencil-square.svg'
 import search from '../../assets/img/icons/search.svg'
-
-
+import {  useState,useEffect } from 'react'
+import { datosPqrs } from '../data/DataAdmin'
+import ResponderPqrs from '../modales/ResponderPqrs'
 
 const Usuarios = () => {
+  const [dataPqrs, setDataPqrs] = useState([])
+  const [dataModalPqrs, setdataModalPqrs] = useState("")
+
+
+  useEffect( () => {
+    (async()=>{
+      const data = await  datosPqrs()
+      console.log(data);
+      setDataPqrs(data)
+    })()
+    
+  }, [])
+
+  const modalPqrs = (tipo,motivo,id)=>{
+const datos = {
+  tipo,motivo,id
+}
+setdataModalPqrs(datos)
+  }
   return (
     <>
 
@@ -48,28 +68,28 @@ const Usuarios = () => {
                 <th className='col-1'><img src={Person} alt="" className="ms-2 bg-green-opacity p-2 rounded-2" /></th>
                 <th className='col-3'>Nombres</th>
                 <th className='col-2'>Ficha</th>
+                <th className='col-2'>Tipo</th>
                 <th className=' col-5' >Pqrs</th>
                 <th className='col-1 '><img src={Pencil} alt="" className=" bg-green-opacity p-2 rounded-2" /></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Jhoana</td>
-                <td>2452439</td>
-                <td className="d-inline-block text-truncate" style={{ maxWidth: '200px' }}>
-                  Este es un texto largo que se truncará si es demasiado largo. Puedes hacer clic en el botón para leerlo completo.
-                </td>
+              {dataPqrs.map((d,i)=>(
+   <tr>
+   <th>{i}</th>
+   <td>{d.id_usuario.nombres}{" "}{d.id_usuario.apellidos}</td>
+   <td>{d.id_usuario.programa.ficha}</td>
+   <td>{d.tipo}</td>
+   <td className="d-inline-block text-truncate" style={{ maxWidth: '200px' }}>{d.motivo}
+   </td>
+   <td>
 
-                <button className="btn btn-link" type='button' data-bs-toggle="collapse" data-bs-target="#texto-completo">Leer completo</button>
-                <div id="texto-completo" className="collapse">
-                  Este es un texto largo que se mostrará completo al hacer clic en el botón. ¡Genial!
-                </div>
-                <td>
+     <button type='submit' className='bg-success btn p-1 border-0 link-light text-center' data-bs-toggle="modal" href="" data-bs-target="#modalpqrs" onClick={()=>modalPqrs(d.tipo,d.motivo,d._id)}>Responder</button>
+   </td>
+ </tr>
 
-                  <button type='submit' className='bg-success btn p-1 border-0 link-light text-center' data-bs-toggle="modal" href="" data-bs-target="#modalpqrs">Responder</button>
-                </td>
-              </tr>
+               ))}  
+           
 
             </tbody>
           </table>
@@ -77,33 +97,7 @@ const Usuarios = () => {
 
       </div>
       {/* <!-- Fin Contenido --> */}
-
-      {/* Modal CREAR EVENTO */}
-      <div className="modal fade" id="modalpqrs" tabIndex="-1" aria-labelledby="exampleModalINLabel" aria-hidden="true">
-        <div className="modal-dialog">
-          <div className="modal-content bg-color-blue text-white">
-            <div className="modal-header">
-              <h3 className="modal-title w-100 text-center" id="exampleModalINLabel">PQRS</h3>
-              <button type="button" className="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div className="modal-body">
-              <form className="row g-2 needs-validation " action="" >
-                {/* Respuesta PQRS*/}
-                <div className="col-12 mt-0" style={{ padding: "0 50px" }}>
-                  <label htmlFor="validationCustom01" className="form-label">ESCRIBE TU RESPUESTA</label>
-                  <textarea className='form-control' required></textarea>
-                </div>
-
-                {/* Botón CREAR EVENTO */}
-                <div className="col-12 d-flex justify-content-center mb-2 pb-4 pt-3">
-                  <button className="btn btn-green" type="submit">ENVIAR</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* FinModal MODAL CREAR EVENTO */}
+<ResponderPqrs dataModalPqrs={dataModalPqrs}/>
     </>
   )
 }
