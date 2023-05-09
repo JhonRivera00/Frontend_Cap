@@ -1,7 +1,14 @@
 import React from 'react'
+import { useState } from 'react'
+import { responderPqrs } from '../data/DataAdmin'
 
 function ResponderPqrs({dataModalPqrs}) {
-    console.log(dataModalPqrs);
+    console.log(dataModalPqrs,"datamodalpqrs");
+const [respuesta, setRespuesta] = useState("")
+const handleSubmit= (e)=>{
+    e.preventDefault();
+    responderPqrs(respuesta,dataModalPqrs.id)
+}
     return (
         <>
 
@@ -14,7 +21,7 @@ function ResponderPqrs({dataModalPqrs}) {
                             <button type="button" className="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <form className="row g-2 needs-validation " action="" >
+                            <form className="row g-2 needs-validation " action="" onSubmit={handleSubmit}>
 
                                 <div className="col-12 mt-0 px-5"> 
                                     <h5 className=' text-center pt-1'>{dataModalPqrs.tipo}</h5>
@@ -24,7 +31,7 @@ function ResponderPqrs({dataModalPqrs}) {
                                 {/* Respuesta PQRS*/}
                                 <div className="col-12 mt-0 px-5" >
                                     <label htmlFor="validationCustom01" className="form-label pt-2">ESCRIBE TU RESPUESTA</label>
-                                    <textarea className='form-control' required></textarea>
+                                    <textarea className='form-control' onChange={(e)=>setRespuesta(e.target.value)}></textarea>
                                 </div>
 
                                 {/* Botón CREAR EVENTO */}

@@ -24,11 +24,12 @@ import Admincronograma from '../administrador/pages/ListaCronograma'
 import Adminprofesional from '../administrador/pages/SolicitudesProfesional'
 import { ProtectRoutesAdmin,ProtectRoutesProfesional } from './ProtectRoutes'
 
+
 const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Navbar />}>
+        <Route path="/" element={<Navbar/>}>
           <Route index element={<Inicio />} />
           <Route path="/conocenos" element={<Conocenos />} />
           <Route path="/charla" element={<Charla />} />

@@ -143,3 +143,12 @@ export const formPqrs = async (id_usuario,tipo,motivo)=>{
   }
 }
 }
+
+export const notificacionVista = async (id)=>{
+  try {
+    const data= await axios.put(`/notificacionVista/${id}`)
+    
+  } catch (error) {
+  console.error(error.data)
+  }
+}

@@ -218,3 +218,34 @@ export const datosPqrs = async ()=>{
     console.log(error);
   }
 }
+
+export const responderPqrs = async (respuesta,id)=>{
+  try {
+    const response= await axios.put(`/responderPqrs/${id}`,{respuesta})
+    if (response.status === 200) {
+      Swal.fire({
+        title: response.data,
+        icon: "success",
+        timer: 2000
+      })
+        .then((
+          location.reload()
+        ))
+    }
+  } catch (error) {
+    if (error.response.status === 400) {
+      Swal.fire({
+        icon: "error",
+        title: error.response.data
+      });
+    }
+  }
+}
+export const misNotificaciones = async (id)=>{
+  try {
+    const {data} = await axios.get(`/notificaciones/${id}`)
+    return data
+  } catch (error) {
+    console.error(error);
+  }
+}

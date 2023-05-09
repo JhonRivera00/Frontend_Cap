@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Horizontal from "../../assets/img/Horizontal.png";
 import Favicon2 from "../../assets/img/favicon2.png";
 import { Link, Outlet } from "react-router-dom";
@@ -14,7 +14,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 
 const Navbar = () => {
-
   return (
     <>
       <nav

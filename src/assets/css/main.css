@@ -75,7 +75,10 @@ body {
 .titulos {
   font-family: "Times New Roman", Times, serif;
 }
-
+.contenedor-notificaciones{
+  max-width: 450px;
+  min-width: 350px;
+}
 .titulo-objetivo {
   width: 100%;
   max-height: 450px;
@@ -116,6 +119,17 @@ body {
 .bg-green-opacity {
   background-color: #38a900b0;
 }
+.notificaciones{
+max-height: 500px;
+overflow-y: auto;
+
+}
+.notificacion-no-leida {
+  background-color: #38a90042; /* Color de fondo para notificación no leída */
+  font-weight: bold; /* Texto en negrita para notificación no leída */
+  cursor: pointer;
+}
+
 @media (max-width: 992px) {
   .user {
     margin-left: 0px !important;

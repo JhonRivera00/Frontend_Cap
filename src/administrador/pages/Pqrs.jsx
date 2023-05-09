@@ -14,7 +14,6 @@ const Usuarios = () => {
   useEffect( () => {
     (async()=>{
       const data = await  datosPqrs()
-      console.log(data);
       setDataPqrs(data)
     })()
     
@@ -75,7 +74,7 @@ setdataModalPqrs(datos)
             </thead>
             <tbody>
               {dataPqrs.map((d,i)=>(
-   <tr>
+   <tr key={i}>
    <th>{i}</th>
    <td>{d.id_usuario.nombres}{" "}{d.id_usuario.apellidos}</td>
    <td>{d.id_usuario.programa.ficha}</td>
