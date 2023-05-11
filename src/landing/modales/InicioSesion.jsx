@@ -53,7 +53,7 @@ const InicioSesion = () => {
 
     return (
         <>
-            <div className="modal bg-black bg-opacity-50" id="exampleModal1" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="exampleModal1" data-bs-backdrop="static"   aria-labelledby="staticBackdropLabel" >
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">

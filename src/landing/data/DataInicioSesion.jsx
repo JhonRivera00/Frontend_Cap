@@ -126,11 +126,11 @@ export const formPqrs = async (id_usuario,tipo,motivo)=>{
     const pqrs = {id_usuario,tipo,motivo}
     const response = await axios.post(`/crearPqrs`,pqrs)
     if (response.status === 200) {
-      Swal.fire({
-        title: response.data,
-        icon: "success",
-        timer: 2000
-      })
+        Swal.fire({
+          title: response.data,
+          icon: "success",
+          timer: 2000
+        })
     .then((
       location.reload()
     ))}

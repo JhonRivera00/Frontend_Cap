@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode'
 import Swal from 'sweetalert2'
 export const dataSolicitudCharla = async (fecha, profesional, motivo) => {
     try {
-      const URL = "https://backend-cap-273v.vercel.app/crearSolicitud";
+      const URL = "/crearSolicitud";
       const token = localStorage.getItem("Token-Aprendiz");
       const decodedToken = jwt_decode(token);
       const nombre = decodedToken.id;

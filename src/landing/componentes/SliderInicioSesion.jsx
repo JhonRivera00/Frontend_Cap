@@ -8,7 +8,7 @@ const Slider = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const URL = "https://backend-cap-273v.vercel.app/verEventos"
+      const URL = "/verEventos"
       const { data } = await axios.get(URL);
       // Filtrar los eventos que tengan el tipo "destacado"
       const destacados = data.filter(evento => evento.tipo === "destacado");

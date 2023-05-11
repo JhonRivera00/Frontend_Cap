@@ -8,11 +8,14 @@ import { misNotificaciones } from "../../administrador/data/DataAdmin";
 import jwt_decode from "jwt-decode";
 import FechaNotificacion from "../../assets/js/FechaNotificacion";
 import { notificacionVista } from "./DataInicioSesion";
+import Swal from "sweetalert2";
+import VerNotificacion from "../modales/VerNotificacion";
 
 const BtnInicioSesion = () => {
   const [notificaciones, setnotificaciones] = useState([]);
-  const [siHay, setSiHay] = useState([]);
-  
+  console.log(notificaciones,"estas son las notificaciones");
+  const [siHay, setSiHay] = useState("");
+  const [datosMotivoNoti, setDatosMotivoNoti] = useState({})
 
   const botonesIncio = () => {
     const tokenAprendiz = localStorage.getItem("Token-Aprendiz");
@@ -34,20 +37,33 @@ const BtnInicioSesion = () => {
     } else if (token) {
       setTimeout(function () {
         localStorage.clear();
+        Swal.fire({
+          title: "Se ha cerrado sesion",
+          icon: "success",
+          timer: 1000
+        })
+          .then(
+            location.reload()
+          )
       }, 1800000);
       const { id } = jwt_decode(token);
 
-      const notificacionesAbiertas = (id) => {
+      const notificacionesAbiertas = (id,motivo,nombreProf,apellidoProf,fechaAplazada,titulo,nombreApre,apellidoApre,numeroDocApre) => {
         (async () => {
           notificacionVista(id);
         })();
+        const datos = {
+          motivo,nombreProf,apellidoProf,fechaAplazada,titulo,nombreApre,apellidoApre,numeroDocApre
+        }
+        setDatosMotivoNoti(datos)
       };
       useEffect(() => {
         (async () => {
-          
+
           const dataNotificaciones = await misNotificaciones(id);
-          dataNotificaciones.forEach((i)=>{
-            i.estado===false ? setSiHay(i.estado): ""
+          console.log(dataNotificaciones, "data Notificaciones");
+          dataNotificaciones.forEach((i) => {
+            i.estado === false ? setSiHay(i.estado) : ""
 
           })
           setnotificaciones(dataNotificaciones.reverse());
@@ -78,15 +94,11 @@ const BtnInicioSesion = () => {
                   onMouseMove={obtenerNotificaciones}
                 >
                   <img src={bell2} alt="icon-cerrarsesion" className="" />
-                  <span className={siHay===false ? "position-absolute top-0 start-100 translate-middle p-1 bg-green border  rounded-circle": ""}></span>
+                  <span className={siHay === false ? "position-absolute top-0 start-100 translate-middle p-1 bg-green border  rounded-circle" : ""}></span>
                 </div>
               </Link>
 
-              <div
-                className="dropdown-menu dropdown-menu-end notificaciones"
-                // data-bs-toggle="modal"
-                // data-bs-target="#modalAseptarRecha"
-              >
+              <div  className="dropdown-menu dropdown-menu-end notificaciones">
                 <h6 className="dropdown-header ">
                   {notificaciones.length <= 0
                     ? "No tienes notificaciones"
@@ -96,19 +108,11 @@ const BtnInicioSesion = () => {
                 {notificaciones.map((n, i) => (
                   // aquí muestras cada notificación en tu componente
 
-                  <div
-                    className={
-                      n.estado === false
-                        ? "notificacion dropdown-item contenedor-notificaciones notificacion-no-leida"
-                        : "dropdown-item contenedor-notificaciones "
-                    }
-                    onClick={() => notificacionesAbiertas(n._id)}
-                    key={i}
-                  >
+                  <div className={n.estado === false ? "notificacion dropdown-item contenedor-notificaciones notificacion-no-leida" : "dropdown-item contenedor-notificaciones "} onClick={() => notificacionesAbiertas(n._id,n.motivo,n.profesionalId?.nombres,n.profesionalId?.apellidos,n.fechaAplazada,n.titulo,n.aprendizId?.nombres,n.aprendizId?.apellidos,n.aprendizId?.documento.numeroDocumento)} key={i} data-bs-toggle="modal" data-bs-target="#verNotificacion">
                     <div className="media">
                       <div className="media-body">
-                        <h6 className="mt-0 mb-1">Notificación 1</h6>
-                        <p className=" text-wrap  ">{n.contenido}</p>
+                        <h6 className="mt-0 mb-1 fw-bold ">{n.titulo}</h6>
+                        <p className=" text-wrap ">{n.contenido}</p>
                         <small className="text-muted">
                           {FechaNotificacion(n.createdAt)}
                         </small>
@@ -124,7 +128,6 @@ const BtnInicioSesion = () => {
             <li className="nav-item dropdown ">
               <Link
                 className="nav-link "
-                href="#"
                 id="navbarDropdownMenuLink"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -141,7 +144,6 @@ const BtnInicioSesion = () => {
                   <Link
                     className="dropdown-item text-white"
                     data-bs-toggle="modal"
-                    href=""
                     data-bs-target="#modalInicioDatos"
                   >
                     <img src={gear} alt="icon-ajustes" className="me-3" />
@@ -164,6 +166,7 @@ const BtnInicioSesion = () => {
               </ul>
             </li>
           </div>
+          <VerNotificacion datosMotivoNoti={datosMotivoNoti}/>
         </>
       );
     }

@@ -14,7 +14,7 @@ const CrearEvento = () => {
     return(
         <>
          {/* Modal CREAR EVENTO */}
-         <div className="modal fade" id="exampleModalIN" tabIndex="-1" aria-labelledby="exampleModalINLabel" aria-hidden="true">
+         <div className="modal fade" id="exampleModalIN" data-bs-backdrop="static">
                 <div className="modal-dialog ">
                     <div className="modal-content bg-color-blue text-white">
 

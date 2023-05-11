@@ -13,7 +13,7 @@ const handleSubmit= (e)=>{
         <>
 
             {/* Modal Pqrs */}
-            <div className="modal fade" id="modalpqrs" tabIndex="-1" aria-labelledby="exampleModalINLabel" aria-hidden="true">
+            <div className="modal fade" id="modalpqrs"data-bs-backdrop="static">
                 <div className="modal-dialog">
                     <div className="modal-content bg-color-blue text-white">
                         <div className="modal-header">
