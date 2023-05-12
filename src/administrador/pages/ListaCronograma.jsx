@@ -1,10 +1,4 @@
 import Imgnav from "../../assets/img/imgnav.jpg";
-import Futbol from "../../assets/img/futbol.png";
-import Baloncesto from "../../assets/img/baloncesto2.jpg";
-import Volei from "../../assets/img/volei.jpg";
-import Charla from "../../assets/img/charla.jpg";
-import Divulgacion from "../../assets/img/divulgacion.jpg";
-import Psico from "../../assets/img/psico.jpg";
 import { datosCronograma } from "../data/DataAdmin";
 import { useState,useEffect} from "react";
 
