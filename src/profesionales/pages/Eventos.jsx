@@ -19,7 +19,9 @@ const fechaCrono = (dato) => {
   const anio = fechaMoment.year();
   const mes = fechaMoment.month() + 1;
   const dia = fechaMoment.date();
-  const fechaFormateada = new Date(anio, mes, dia);
+  const hora = fechaMoment.hours();
+  const min = fechaMoment.minutes();
+  const fechaFormateada = new Date(anio, mes, dia, hora, min);
   return fechaFormateada;
 
 }
@@ -27,11 +29,10 @@ const fechaCrono = (dato) => {
 const CalendarioEventos = () => {
 
   const [allEvents, setAllEvents] = useState([]);
-console.log(allEvents)
+  console.log(allEvents)
   const [solicitud, setSolicitud] = useState([]);
   const token = localStorage.getItem('Token-Profesional');
   const { id } = jwt_decode(token);
-
 
   useEffect(() => {
     const fetchData = async () => {
