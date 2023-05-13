@@ -4,12 +4,14 @@ import Calentdar2 from '../../assets/img/icons/calendar2-week.svg'
 import Check from '../../assets/img/icons/check-circle.svg'
 import { format, subDays } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { datosCronograma } from '../data/DataInicioSesion';
+import { datosCronograma } from '../../profesionales/data/DataSolicitudes';
+
 const Cronograma = () => {
+
   const [dataCronograma, setDataCronograma] = useState([]);
 
-
   console.log(dataCronograma)
+
 
   useEffect(() => {
     const fetchData = async () => {

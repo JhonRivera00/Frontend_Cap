@@ -4,22 +4,14 @@ import axios from 'axios'
 
 export const datosInicio = async () => {
       
-  const {data} = await axios.get("/verEventos");
+  const { data } = await axios.get("/verEventos");
   // Filtrar los eventos que tengan el tipo "destacado"
   const destacados = data.filter(evento => evento.tipo === "destacado");
   
   return destacados;
 }
-export const datosCronograma= async () => {
-      
-  const {data} = await axios.get("/verEventos");
-  // Filtrar los eventos que tengan el tipo "cronograma"
-  const cronograma = data.filter(evento => evento.tipo === "destacado");
-  
-  return cronograma;
-}
 
-export const loginAprendiz= async (correo, contrasena) => {
+export const loginAprendiz = async (correo, contrasena) => {
 
   const URL = "/loginAprendiz";
   try {
@@ -53,6 +45,7 @@ export const loginAprendiz= async (correo, contrasena) => {
 
   }
 }
+
 export const loginProfesional= async (correo, contrasena) => {
 
   const URL = "/loginProfesional";

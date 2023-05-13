@@ -6,7 +6,7 @@ import Psicologo1 from '../../assets/img/psicologo1.webp'
 import Swal from 'sweetalert2'
 import InicioSesion from '../modales/InicioSesion'
 import axios from 'axios'
-import { dataSolicitudCharla} from '../data/DataSolicitudCharla'
+import { dataSolicitudCharla } from '../data/DataSolicitudCharla'
 const Charla = () => {
   //Datos
   

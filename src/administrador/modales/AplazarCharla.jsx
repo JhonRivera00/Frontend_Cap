@@ -8,13 +8,15 @@ const AplazarCharla = (props) => {
     const [fechaAplazamiento, setFechaAplazamiento] = useState("");
     const [motivoAplazamiento, setMotivoAplazamiento] = useState("");
     const [profesionalAplazamiento, setProfesionalAplazamiento] = useState("");
-useEffect(() => {
-    const dataProfesionales = async () => {
-        const data = await opProfesionales();
-        setProfesionales(data)
-    }
-    dataProfesionales();
-}, [])
+    
+    useEffect(() => {
+        const dataProfesionales = async () => {
+            const data = await opProfesionales();
+            setProfesionales(data)
+        }
+        dataProfesionales();
+    }, [])
+    
 const handleSubmit =(e)=>{
     e.preventDefault();
 

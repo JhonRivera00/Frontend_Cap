@@ -2,7 +2,9 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 
 export const registroAprendiz = async (nombres,apellidos,tipo,numeroDocumento,correo,numTelefono,contrasenaUno,contrasenaDos,genero,programa)=>{
+    
     const URL ="https://backend-cap-273v.vercel.app/registrarAprendiz"
+    
     if(contrasenaUno != contrasenaDos){
         Swal.fire({
             icon: "error",
