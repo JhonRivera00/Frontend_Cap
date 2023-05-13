@@ -1,22 +1,27 @@
 import React, { useState } from 'react'
+import { crearEvento } from '../data/DataAdmin';
 
 const CrearEvento = () => {
     const [evento, setEvento] = useState("");
     const [tipoEvento, setTipoEvento] = useState("");
     const [fechaInicial, setFechaInicial] = useState("");
+    const [fechaFinal, setFechaFinal] = useState("");
     const [imagenes, setImagenes] = useState("")
     const [descripcion, setDescripcion] = useState("")
     
-    const handleSubmit=()=>{
+    const handleSubmit= async(e)=>{
+        e.preventDefault();
+        console.log("Hola");
         const formData = new FormData();
-        formData.append("evento",evento)
-        formData.append('tipoEvento',tipoEvento)
+        formData.append("titulo",evento)
+        formData.append('tipo',tipoEvento)
+        formData.append('fecha_inicio',fechaInicial)
+        formData.append('fecha_final',fechaFinal)
+        formData.append('imagen',imagenes)
+        formData.append('descripcion',descripcion)
         
-
+        await crearEvento(formData)
         }
-
-
-
     return(
         <>
          {/* Modal CREAR EVENTO */}
@@ -30,7 +35,7 @@ const CrearEvento = () => {
                         </div>
 
                         <div className="modal-body"><br></br>
-                            <form className="row g-2 needs-validation" onSubmit={handleSubmit}>
+                            <form className="row g-2 needs-validation" onSubmit={()=>handleSubmit()}>
 
                                 {/* Nombre del evento */}
                                 <div className="col-12 mt-0" style={{ padding: "0 50px 0 50px" }}>

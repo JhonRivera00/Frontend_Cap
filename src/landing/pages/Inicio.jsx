@@ -17,7 +17,7 @@ const [dataInicio, setDataInicio] = useState([]);
   useEffect(()=>{
   const fetchData = async () =>{
   const datos = await datosInicio()
-
+console.log(datos,"datos Inicio");
     setDataInicio(datos)
   }
   fetchData();

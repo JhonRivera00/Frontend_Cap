@@ -1,252 +1,264 @@
-import axios from 'axios'
-import jwt_decode from 'jwt-decode'
-import Swal from 'sweetalert2'
-
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import Swal from "sweetalert2";
 
 export const datosInicio = async () => {
   try {
-    const { data } = await axios.get("/verEventos")
-    const destacados = data.filter(data => data.tipo === "destacado")
-    return destacados
-
+    const { data } = await axios.get("/verEventos");
+    const destacados = data.filter((data) => data.tipo === "destacado");
+    return destacados;
   } catch (error) {
     if (error.response.status === 400) {
       Swal.fire({
         icon: "error",
-        title: error.response.data
+        title: error.response.data,
       });
     }
   }
-}
+};
 
 export const datosCronograma = async () => {
   try {
-    const { data } = await axios.get("/verEventos")
-    const destacados = data.filter(data => data.tipo === "destacado")
-    return destacados
-
+    const { data } = await axios.get("/verEventos");
+    const destacados = data.filter((data) => data.tipo === "destacado");
+    return destacados;
   } catch (error) {
     if (error.response.status === 400) {
       Swal.fire({
         icon: "error",
-        title: error.response.data
+        title: error.response.data,
       });
     }
   }
-}
+};
 export const dataVerCharlas = async () => {
   try {
-    const tokenAdmin = localStorage.getItem("Token-Administrador")
-    const { id } = jwt_decode(tokenAdmin)
-    const { data } = await axios.get(`/verSolicitudes/${id}`)
+    const tokenAdmin = localStorage.getItem("Token-Administrador");
+    const { id } = jwt_decode(tokenAdmin);
+    const { data } = await axios.get(`/verSolicitudes/${id}`);
     return data;
   } catch (error) {
     if (error.response.status === 400) {
       Swal.fire({
         icon: "error",
-        title: error.response.data
+        title: error.response.data,
       });
     }
   }
-}
+};
 
 export const opProfesionales = async () => {
   try {
-    const { data } = await axios.get("/verUsuariosProfesionales")
+    const { data } = await axios.get("/verUsuariosProfesionales");
     return data;
   } catch (error) {
     if (error.response.status === 400) {
       Swal.fire({
         icon: "error",
-        title: error.response.data
+        title: error.response.data,
       });
     }
   }
-}
+};
 
-export const aplazarCharlaData = async (id, motivo, nuevaFecha, nuevoProfesional) => {
-
-
+export const aplazarCharlaData = async (
+  id,
+  motivo,
+  nuevaFecha,
+  nuevoProfesional
+) => {
   try {
-    const response = await axios.put(`/solicitudesAplazar/${id}`, { motivo, nuevaFecha, nuevoProfesional })
+    const response = await axios.put(`/solicitudesAplazar/${id}`, {
+      motivo,
+      nuevaFecha,
+      nuevoProfesional,
+    });
     if (response.status === 200) {
       Swal.fire({
         title: response.data,
         icon: "success",
-        timer: 2000
-      })
-        .then((
-          location.reload()
-        ))
+        timer: 2000,
+      }).then(location.reload());
     }
-
   } catch (error) {
     if (error.response.status === 400) {
       Swal.fire({
         icon: "error",
-        title: error.response.data
+        title: error.response.data,
       });
     }
   }
-}
+};
 
 export const solicitudesprofesional = async () => {
   try {
-
-    const tokenAdmin = localStorage.getItem("Token-Administrador")
+    const tokenAdmin = localStorage.getItem("Token-Administrador");
     const token = {
       headers: {
-        'acceso-token': tokenAdmin
-      }
-    }
+        "acceso-token": tokenAdmin,
+      },
+    };
     const { data } = await axios.get("/solicitudesProfesional", token);
-    return data
+    return data;
   } catch (error) {
     if (error.response.status === 400) {
       Swal.fire({
         icon: "error",
-        title: error.response.data
+        title: error.response.data,
       });
     }
   }
-}
+};
 export const solicitudesRechazadasProfesional = async () => {
   try {
-
-    const tokenAdmin = localStorage.getItem("Token-Administrador")
+    const tokenAdmin = localStorage.getItem("Token-Administrador");
     const token = {
       headers: {
-        'acceso-token': tokenAdmin
-      }
-    }
-    const { data } = await axios.get("/solicitudesRechazadasProfesional", token);
-    return data
+        "acceso-token": tokenAdmin,
+      },
+    };
+    const { data } = await axios.get(
+      "/solicitudesRechazadasProfesional",
+      token
+    );
+    return data;
   } catch (error) {
     if (error.response.status === 400) {
       Swal.fire({
         icon: "error",
-        title: error.response.data
+        title: error.response.data,
       });
     }
   }
-}
+};
 export const charlaAceptada = async (id) => {
   try {
-    const response = await axios.put(`/solicitudesAceptar/${id}`)
+    const response = await axios.put(`/solicitudesAceptar/${id}`);
     if (response.status === 200) {
       Swal.fire({
         title: response.data,
         icon: "success",
-        timer: 2000
-      })
-        .then((
-          location.reload()
-        ))
+        timer: 2000,
+      }).then(location.reload());
     }
   } catch (error) {
     if (error.response.status === 400) {
       Swal.fire({
         icon: "error",
-        title: error.response.data
+        title: error.response.data,
       });
     }
   }
-
-}
-export const aceptarProfesional = async (id)=>{
+};
+export const aceptarProfesional = async (id) => {
   try {
-    const tokenAdmin = localStorage.getItem("Token-Administrador")
+    const tokenAdmin = localStorage.getItem("Token-Administrador");
     const headers = {
-        'acceso-token': tokenAdmin
-      }
-    
+      "acceso-token": tokenAdmin,
+    };
+
     console.log(headers);
-    const response = await axios.put(`/aceptarProfesional/${id}`,null,{headers})
+    const response = await axios.put(`/aceptarProfesional/${id}`, null, {
+      headers,
+    });
     if (response.status === 200) {
       Swal.fire({
         title: response.data,
         icon: "success",
-        timer: 2000
-      })
-        .then((
-          location.reload()
-        ))
+        timer: 2000,
+      }).then(location.reload());
     }
   } catch (error) {
     if (error.response.status === 400) {
       Swal.fire({
         icon: "error",
-        title: error.response.data
+        title: error.response.data,
       });
     }
   }
-}
-export const rechazarProfesional = async(motivoRechazo,id)=>{
-try {
-  const tokenAdmin = localStorage.getItem("Token-Administrador")
-  
-   const headers = {
-      'acceso-token': tokenAdmin
-  }
-  const response = await axios.put(`/rechazarProfesional/${id}`,{motivoRechazo},{headers})
-  if (response.status === 200) {
-    Swal.fire({
-      title: response.data,
-      icon: "success",
-      timer: 2000
-    })
-      .then((
-        location.reload()
-      ))
-  }
-} catch (error) {
-  if (error.response.status === 400) {
-    Swal.fire({
-      icon: "error",
-      title: error.response.data
-    });
-  }
-}
-
-}
-
-export const datosPqrs = async ()=>{
+};
+export const rechazarProfesional = async (motivoRechazo, id) => {
   try {
-    const {data} = await axios.get("/verPqrsPendientes")
+    const tokenAdmin = localStorage.getItem("Token-Administrador");
+
+    const headers = {
+      "acceso-token": tokenAdmin,
+    };
+    const response = await axios.put(
+      `/rechazarProfesional/${id}`,
+      { motivoRechazo },
+      { headers }
+    );
+    if (response.status === 200) {
+      Swal.fire({
+        title: response.data,
+        icon: "success",
+        timer: 2000,
+      }).then(location.reload());
+    }
+  } catch (error) {
+    if (error.response.status === 400) {
+      Swal.fire({
+        icon: "error",
+        title: error.response.data,
+      });
+    }
+  }
+};
+
+export const datosPqrs = async () => {
+  try {
+    const { data } = await axios.get("/verPqrsPendientes");
     return data;
   } catch (error) {
     console.log(error);
   }
-}
+};
 
-export const responderPqrs = async (respuesta,id)=>{
+export const responderPqrs = async (respuesta, id) => {
   try {
-    const response= await axios.put(`/responderPqrs/${id}`,{respuesta})
+    const response = await axios.put(`/responderPqrs/${id}`, { respuesta });
     if (response.status === 200) {
       Swal.fire({
         title: response.data,
         icon: "success",
-        timer: 2000
-      })
-        .then((
-          location.reload()
-        ))
+        timer: 2000,
+      }).then(location.reload());
     }
   } catch (error) {
     if (error.response.status === 400) {
       Swal.fire({
         icon: "error",
-        title: error.response.data
+        title: error.response.data,
       });
     }
   }
-}
-export const misNotificaciones = async (id)=>{
+};
+export const misNotificaciones = async (id) => {
   try {
-    const {data} = await axios.get(`/notificaciones/${id}`)
-    console.log(data,"notificacionesId ");
-    return data
+    const { data } = await axios.get(`/notificaciones/${id}`);
+    console.log(data, "notificacionesId ");
+    return data;
   } catch (error) {
     console.error(error);
   }
-}
+};
+export const crearEvento = async (data) => {
+  try {
+    const response = await axios.post(`/crearEventos`, data);
+    if (response.status === 200) {
+      Swal.fire({
+        title: response.data,
+        icon: "success",
+        timer: 2000,
+      })
+    }
+  } catch (error) {
+    if (error.response.status === 400) {
+      Swal.fire({
+        icon: "error",
+        title: error.response.data,
+      });
+    }
+  }
+};
