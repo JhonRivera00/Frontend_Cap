@@ -3,18 +3,22 @@ import axios from 'axios'
 
 
 export const datosInicio = async () => {
+      try {
+        
+        const {data} = await axios.get("/verEventos");
+        // Filtrar los eventos que tengan el tipo "destacado"
       
-  const {data} = await axios.get("/verEventos");
-  // Filtrar los eventos que tengan el tipo "destacado"
-  const destacados = data.filter(evento => evento.tipo === "destacado");
-  
-  return destacados;
+        return data;
+      } catch (error) {
+        console.log(error);
+      }
 }
 export const datosCronograma= async () => {
       
   const {data} = await axios.get("/verEventos");
+  console.log(data);
   // Filtrar los eventos que tengan el tipo "cronograma"
-  const cronograma = data.filter(evento => evento.tipo === "destacado");
+  const cronograma = data.filter(evento => evento.tipo === "cronograma");
   
   return cronograma;
 }

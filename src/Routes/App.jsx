@@ -24,6 +24,9 @@ import Admincronograma from '../administrador/pages/ListaCronograma'
 import Adminprofesional from '../administrador/pages/SolicitudesProfesional'
 import { ProtectRoutesAdmin,ProtectRoutesProfesional } from './ProtectRoutes'
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+import "bootstrap/dist/js/bootstrap.min.js"
+
 
 const App = () => {
   return (

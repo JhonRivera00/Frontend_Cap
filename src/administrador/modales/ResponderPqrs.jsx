@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { responderPqrs } from '../data/DataAdmin'
 
 function ResponderPqrs({dataModalPqrs}) {
-    console.log(dataModalPqrs,"datamodalpqrs");
 const [respuesta, setRespuesta] = useState("")
 const handleSubmit= (e)=>{
     e.preventDefault();

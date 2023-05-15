@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom';
 import person_circle from '../../assets/img/icons/person-circle.svg'
 import house1 from '../../assets/img/icons/house1.svg'
@@ -8,10 +8,21 @@ import chatdots from '../../assets/img/icons/chat-dotsadm.svg'
 import badgde from '../../assets/img/icons/badge-fill.svg'
 import linesfi from '../../assets/img/icons/person-lines-fill.svg'
 import envelopef from '../../assets/img/icons/envelope-fill.svg'
-
+import jwt_decode from 'jwt-decode'
+import { verAdmin } from '../data/DataAdmin';
 
 
 function Menulateral() {
+  const token = localStorage.getItem("Token-Administrador")
+  const [dataAdmin, setDataAdmin] = useState("")
+  const {id}= jwt_decode(token)
+  useEffect(() => {
+   (async()=>{
+    const {data} = await verAdmin(id)
+    setDataAdmin(data)
+   })()
+  }, [])
+  
   return (
     <>
       <MenuSup />
@@ -25,9 +36,9 @@ function Menulateral() {
 
                 <div className="d-flex flex-column ms-3 mt-1">
                   <div className="d-lg-flex d-none w-100 d-flex justify-content-around">
-                    <span className="text-white fw-light ms-1">Jennifer Villegas Pino</span>
+                    <span className="text-white fw-light ms-1">{dataAdmin.nombres}{" "}{dataAdmin.apellidos}</span>
 
-                    <span className="badge rounded-pill bg-green w-25 float-right">En línea</span>
+                    <span className="badge rounded-pill bg-green float-right ms-2" style={{display: "inline-flex", alignItems: "center", width: "fit-content"}}>En línea</span>
 
                   </div>
                 </div>

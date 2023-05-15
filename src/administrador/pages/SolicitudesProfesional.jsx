@@ -16,8 +16,8 @@ useEffect(() => {
 const datos = async () =>{
 const solicitudesProfesional = await solicitudesprofesional()
 const soliRechazadasProfesional = await solicitudesRechazadasProfesional();
-setSoliRechazadas(soliRechazadasProfesional)
-setData(solicitudesProfesional)
+setSoliRechazadas(soliRechazadasProfesional.reverse())
+setData(solicitudesProfesional.reverse())
 }
 datos()
 }, [])
@@ -26,7 +26,7 @@ const enviarDataPro=(nombre,apellido,tipoDoc,numDoc,profesion,correo,telefono,id
 const dataProfesional = {
   nombre,apellido,tipoDoc,numDoc,profesion,correo,telefono,id,motivoRechazo
 }
-setDataPro(dataProfesional)
+setDataPro(dataProfesional.reverse())
 
 }
 
@@ -37,7 +37,7 @@ setDataPro(dataProfesional)
         <img src={Imgnav} className="w-100 img-titulo-fondo" alt="" />
         <h1 className="text-titulo position-absolute text-center w-100">
           SOLICITUD PROFESIONAL
-          <div className="d-flex justify-content-around pt-2">
+          <div className="d-flex justify-content-around">
             <div className="bg-green p-1 w-25"></div>
             <div className="bg-green p-1 w-25"></div>
           </div>

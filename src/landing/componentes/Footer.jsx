@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import People from "../../assets/img/icons/people-fill.svg";
 import Clock from "../../assets/img/icons/clock.svg";
 import Arrow from "../../assets/img/icons/arrow-down-right-square.svg";
@@ -7,10 +7,27 @@ import Instagram from "../../assets/img/icons/instagram.svg";
 import Twitter from "../../assets/img/icons/twitter.svg";
 import Whatsapp from "../../assets/img/icons/whatsapp.svg";
 import { Link } from "react-router-dom";
-import { Button } from "bootstrap";
 
 
 const Fotter = () => {
+  
+  useEffect(() => {
+    const tokenAdmin = localStorage.getItem("Token-Administrador")
+    const tokenPro = localStorage.getItem("Token-Profesional")
+    const tokenApre = localStorage.getItem("Token-Aprendiz")
+    const token = tokenApre || tokenPro || tokenAdmin
+    if(!token){
+      
+      document.querySelector("#btn-inicio-admin").classList.toggle("btn-danger")
+    }else{
+      if(document.querySelector("#btn-inicio-admin").classList.contains("d-none")){
+        return
+      }
+      document.querySelector("#btn-inicio-admin").classList.toggle("d-none")
+    }
+  }, [])
+  
+ 
   return (
     <div>
     
@@ -79,7 +96,7 @@ const Fotter = () => {
                   No se atiende fines de semana y festivos
                 </p>
 
-                <a className="float-end btn btn-green w-75" data-bs-toggle="modal"    data-bs-target="#inicioSesionAdmin">Iniciar sesion administrador</a>
+                <a className="float-end btn btn-green w-75"  id="btn-inicio-admin"  data-bs-toggle="modal"    data-bs-target="#inicioSesionAdmin">Iniciar sesion administrador</a>
               </div>
             </div>
           </div>

@@ -3,7 +3,6 @@ import Horizontal from '../../assets/img/Horizontal.png'
 import favicon2 from '../../assets/img/favicon2.png'
 import gear from '../../assets/img/icons/gear.svg'
 import box_arrow from '../../assets/img/icons/box-arrow-right.svg'
-import bell2 from '../../assets/img/icons/bell2.svg'
 import person2 from '../../assets/img/icons/person-circle2.svg'
 import { Link } from 'react-router-dom';
 // Modales
@@ -30,46 +29,7 @@ function MenuSup() {
 
           <div className="d-inline d-flex navbar-brand" id="navbarSupportedContent">
             <div className="navbar-nav ms-3">
-              <li className="nav-item dropdown">
-                <Link className="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false"><img src={bell2} alt="icon-user" /></Link>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownNotifications">
-                  <h6 class="dropdown-header">Nuevas notificaciones</h6>
-                  <Link class="dropdown-item" href="#">
-                    <div class="media">
-                      <img src="https://via.placeholder.com/50x50" class="mr-3 rounded-circle" alt="..." />
-                      <div class="media-body">
-                        <h6 class="mt-0 mb-1">Notificación 1</h6>
-                        <p>Descripción de la notificación 1.</p>
-                        <small class="text-muted">Hace 5 minutos</small>
-                      </div>
-                    </div>
-                  </Link>
-                  <Link class="dropdown-item" href="#">
-                    <div class="media">
-                      <img src="https://via.placeholder.com/50x50" class="mr-3 rounded-circle" alt="..." />
-                      <div class="media-body">
-                        <h6 class="mt-0 mb-1">Notificación 2</h6>
-                        <p>Descripción de la notificación 2.</p>
-                        <small class="text-muted">Hace 10 minutos</small>
-                      </div>
-                    </div>
-                  </Link>
-                  <Link class="dropdown-item" href="#">
-                    <div class="media">
-                      <img src="https://via.placeholder.com/50x50" class="mr-3 rounded-circle" alt="..." />
-                      <div class="media-body">
-                        <h6 class="mt-0 mb-1">Notificación 3</h6>
-                        <p>Descripción de la notificación 3.</p>
-                        <small class="text-muted">Hace 15 minutos</small>
-                      </div>
-                    </div>
-                  </Link>
-                  <div class="dropdown-divider"></div>
-                  <Link class="dropdown-item text-center" href="#">Ver todas las notificaciones</Link>
-                </div>
-
-              </li>
+              
             </div>
             <div className="navbar-nav ms-3 h-100">
               <li className="nav-item dropdown">

@@ -2,9 +2,20 @@
 import Imgnav from "../../assets/img/imgnav.jpg";
 import Person from '../../assets/img/icons/person-lines-fill.svg'
 import search from '../../assets/img/icons/search.svg'
+import { useEffect, useState } from "react";
+import { verUsuarios } from "../data/DataAdmin";
 
 
 const Solicitudes = () => {
+  const [usuarios, setUsuarios] = useState([])
+  console.log(usuarios);
+  useEffect(() => {
+    (async () => {
+      const usuario = await verUsuarios()
+      setUsuarios(usuario);
+    })()
+  }, [])
+
   return (
     <>
       {/* <!-- Contenido --> */}
@@ -12,14 +23,14 @@ const Solicitudes = () => {
       <div className="position-relative d-inline-block w-100" >
         <img src={Imgnav} className="w-100 img-titulo-fondo" alt="" />
         <h1 className="text-titulo position-absolute text-center  w-100">LISTA DE SOLICITUDES
-          <div className=" d-flex justify-content-around pt-2">
+          <div className=" d-flex justify-content-around ">
             <div className="bg-green p-1 w-25" ></div>
             <div className="bg-green p-1 w-25" ></div>
           </div>
         </h1>
       </div>
       {/* <!-- Fin Titulo --> */}
-   
+
 
       {/* Buscador */}
 
@@ -29,7 +40,7 @@ const Solicitudes = () => {
           <img src={search} className="btn btn-outline-primary" alt="" />
         </div>
       </div>
-        {/* Fin buscador */}
+      {/* Fin buscador */}
 
 
       {/* Fin selecionar filtro */}
@@ -55,23 +66,31 @@ const Solicitudes = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Jhoan Muñoz</td>
-              <td>1002819827</td>
-              <td>2452639</td>
-              <td className=" link-light ">
-                <div >
-                  <p className="bg-success rounded-pill text-center w-75"> Habilitado</p>
-                </div>
-              </td>
-              <td>
-                <div className="form-check form-switch">
-                  <input className="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                  <p className="text-muted">Aprendiz</p>
-                </div>
-              </td>
-            </tr>
+            {
+              usuarios.map((user,i) => (
+                <tr>
+                  <th scope="row">{i}</th>
+                  <td>{user.nombres}{" "}{user.apellidos}</td>
+                  <td>{user.documento.numeroDocumento}</td>
+                  <td></td>
+                  <td className=" link-light ">
+                    <div >
+                      <p className="bg-success rounded-pill text-center w-75"> Habilitado</p>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="form-check form-switch">
+                      <input className="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" />
+                      <p className="text-muted">Aprendiz</p>
+                    </div>
+                  </td>
+                </tr>
+
+              ))
+
+
+            }
+
           </tbody>
         </table>
       </div>
