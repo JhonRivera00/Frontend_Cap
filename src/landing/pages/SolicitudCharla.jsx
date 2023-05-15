@@ -90,12 +90,15 @@ const Charla = () => {
       </section>
       {/* <!-- Profesionales --> */}
       <main className="text-center d-flex flex-column justify-content-center align-items-center" id="form-charla">
-      <div className='w-50 bg-black '>
+      <div className='w-50 '>
 
      
 
         <p className="fs-3 fw-semibold">SOLICITA TU CHARLA DE FORMA GRUPAL O PERSONAL CON UNO DE NUESTROS PROFESIONALES</p>
+        <div className='w-100 d-flex justify-content-center'>
+
         <div className="bg-green pt-1 w-25 "></div>
+        </div>
         <form className="needs-validation  " onSubmit={validarToken} >
           <div className="row g-2 my-2">
 

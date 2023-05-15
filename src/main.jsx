@@ -5,7 +5,7 @@ import '../src/assets/css/main.css';
 import {BrowserRouter} from 'react-router-dom'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'https://backend-cap-273v.vercel.app';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
