@@ -94,7 +94,7 @@ body {
   top: 24%;
 }
 .img-titulo-fondo {
-  height: 200px;
+  height: 120px;
   object-fit: cover;
   opacity: 0.2;
 }
@@ -103,9 +103,14 @@ body {
   object-fit: cover;
   opacity: 0.2;
 }
+
+.form-select:hover {
+  border-color: #6c757d;
+}
+
 .contenedor-actividades {
   width: 400px;
-  min-width: 400px;
+  min-width: 200px;
 }
 .shadow-black {
   box-shadow: 6px 7px 24px 3px rgba(0, 0, 0, 0.73);

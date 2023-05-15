@@ -14,7 +14,7 @@ const Usuarios = () => {
   useEffect( () => {
     (async()=>{
       const data = await  datosPqrs()
-      setDataPqrs(data)
+      setDataPqrs(data.reverse())
     })()
     
   }, [])
@@ -35,7 +35,7 @@ setdataModalPqrs(datos)
         <div className="position-relative d-inline-block w-100" >
           <img src={Imgnav} className="w-100 img-titulo-fondo" alt="" />
           <h1 className="text-titulo position-absolute text-center  w-100">PQRS
-            <div className=" d-flex justify-content-around pt-2">
+            <div className=" d-flex justify-content-around ">
               <div className="bg-green p-1 w-25" ></div>
               <div className="bg-green p-1 w-25" ></div>
             </div>

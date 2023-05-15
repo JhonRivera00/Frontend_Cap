@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Horizontal from "../../assets/img/Horizontal.png";
 import Favicon2 from "../../assets/img/favicon2.png";
 import { Link, Outlet } from "react-router-dom";
-import Footer from "../componentes/Footer";
+import Footer from "./Footer";
 import BtnInicio from '../data/BtnInicioSesion'
 // Modales
 import InicioSesion from '../modales/InicioSesion'
@@ -10,8 +10,7 @@ import DatosAjustes from '../modales/Ajustes'
 import NotificacionAseptar from '../modales/AceptarRechazarCharla'
 import RegistroAprendiz from '../modales/RegistroAprendiz'
 import RegistroProfesional from '../modales/RegistroProfesional'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.min.js'
+
 
 const Navbar = () => {
   return (
@@ -50,26 +49,26 @@ const Navbar = () => {
                   INICIO
                 </Link>
               </li>
-              <li className="nav-item active fs-6">
-                <Link className="nav-link " to="/conocenos">
+              <li className="nav-item  fs-6">
+                <Link className="nav-link active" to="/conocenos">
                   CONOCENOS
                 </Link>
               </li>
-              <li className="nav-item active fs-6">
+              <li className="nav-item  fs-6">
                 <Link
-                  className="nav-link"
+                  className="nav-link active"
                   to="/charla"
                 >
                   CHARLA
                 </Link>
               </li>
-              <li className="nav-item active fs-6">
-                <Link className="nav-link" to="/cronograma">
+              <li className="nav-item  fs-6">
+                <Link className="nav-link active" to="/cronograma">
                   CRONOGRAMA
                 </Link>
               </li>
-              <li className="nav-item  active fs-6">
-                <Link className="nav-link" to="/contactanos">
+              <li className="nav-item   fs-6">
+                <Link className="nav-link active" to="/contactanos">
                   CONTACTANOS
                 </Link>
               </li>

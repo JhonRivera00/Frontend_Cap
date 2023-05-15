@@ -13,12 +13,13 @@ const Contenido = () => {
   
   
 const [dataInicio, setDataInicio] = useState([]);
+// const [dataNoticia, setDataNoticia] = useState([]);
 
   useEffect(()=>{
   const fetchData = async () =>{
   const datos = await datosInicio()
-console.log(datos,"datos Inicio");
-    setDataInicio(datos)
+  const destacados = datos.filter(evento => evento.tipo === "noticia");
+    setDataInicio(destacados.reverse())
   }
   fetchData();
 },[])
@@ -27,6 +28,7 @@ console.log(datos,"datos Inicio");
   return (<>
     <Slider/>
     <div className="card-group d-flex justify-content-around">
+
       {dataInicio.map((data)=>(
              <div className="card mx-sm-5 my-sm-5 border rounded-0" key={data._id}>
              <img className="card-img-top"

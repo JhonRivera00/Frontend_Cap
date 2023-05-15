@@ -90,9 +90,13 @@ const Charla = () => {
       </section>
       {/* <!-- Profesionales --> */}
       <main className="text-center d-flex flex-column justify-content-center align-items-center" id="form-charla">
-        <p className="fs-3 fw-semibold w-50 ">SOLICITA TU CHARLA DE FORMA GRUPAL O PERSONAL CON UNO DE NUESTROS PROFESIONALES</p>
+      <div className='w-50 bg-black '>
+
+     
+
+        <p className="fs-3 fw-semibold">SOLICITA TU CHARLA DE FORMA GRUPAL O PERSONAL CON UNO DE NUESTROS PROFESIONALES</p>
         <div className="bg-green pt-1 w-25 "></div>
-        <form className="needs-validation w-50 " onSubmit={validarToken} >
+        <form className="needs-validation  " onSubmit={validarToken} >
           <div className="row g-2 my-2">
 
             <div className="col-sm-12 mt-4 mt-md-5">
@@ -129,6 +133,9 @@ const Charla = () => {
           </div>
         </form>
         <InicioSesion/>
+        </div>
+        
+
       </main>
     </>
   )
