@@ -1,6 +1,6 @@
 
 export const horaLocal = (data)=>{
-
+ 
     // Obtener la hora actual
     let hora = new Date(data);
 

@@ -7,21 +7,25 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { datosCronograma } from '../../profesionales/data/DataSolicitudes';
 import jwt_decode from 'jwt-decode';
 import moment from 'moment'
+import { horaLocal } from '../../assets/js/FormatoHora';
+
 
 
 // Pasar a español
 const localizer = momentLocalizer(moment);
 
-const fechaCrono = (dato) => {
+const fechaCrono = () => {
 
-  const fechaString = dato;
-  const fechaMoment = moment(fechaString, 'DD [de] MMMM [del] YYYY [a las] HH:mm A');
+  const horaFor = horaLocal(new Date())
+
+  const fechaMoment = moment({ hour: horaFor });
   const anio = fechaMoment.year();
   const mes = fechaMoment.month() + 1;
   const dia = fechaMoment.date();
   const hora = fechaMoment.hours();
   const min = fechaMoment.minutes();
   const fechaFormateada = new Date(anio, mes, dia, hora, min);
+
   return fechaFormateada;
 
 }
@@ -37,6 +41,7 @@ const CalendarioEventos = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await datosCronograma(id);
+      console.log(data)
       setSolicitud(data);
     };
 

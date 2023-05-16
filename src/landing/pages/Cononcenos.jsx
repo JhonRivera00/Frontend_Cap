@@ -6,6 +6,7 @@ import Circle2 from '../../assets/img/icons/2-circle.svg'
 import Circle3 from '../../assets/img/icons/3-circle.svg'
 import Opjetivo from '../../assets/img/opjetivo1.webp'
 import Video from '../../assets/img/videos/Bienestar al Aprendiz SENA.mp4'
+import Centro from '../../assets/img/imgnav.jpg'
 
 
 const Conocenos = () => {
@@ -13,7 +14,7 @@ const Conocenos = () => {
     <>
       {/* <!-- Inicio Section --> */}
       <section className="">
-        <img src={Zyro} className="titulo-objetivo" alt="" />
+        <img src={Centro} className="titulo-objetivo" alt="" />
         <div className="px-5 py-5">
           <p className="fs-3 fw-semibold"><img src={Bullseye} alt="" className="pe-3" /> OBJETIVOS</p>
           <hr className="w-25" />
