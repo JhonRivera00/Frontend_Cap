@@ -10,6 +10,7 @@ const CrearEvento = () => {
     const [imagenes, setImagenes] = useState("")
     const [pdf, setPdf] = useState("")
     const [descripcion, setDescripcion] = useState("")
+   const fechaActual = new Date().toISOString().slice(0, 16);
     
 
     const handleSubmit = (e) => {
@@ -86,7 +87,7 @@ const CrearEvento = () => {
                                 {/* Fecha y hora de inicio */}
                                 <div className="col-12 mt-4" style={{ padding: "0 50px 0 50px" }}>
                                     <label htmlFor="validationCustom02" className="form-label">FECHA Y HORA DE INICIO</label>
-                                    <input type="datetime-local" className="form-control" id="validationCustom02" onChange={(e) => setFechaInicial(e.target.value)} />
+                                    <input type="datetime-local" className="form-control" min={fechaActual} id="validationCustom02" onChange={(e) => setFechaInicial(e.target.value)} />
                                 </div>
                                 {/* Fecha y hora final */}
                                 <div className="col-12 mt-4" style={{ padding: "0 50px 0 50px" }}>
