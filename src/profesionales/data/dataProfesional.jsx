@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from 'axios' 
+
 export const verProfesional = async (id)=>{
     try {
       const response = await axios.get(`/usuario/${id}`)
