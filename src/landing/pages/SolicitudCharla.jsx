@@ -18,22 +18,14 @@ const Charla = () => {
   //Opciones Profesionales
   const [profesionales, setProfesionales] = useState([]);
 
-   // Obtén la fecha actual
-   const fechaActual = new Date().toISOString().slice(0, 16);
-   
-   const inputFechaHora = document.getElementById('fecha-hora');
+   const fechaActual = new Date(); 
 
-   document.querySelector('form').addEventListener('submit', function(event) {
-     const fechaHoraActual = new Date();
+  fechaActual.setHours(fechaActual.getHours() - 5);
+    
+  const fechaNueva = fechaActual.toISOString().slice(0, 16); 
    
-     const fechaHoraSeleccionada = new Date(inputFechaHora.value);
    
-     if (fechaHoraSeleccionada < fechaHoraActual) {
-       event.preventDefault(); // Evita enviar el formulario
-       alert('La fecha y hora no pueden ser anteriores a la actual');
-     }
-   });
-
+  
   useEffect(() => {
     const dataProfesionales = async () => {
       const data = await axios.get("/verUsuariosProfesionales")
@@ -122,7 +114,7 @@ const Charla = () => {
             <div className="col-sm-12 mt-4 mt-md-5">
               <div className="input-group has-validation">
                 <input type="datetime-local" className="form-control border-green" id="fecha-hora"
-                 min={fechaActual}
+                 min={fechaNueva}
                   onChange={(e) => setFecha(e.target.value)} />
 
               </div>

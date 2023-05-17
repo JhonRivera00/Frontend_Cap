@@ -8,6 +8,10 @@ const AplazarCharla = (props) => {
     const [fechaAplazamiento, setFechaAplazamiento] = useState("");
     const [motivoAplazamiento, setMotivoAplazamiento] = useState("");
     const [profesionalAplazamiento, setProfesionalAplazamiento] = useState("");
+
+    const fechaActual = new Date();
+    fechaActual.setHours(fechaActual.getHours() - 5);
+    const fechaInicio = fechaActual.toISOString().slice(0, 16);
 useEffect(() => {
     const dataProfesionales = async () => {
         const data = await opProfesionales();
@@ -39,7 +43,8 @@ const handleSubmit =(e)=>{
                                 {/* Fecha y hora de inicio */}
                                 <div className="col-12 mt-0" style={{ padding: "0 50px 0 50px" }}>
                                     <label htmlFor="validationCustom02" className="form-label">FECHA Y HORA APLAZAMIENTO</label>
-                                    <input type="datetime-local" className="form-control" id="validationCustom02" onChange={(e)=>setFechaAplazamiento(e.target.value)}/>
+                                    <input type="datetime-local" className="form-control" 
+                                    min={fechaInicio} id="validationCustom02" onChange={(e)=>setFechaAplazamiento(e.target.value)}/>
                                 </div>
 
                                 {/* Seleccionar instructor */}

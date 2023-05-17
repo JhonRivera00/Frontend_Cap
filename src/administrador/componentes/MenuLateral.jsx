@@ -32,7 +32,7 @@ function Menulateral() {
           <div className="col-auto col-md-3 col-lg-4 col-xl-4 px-sm-2 px-0 bg-color-blue position-fixed">
             <div className="d-flex flex-column align-items-center align-items-sm-start px-0 px-sm-3 pt-2 text-white min-vh-100 bg-white bg-opacity-25 mx-3">
               <div className="py-2 mt-2 mb-md-0 me-md-auto text-white text-decoration-none d-flex shadow-black rounded-3 w-100">
-                <img src={person_circle} className="ms-3" alt="" />
+                <img src="https://res.cloudinary.com/dvuzzneet/image/upload/v1684280453/sinF_ksqjai.png" style={{ width: "65px", height: "65px" }} className="ms-3" alt="" />
 
                 <div className="d-flex flex-column ms-3 mt-1">
                   <div className="d-lg-flex d-none w-100 d-flex justify-content-around">

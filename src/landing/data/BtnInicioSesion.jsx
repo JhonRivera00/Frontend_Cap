@@ -17,6 +17,7 @@ const BtnInicioSesion = () => {
   const [siHay, setSiHay] = useState("");
   const [datosMotivoNoti, setDatosMotivoNoti] = useState({})
   const [dataPro, setDataPro] = useState({})
+  console.log(notificaciones);
 
 
   const botonesIncio = () => {
@@ -79,7 +80,6 @@ const BtnInicioSesion = () => {
       useEffect(() => {
         (async () => {
           const { data } = await verProfesional(id)
-          console.log(data);
           setDataPro(data)
         })()
       }, [])

@@ -57,7 +57,7 @@ const Charlas = () => {
                 <th>FICHA</th>
                 <th>MOTIVO</th>
                 <th>ESTADO</th>
-                <th>BOTONES</th>
+                <th>OPCIONES</th>
               </tr>
             </thead>
             <tbody>{

@@ -26,7 +26,7 @@ const enviarDataPro=(nombre,apellido,tipoDoc,numDoc,profesion,correo,telefono,id
 const dataProfesional = {
   nombre,apellido,tipoDoc,numDoc,profesion,correo,telefono,id,motivoRechazo
 }
-setDataPro(dataProfesional.reverse())
+setDataPro(dataProfesional)
 
 }
 
@@ -67,7 +67,7 @@ setDataPro(dataProfesional.reverse())
                 <th>NIT</th>
                 <th>PROFESION</th>
                 <th>ESTADO</th>
-                <th>BOTONES</th>
+                <th>OPCIONES</th>
               </tr>
             </thead>
             <tbody>
