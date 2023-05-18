@@ -3,7 +3,6 @@ const VerNotificacion = ({ datosMotivoNoti }) => {
     const tokenAprendiz = localStorage.getItem("Token-Aprendiz")
     const tokenProfesional = localStorage.getItem("Token-Profesional")
     const tokenAdmin = localStorage.getItem("Token-Administrador")
-console.log(datosMotivoNoti);
     if (tokenAprendiz) {
         if(datosMotivoNoti.titulo === "Solicitud Aceptada"){
             return (

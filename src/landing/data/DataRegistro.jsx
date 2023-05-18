@@ -51,3 +51,23 @@ export const registroProfesional = async (formData) => {
     }
 }
 
+
+export const acualizarAprendiz = async (id, data) => {
+    try {
+        const response = await axios.put(`/actualizarAprendiz/${id}`, data);
+        if(response.status === 200){
+            Swal.fire({
+                title: response.data,
+                icon: "success",
+                timer: 2000
+            })
+        }
+    } catch (error) {
+        Swal.fire({
+            icon: "error",
+            title: error.response.data
+        });
+        console.log(error)
+    }
+} 
+
