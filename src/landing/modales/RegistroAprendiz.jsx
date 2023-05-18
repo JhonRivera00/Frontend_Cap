@@ -18,7 +18,6 @@ const Registrase = () => {
     const [genero, setGenero] = useState("");
     const [programa, setPrograma] = useState("");
 
-    // Programas
     const [options, setOptions] = useState([]);
 
     const URLP = "/programas";
@@ -27,7 +26,7 @@ const Registrase = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (contrasenaUno != contrasenaDos) {
-            return Swal.file({
+            return Swal.fire({
                 icon: "error",
                 title: "Contraseña no coinciden"
             });

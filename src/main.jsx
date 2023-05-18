@@ -10,7 +10,8 @@ import axios from 'axios'
 
 // http://localhost:3000
 //https://backend-cap-273v.vercel.app
-axios.defaults.baseURL = 'http://10.185.80.133:3000';
+axios.defaults.baseURL = 'http://localhost:3000';
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

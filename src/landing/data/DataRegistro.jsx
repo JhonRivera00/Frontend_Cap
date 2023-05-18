@@ -5,10 +5,11 @@ export const registroAprendiz = async (formDataApren) => {
 
     try {
         const response = await axios.post('/registrarAprendiz', formDataApren)
+        console.log(response);
         if (response.status === 200) {
             Swal.fire({
-                title: response.title.messagge,
-                icon: "susses",
+                title: response.data.messagge,
+                icon: "success",
                 timer: 2000
             })
                 .then((
