@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 
 const ActualizarEvento = ({ data }) => {
 
-    console.log(data.fecha_inicio);
-
     const [evento, setEvento] = useState("");
     const [tipoEvento, setTipoEvento] = useState("");
     const [lugar, setLugar] = useState("");
@@ -166,7 +164,7 @@ const ActualizarEvento = ({ data }) => {
 
                                 {/* Botón CREAR EVENTO */}
                                 <div className="col-12 d-flex justify-content-center mb-2 pb-6 pt-4">
-                                    <button className="btn btn-green" type="submit">CREAR EVENTO</button>
+                                    <button className="btn btn-green" type="submit">ACTUALIZAR EVENTO</button>
                                 </div>
                             </form>
                         </div>
