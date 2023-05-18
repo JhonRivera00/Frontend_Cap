@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './Routes/App'
 import '../src/assets/css/main.css';
 import {BrowserRouter} from 'react-router-dom'
-import axios from 'axios'
-
-
+import axios from 'axios' 
 
 
 

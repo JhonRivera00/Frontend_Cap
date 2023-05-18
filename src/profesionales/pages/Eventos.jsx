@@ -88,7 +88,7 @@ const CalendarioEventos = () => {
         <Modal.Header closeButton>
           <Modal.Title>Detalles del evento</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body> 
           {selectedEvent && solicitud.find((s) => s.titulo === selectedEvent.title) && (
             <div>
               <p>Título: {selectedEvent.title}</p>
