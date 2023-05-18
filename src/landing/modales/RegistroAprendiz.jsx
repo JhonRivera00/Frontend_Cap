@@ -2,14 +2,15 @@
 import React, { useState, useEffect } from "react";
 import { registroAprendiz } from '../data/DataRegistro'
 import axios from 'axios'
+import Swal from "sweetalert2";
 const Registrase = () => {
-
 
     //Registro Aprendiz
     const [nombres, setNombre] = useState("");
     const [apellidos, setApellidos] = useState("");
     const [tipo, setTipo] = useState("");
     const [numeroDocumento, setNumeroDocumento] = useState("");
+    const [imgAprendiz, setImgAprendiz] = useState(null);
     const [correo, setCorreo] = useState("");
     const [numTelefono, setNumTelefono] = useState("");
     const [contrasenaUno, setContrasenaUno] = useState("");
@@ -20,10 +21,33 @@ const Registrase = () => {
     // Programas
     const [options, setOptions] = useState([]);
 
-    const URLP = "https://backend-cap-273v.vercel.app/programas"
+    const URLP = "/programas";
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        registroAprendiz(nombres, apellidos, tipo, numeroDocumento, correo, numTelefono, contrasenaUno, contrasenaDos, genero,programa)
+        if (contrasenaUno != contrasenaDos) {
+            return Swal.file({
+                icon: "error",
+                title: "Contraseña no coinciden"
+            });
+
+        } else {
+            const contrasena  = contrasenaUno
+
+            const formDataApren = new FormData();
+            formDataApren.append('nombres', nombres);
+            formDataApren.append('apellidos', apellidos);
+            formDataApren.append('tipo', tipo);
+            formDataApren.append('numeroDocumento', numeroDocumento);
+            formDataApren.append('imgAprendiz', imgAprendiz);
+            formDataApren.append('correo', correo);
+            formDataApren.append('numTelefono', numTelefono);
+            formDataApren.append('contrasena', contrasena);
+            formDataApren.append('genero', genero);
+            formDataApren.append('programa', programa);
+
+            registroAprendiz(formDataApren);
+        }
     }
 
     useEffect(() => {
@@ -69,9 +93,14 @@ const Registrase = () => {
                                                 <option defaultValue="T.I">T.I</option>
                                             </select>
                                         </div>
+                                    
                                         <div className="col-sm-9">
                                             <label htmlFor="lastName" className="form-label">Numero Documento</label>
                                             <input type="number" className="form-control" id="lastName" placeholder="" onChange={(e) => setNumeroDocumento(e.target.value)} />
+                                        </div>
+                                        <div className="col-12">
+                                            <label htmlFor="lastName" className="form-label">Foto de perfil</label>
+                                            <input type="file" className="form-control" id="lastName" placeholder=""  onChange={(e) => setImgAprendiz(e.target.files[0])} />
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="validationGenero" className="form-label">Genero</label>
@@ -95,7 +124,6 @@ const Registrase = () => {
                                             <label htmlFor="telefono" className="form-label">Telefono</label>
                                             <input type="Number" className="form-control" id="telefono" placeholder="" onChange={(e) => setNumTelefono(e.target.value)} />
                                         </div>
-
 
                                         <div className="col-12">
                                             <label htmlFor="email" className="form-label">Correo</label>

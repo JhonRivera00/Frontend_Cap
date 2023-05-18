@@ -57,7 +57,7 @@ const Registrase = () => {
                             <div className="modal-content  bg-color-blue  text-white ">
                                 <form className="needs-validation contenedor-registro rounded-3 mx-3" onSubmit={handleSubmit} >
                                     <div className="row g-3  text-white  p-4 rounded-3 ">
-                                        <div className="w-100 d-flex justify-content-end ">
+                                        <div className="w-100 d-flex justify-content-end "> 
                                             <button type="button" className="btn-close bg-light" style={{ width: "20px", height: "20px" }} data-bs-dismiss="modal" aria-label="Close"></button>
 
                                         </div>

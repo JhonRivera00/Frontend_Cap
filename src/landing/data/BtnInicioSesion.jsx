@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 import VerNotificacion from "../modales/VerNotificacion";
 import { verProfesional } from "../../profesionales/data/dataProfesional";
 
+
 const BtnInicioSesion = () => {
   const [notificaciones, setnotificaciones] = useState([]);
   const [siHay, setSiHay] = useState("");
@@ -79,7 +80,6 @@ const BtnInicioSesion = () => {
       useEffect(() => {
         (async () => {
           const { data } = await verProfesional(id)
-          console.log(data);
           setDataPro(data)
         })()
       }, [])
@@ -146,11 +146,6 @@ const BtnInicioSesion = () => {
               :
                 <img src={person_circle} alt="icon-user" style={{ width: "70px", height: "70px" }} className="rounded-circle" />
             }
-            
-                
-
-
-
               </Link>
               <ul
                 className="dropdown-menu bg-green border-green"

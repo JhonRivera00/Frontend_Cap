@@ -30,7 +30,7 @@ import "bootstrap/dist/js/bootstrap.min.js"
 
 
 const App = () => {
-  return (
+  return (  
     <div>
       <Routes>
         <Route path="/" element={<Navbar/>}>
