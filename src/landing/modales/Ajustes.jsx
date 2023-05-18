@@ -20,14 +20,21 @@ const DatosAjustes = () => {
 
     
     useEffect(() => {
+        
         const token = localStorage.getItem('Token-Aprendiz');
-        const { id } = jwt_decode(token);
-        const fetAprendiz = async () => {
-            const { data } = await verAdmin(id)
-            setMostrar(data);
-            setDatos(data)
+        if(!token){
+
+        return    
+        }else{
+
+            const { id } = jwt_decode(token);
+            const fetAprendiz = async () => {
+                const { data } = await verAdmin(id)
+                setMostrar(data);
+                setDatos(data)
+            }
+            fetAprendiz()
         }
-        fetAprendiz()
     }, []);
 
     const handleTarget = ({target}) => {
