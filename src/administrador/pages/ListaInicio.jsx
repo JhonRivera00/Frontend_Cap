@@ -1,12 +1,13 @@
 import ImagenTitulo from '../../assets/img/imgnav.jpg';
-import Threevertical from '../../assets/img/icons/three-dots-vertical.svg'
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { datosInicio } from '../../administrador/data/DataAdmin'
+import ActualizarEvento from '../modales/ActualizarEvento'
 
 
 const Inicio = () => {
     const [dataInicio, setDataInicio] = useState([]);
+    const [dataEvento, setDataEvento] = useState("")
 
     useEffect(() => {
         const fetchData = async () => {
@@ -18,8 +19,11 @@ const Inicio = () => {
 
     const verEventos = async (e) => {
         const data = await datosInicio(e);
-        console.log(data);
         setDataInicio(data.reverse());
+    }
+    const dataEventos = (_id,descripcion,fecha_inicio,fecha_final,idImg,urlImg,lugar,tipo,titulo)=>{
+const data ={_id,descripcion,fecha_inicio,fecha_final,idImg,urlImg,lugar,tipo,titulo};
+setDataEvento(data)
     }
 
     return (
@@ -57,7 +61,7 @@ const Inicio = () => {
 
                 <div className="card-group d-flex mt-0  flex-wrap justify-content-around">
                     {dataInicio.map((data) => (
-                        <div className="card mx-sm-5 my-sm-5 border rounded-0">
+                        <div className="card mx-sm-5 my-sm-5 border rounded-0" key={data._id}>
                             <img className="card-img-top" src={data.imagen.urlImg} alt="slider1" />
                             <div className="card-body">
                                 <h5 className="card-title text-uppercase text-center mb-3">
@@ -74,15 +78,8 @@ const Inicio = () => {
                             </div>
                             <div className="card-footer bg-green">
                                 <small className="text-muted1 d-flex justify-content-between pt-0">Ultima actualización hace 3 minutos..
-                                    <div className="dropdown">
-                                        <Link href="" className=" float-end" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src={Threevertical} className="bg-white rounded p-2 bg-opacity-25 border" alt="" /></Link>
-                                        <ul className="dropdown-menu border-green" aria-labelledby="dropdownMenuButton1" >
-                                            <li><Link className="dropdown-item" href="#">Eliminar</Link></li>
-                                            <li><Link className="dropdown-item" href="#">Editar</Link></li>
-                                            <li><Link className="dropdown-item" href="#">Inhabilitar</Link></li>
-                                            <li><Link className="dropdown-item" href="#">Habilitar</Link></li>
-                                        </ul>
+                                    <div className="">
+                                    <button className='btn btn-sm btn-secondary' data-bs-toggle="modal" data-bs-target="#actualizarEvento" onClick={()=>dataEventos(data._id,data.descripcion,data.fecha_inicio,data.fecha_final,data.imagen.idImg,data.imagen.urlImg,data.lugar,data.tipo,data.titulo)}>Actualizar</button>
                                     </div>
                                 </small>
                             </div>
@@ -94,8 +91,10 @@ const Inicio = () => {
 
                 </div>
             </div>
+            
+            <ActualizarEvento data={dataEvento}/>
         </>
     )
 }
 
-export default Inicio
+export default Inicio;

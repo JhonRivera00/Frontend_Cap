@@ -9,10 +9,11 @@ import { verUsuarios } from "../data/DataAdmin";
 const Solicitudes = () => {
   const [usuarios, setUsuarios] = useState([])
   console.log(usuarios);
+  console.log(usuarios);
   useEffect(() => {
     (async () => {
       const usuario = await verUsuarios()
-      setUsuarios(usuario);
+      setUsuarios(usuario.reverse());
     })()
   }, [])
 

@@ -94,7 +94,6 @@ const CalendarioEventos = () => {
               <p>Título: {selectedEvent.title}</p>
               <p>Fecha: {solicitud.find((s) => s.titulo === selectedEvent.title).fechaAplazada}</p>
               <p>Descripción: {solicitud.find((s) => s.titulo === selectedEvent.title).contenido}</p>
-              <p>Descripción: {solicitud.find((s) => s.titulo === selectedEvent.title).aprendizId.nombres}</p>
               {/* ...otros datos relevantes */}
             </div>
           )}

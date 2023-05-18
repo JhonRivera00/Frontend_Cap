@@ -20,7 +20,7 @@ const Registrase = () => {
     // Programas
     const [options, setOptions] = useState([]);
 
-    const URLP = "https://backend-cap-273v.vercel.app/programas"
+    const URLP = "/programas"
     const handleSubmit = (e) => {
         e.preventDefault()
         registroAprendiz(nombres, apellidos, tipo, numeroDocumento, correo, numTelefono, contrasenaUno, contrasenaDos, genero,programa)

@@ -262,7 +262,7 @@ export const crearEvento = async (data) => {
         icon: "success",
         timer: 2000,
       })
-      .then(location.reload())
+      // .then(location.reload())
     }
   } catch (error) {
     if (error.response.status === 400) {
@@ -291,5 +291,31 @@ return user
     
   } catch (error) {
     console.log(error.response);
+  }
+}
+export const actualizarEvento= async(id,data)=>{
+  try {
+    const tokenAdmin = localStorage.getItem("Token-Administrador");
+
+    const headers = {
+      "acceso-token": tokenAdmin,
+    };
+
+    const response = await axios.put(`/actualizarEvento${id}`,data,{headers})
+    if (response.status === 200) {
+      Swal.fire({
+        title: response.data,
+        icon: "success",
+        timer: 2000,
+      })
+      .then(location.reload())
+    }
+  } catch (error) {
+    if (error.response.status === 400) {
+      Swal.fire({
+        icon: "error",
+        title: error.response.data,
+      });
+    }
   }
 }

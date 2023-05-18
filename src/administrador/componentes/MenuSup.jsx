@@ -24,7 +24,7 @@ function MenuSup() {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <Link className="btn btn-green" data-bs-toggle="modal" href="" data-bs-target="#exampleModalIN" >
+          <Link className="btn btn-green" data-bs-toggle="modal" data-bs-target="#exampleModalIN" >
             + Crear evento</Link>
 
           <div className="d-inline d-flex navbar-brand" id="navbarSupportedContent">
