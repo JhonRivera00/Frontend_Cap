@@ -14,6 +14,7 @@ import ContactanosProfesional from "../profesionales/pages/Contactanos";
 import CronogramaProfesional from "../profesionales/pages/Cronograma";
 import ConocenosProfesional from "../profesionales/pages/Cononcenos";
 import Eventos from '../profesionales/pages/Eventos';
+import EventoProfesional from '../profesionales/pages/Eventos'
 
 //Administrador
 import Menulateral from "../administrador/componentes/MenuLateral"
@@ -49,7 +50,6 @@ const App = () => {
           <Route path="/profesional/charla" element={<CharlaProfesional />} />
           <Route path="/profesional/contactanos" element={<ContactanosProfesional />} />
           <Route path="/profesional/cronograma" element={<CronogramaProfesional />} />
-          <Route path="/profesional/eventos" element={<Eventos />} />
           </Route>
         </Route>
 

@@ -8,10 +8,6 @@ const AplazarCharla = (props) => {
     const [fechaAplazamiento, setFechaAplazamiento] = useState("");
     const [motivoAplazamiento, setMotivoAplazamiento] = useState("");
     const [profesionalAplazamiento, setProfesionalAplazamiento] = useState("");
-
-    const fechaActual = new Date();
-    fechaActual.setHours(fechaActual.getHours() - 5);
-    const fechaInicio = fechaActual.toISOString().slice(0, 16);
 useEffect(() => {
     const dataProfesionales = async () => {
         const data = await opProfesionales();

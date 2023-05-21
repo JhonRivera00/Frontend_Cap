@@ -7,7 +7,11 @@ import { es } from 'date-fns/locale';
 import { datosCronograma } from '../data/DataInicioSesion';
 import { horaLocal } from '../../assets/js/FormatoHora';
 const Cronograma = () => {
+
   const [dataCronograma, setDataCronograma] = useState([]);
+
+
+  console.log(dataCronograma)
 
   useEffect(() => {
     const fetchData = async () => {

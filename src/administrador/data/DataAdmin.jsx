@@ -37,7 +37,7 @@ export const datosCronograma = async () => {
       });
     }
   }
-};
+}
 export const dataVerCharlas = async () => {
   try {
     const tokenAdmin = localStorage.getItem("Token-Administrador");
