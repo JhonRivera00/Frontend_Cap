@@ -61,7 +61,15 @@ const ActualizarEvento = ({ data }) => {
             }
            
         } else {
-            if (document.querySelector("#cont-lugar").classList.contains("d-none")) {
+
+           if(data.tipo === "destacado"){
+                if (document.querySelector("#div-pdf").classList.contains("d-none")) {
+                }else{
+                    document.querySelector("#div-pdf").classList.toggle("d-none")
+
+                }
+            }
+            else  if (document.querySelector("#cont-lugar").classList.contains("d-none")) {
                 document.querySelector("#con-imgs").classList.remove("d-none")
                 document.querySelector("#con-pdfs").classList.remove("d-none")
             } else {

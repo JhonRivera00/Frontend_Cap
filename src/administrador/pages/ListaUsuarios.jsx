@@ -1,7 +1,6 @@
 
 import Imgnav from "../../assets/img/imgnav.jpg";
 import Person from '../../assets/img/icons/person-lines-fill.svg'
-import search from '../../assets/img/icons/search.svg'
 import { useEffect, useState } from "react";
 import { verUsuarios } from "../data/DataAdmin";
 
@@ -30,13 +29,6 @@ const Solicitudes = () => {
       </div>
       {/* <!-- Fin Titulo --> */}
 
-
-      {/* Buscador */}
-
-   
-
-
-      {/* Fin selecionar filtro */}
 
 
       {/* <!-- Inicio Contenido --> */}
@@ -72,10 +64,6 @@ const Solicitudes = () => {
                     </div>
                   </td>
                   <td>
-                    {/* <div className="form-check form-switch">
-                      <input className="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" />
-                      <p className="text-muted">Aprendiz</p>
-                    </div> */}
                   </td>
                 </tr>
 

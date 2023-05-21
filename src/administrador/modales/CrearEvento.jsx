@@ -48,7 +48,14 @@ const CrearEvento = () => {
             document.querySelector("#div-img").classList.toggle("d-none")
             document.querySelector("#div-pdf").classList.toggle("d-none")
         } else {
-            if (document.querySelector("#div-lugar").classList.contains("d-none")) {
+            if(e === "destacado"){
+                if (document.querySelector("#div-pdf").classList.contains("d-none")) {
+                }else{
+                    document.querySelector("#div-pdf").classList.toggle("d-none")
+
+                }
+            }
+            else if (document.querySelector("#div-lugar").classList.contains("d-none")) {
                 document.querySelector("#div-img").classList.remove("d-none")
                 document.querySelector("#div-pdf").classList.remove("d-none")
             } else {

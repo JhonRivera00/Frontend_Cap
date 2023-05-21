@@ -43,7 +43,14 @@ const ActualizarEvento = ({ data }) => {
             document.querySelector("#con-img").classList.toggle("d-none")
             document.querySelector("#con-pdf").classList.toggle("d-none")
         } else {
-            if (document.querySelector("#con-lugar").classList.contains("d-none")) {
+            if(data.tipo === "destacado"){
+                if (document.querySelector("#con-pdf").classList.contains("d-none")) {
+                }else{
+                    document.querySelector("#con-pdf").classList.toggle("d-none")
+
+                }
+            }
+            else if (document.querySelector("#con-lugar").classList.contains("d-none")) {
                 document.querySelector("#con-img").classList.remove("d-none")
                 document.querySelector("#con-pdf").classList.remove("d-none")
             } else {
@@ -88,11 +95,19 @@ const ActualizarEvento = ({ data }) => {
                 document.querySelector("#con-pdf").classList.toggle("d-none")
             
         } else {
-            console.log(e);
-            if (document.querySelector("#con-lugar").classList.contains("d-none")) {
+
+           if(e === "destacado"){
+                if (document.querySelector("#con-pdf").classList.contains("d-none")) {
+                }else{
+                    document.querySelector("#con-pdf").classList.toggle("d-none")
+
+                }
+            }
+            else  if (document.querySelector("#con-lugar").classList.contains("d-none")) {
                 document.querySelector("#con-img").classList.remove("d-none")
                 document.querySelector("#con-pdf").classList.remove("d-none")
-            } else {
+            } 
+             else {
                 
                 document.querySelector("#con-img").classList.remove("d-none")
                 document.querySelector("#con-pdf").classList.remove("d-none")
