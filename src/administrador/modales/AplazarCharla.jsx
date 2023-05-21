@@ -21,6 +21,9 @@ const handleSubmit =(e)=>{
  aplazarCharlaData(props.id,motivoAplazamiento,fechaAplazamiento,profesionalAplazamiento);
 
 } 
+const fechaActual = new Date();
+fechaActual.setHours(fechaActual.getHours() - 5);
+const fechaInicio = fechaActual.toISOString().slice(0, 16);
     return (
         <>
             {/* Modal Aplazar Charla */}

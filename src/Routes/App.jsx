@@ -13,8 +13,7 @@ import CharlaProfesional from "../profesionales/pages/SolicitudCharla";
 import ContactanosProfesional from "../profesionales/pages/Contactanos";
 import CronogramaProfesional from "../profesionales/pages/Cronograma";
 import ConocenosProfesional from "../profesionales/pages/Cononcenos";
-import Eventos from '../profesionales/pages/Eventos';
-import EventoProfesional from '../profesionales/pages/Eventos'
+import EventosProfesional from '../profesionales/pages/Eventos';
 
 //Administrador
 import Menulateral from "../administrador/componentes/MenuLateral"
@@ -48,6 +47,7 @@ const App = () => {
           <Route index element={<InicioProfesional />} />
           <Route path="/profesional/conocenos" element={<ConocenosProfesional />} />
           <Route path="/profesional/charla" element={<CharlaProfesional />} />
+          <Route path="/profesional/evento" element={<EventosProfesional />} />
           <Route path="/profesional/contactanos" element={<ContactanosProfesional />} />
           <Route path="/profesional/cronograma" element={<CronogramaProfesional />} />
           </Route>

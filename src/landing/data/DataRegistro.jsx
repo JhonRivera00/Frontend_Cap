@@ -1,27 +1,29 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
-export const registroAprendiz = async (nombres,apellidos,tipo,numeroDocumento,correo,numTelefono,contrasenaUno,contrasenaDos,genero,programa)=>{
-    const URL ="https://backend-cap-273v.vercel.app/registrarAprendiz"
-    if(contrasenaUno != contrasenaDos){
-        Swal.fire({
-            icon: "error",
-            title: "Contraseñas no coinciden"
-          });
-
-    }else{
-        const contrasena = contrasenaUno;
+export const registroAprendiz = async (data)=>{
         try {
-         const response = await axios.post(`/registrarAprendiz`,{
-             nombres,apellidos,tipo,numeroDocumento,genero,programa,correo,numTelefono,contrasena,
-         })
+            const loading = Swal.fire({
+                title: 'Registrando profesional',
+                text: 'Espere un momento por favor...',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+            });
+         const response = await axios.post(`/registrarAprendiz`,data)
+        loading.close()
+
          if(response.status === 200){
              Swal.fire({
                  title: response.data.messagge,
                  icon: "success",
                  timer:2000
-               })
-         }
+               }).then(
+                location.reload()
+               )
+         }  
      } catch (error) {
          if (error.response.status === 400){
              Swal.fire({
@@ -30,7 +32,7 @@ export const registroAprendiz = async (nombres,apellidos,tipo,numeroDocumento,co
                });
          }
      }
-    }
+    
 
 }
 
@@ -120,7 +122,9 @@ export const acualizarProfesional = async (id, data) => {
                 title: response.data,
                 icon: "success",
                 timer: 2000
-            })
+            }).then(
+                location.reload()
+            )
         
     } catch (error) {
         Swal.fire({
