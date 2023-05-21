@@ -22,8 +22,7 @@ const Inicio = () => {
               title: "Por tu seguridad se ha cerrado sesión",
               icon: "success"
             }).then(() => {
-              Swal.clickConfirm();
-              location.reload();
+              Swal.clickConfirm(location.reload());
             });
           }, 3600000);
           

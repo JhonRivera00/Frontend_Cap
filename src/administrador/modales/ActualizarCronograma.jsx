@@ -36,17 +36,7 @@ const ActualizarEvento = ({ data }) => {
         setFechaInicial(fechas(data.fecha_inicio))
         setFechaFinal(fechas(data.fecha_final))
         setDescripcion(data.descripcion)
-        setTimeout(function () {
-            localStorage.clear();
-            Swal.fire({
-              title: "Se ha cerrado sesion",
-              icon: "success",
-              timer: 1000
-            })
-              .then(
-                location.reload()
-              )
-          }, 60000 );
+        
 
         if ( data.tipo === "cronograma" ) {
             if (document.querySelector("#cont-lugar").classList.contains("d-none")) {
@@ -63,9 +53,9 @@ const ActualizarEvento = ({ data }) => {
         } else {
 
            if(data.tipo === "destacado"){
-                if (document.querySelector("#div-pdf").classList.contains("d-none")) {
+                if (document.querySelector("#con-pdfs").classList.contains("d-none")) {
                 }else{
-                    document.querySelector("#div-pdf").classList.toggle("d-none")
+                    document.querySelector("#con-pdfs").classList.toggle("d-none")
 
                 }
             }
@@ -114,12 +104,24 @@ const ActualizarEvento = ({ data }) => {
         if (e === "cronograma" ) {
             if (document.querySelector("#cont-lugar").classList.contains("d-none")) {
                 document.querySelector("#cont-lugar").classList.remove("d-none")
+            } if(!document.querySelector("#con-imgs").classList.contains("d-none")){
+
+                document.querySelector("#con-imgs").classList.toggle("d-none")
             }
-            document.querySelector("#con-imgs").classList.toggle("d-none")
-            document.querySelector("#con-pdfs").classList.toggle("d-none")
+            if(!document.querySelector("#con-pdfs").classList.contains("d-none")){
+
+                document.querySelector("#con-pdfs").classList.toggle("d-none")
+            }
         } else {
-            console.log(e);
-            if (document.querySelector("#cont-lugar").classList.contains("d-none")) {
+            if(e === "destacado"){
+                if (!document.querySelector("#con-pdfs").classList.contains("d-none")) {
+                    document.querySelector("#con-pdfs").classList.toggle("d-none")
+                }
+                if (document.querySelector("#con-imgs").classList.contains("d-none")) {
+                    document.querySelector("#con-imgs").classList.remove("d-none")
+                }
+            }
+            else if (document.querySelector("#cont-lugar").classList.contains("d-none")) {
                 document.querySelector("#con-imgs").classList.remove("d-none")
                 document.querySelector("#con-pdfs").classList.remove("d-none")
             } else {
