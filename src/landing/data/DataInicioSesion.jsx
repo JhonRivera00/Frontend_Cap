@@ -6,9 +6,9 @@ export const datosInicio = async () => {
       
   const {data} = await axios.get("/verEventos");
   // Filtrar los eventos que tengan el tipo "destacado"
-  const destacados = data.filter(evento => evento.tipo === "destacado");
+  // const destacados = data.filter(evento => evento.tipo === "destacado");
   
-  return destacados;
+  return data;
 }
 export const datosCronograma= async () => {
       
