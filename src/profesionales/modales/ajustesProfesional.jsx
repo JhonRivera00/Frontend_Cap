@@ -1,29 +1,27 @@
 
 import { useEffect, useState } from "react";
 import jwt_decode from 'jwt-decode';
-import { verAdmin } from '../../administrador/data/DataAdmin'
-import { acualizarAprendiz } from "../data/DataRegistro";
+import { verProfesional } from '../../profesionales/data/dataProfesional'
+import { acualizarProfesional } from "../../landing/data/DataRegistro"
 
 
-const DatosAjustes = () => {
-    
+const DatosAjustes = () => {    
+
     const [id, setId] = useState("");
     const [imagen, setImagen] = useState(null);
-    const [mostrar, setMostrar] = useState({
+    const [datos, setDatos] = useState({
         nombres: "",
         apellidos: "",
-        idImg: "",
+        idImg: "", 
         correo: "",
         genero: "",
+        profesion: "",
         numTelefono: "",
     });
 
-
-
-
     useEffect(() => {
 
-        const token = localStorage.getItem('Token-Aprendiz');
+        const token = localStorage.getItem('Token-Profesional');
         if (!token) {
 
             return
@@ -32,16 +30,17 @@ const DatosAjustes = () => {
             const { id } = jwt_decode(token);
             setId(id);
 
-            const fetAprendiz = async () => {
-                const { data } = await verAdmin(id)
-                setMostrar(data);
+            const fetProfesional = async () => {
+                const { data } = await verProfesional(id)
+                console.log(data)
+                setDatos(data);
             }
-            fetAprendiz()
+            fetProfesional()
         }
     }, []);
 
     const handleTarget = ({ target }) => {
-        setMostrar({ ...mostrar, [target.name]: target.value });
+        setDatos({ ...datos, [target.name]: target.value });
     };
 
     const handleOnsumbit = (e) => {
@@ -49,20 +48,21 @@ const DatosAjustes = () => {
 
 
         // Put para actulalizar
-        const fromDateImg = new FormData()
-        fromDateImg.append('nombres', mostrar.nombres);
-        fromDateImg.append('apellidos', mostrar.apellidos);
-        fromDateImg.append('imgAprendiz', imagen);
-        fromDateImg.append('correo', mostrar.correo);
-        fromDateImg.append('genero', mostrar.genero);
-        fromDateImg.append('numTelefono', mostrar.numTelefono);
+        const fromProfe = new FormData()
+        fromProfe.append('imgProfesional', imagen);
+        fromProfe.append('nombres', datos.nombres);
+        fromProfe.append('apellidos', datos.apellidos);
+        fromProfe.append('correo', datos.correo);
+        fromProfe.append('genero', datos.genero);
+        fromProfe.append('profesion', datos.profesion);
+        fromProfe.append('numTelefono', datos.numTelefono);
 
-        acualizarAprendiz(id, fromDateImg);
+        acualizarProfesional(id, fromProfe);
 
     };
 
     function selectImage() {
-        
+
         const imageInput = document.getElementById('image-input');
         imageInput.click();
 
@@ -112,17 +112,17 @@ const DatosAjustes = () => {
                                     <div className="col-md-12 col-lg-10 mx-auto">
 
                                         <div className="d-flex justify-content-center mb-4 t-3" style={{ position: "relative" }}>
-                                            {mostrar && mostrar.perfil && mostrar.perfil.urlImg ? (
+                                            {datos && datos.perfil && datos.perfil.urlImg ? (
                                                 <>
                                                     <img
-                                                        src={mostrar.perfil.urlImg}
+                                                        src={datos.perfil.urlImg}
                                                         width={"40%"}
                                                         id="image"
-                                                        className="shadow-black rounded-circle w-25" 
+                                                        className="shadow-black rounded-circle w-25"
                                                         onClick={() => selectImage()}
                                                         alt=""
-                                                        style={{ cursor: "pointer", width:"100px", height: "100px" }}
-                                                    />
+                                                        style={{ cursor: "pointer", width: "100px", height:"100px" }}
+                                                    />  
                                                     <input type="file" id="image-input" accept="image/* " onChange={(e) => setImagen(e.target.files[0])} style={{ display: "none" }} />
                                                     <div
                                                         style={{
@@ -149,7 +149,7 @@ const DatosAjustes = () => {
                                                     type="text"
                                                     className="form-control bg-white border-green"
                                                     name="nombres"
-                                                    value={mostrar.nombres}
+                                                    value={datos.nombres}
                                                     id="firstName"
                                                     placeholder=""
                                                     required
@@ -165,7 +165,7 @@ const DatosAjustes = () => {
                                                     type="text"
                                                     className="form-control  bg-white border-green"
                                                     name="apellidos"
-                                                    value={mostrar.apellidos}
+                                                    value={datos.apellidos}
                                                     id="lastName"
                                                     placeholder=""
                                                     required
@@ -179,10 +179,26 @@ const DatosAjustes = () => {
                                                 <input type="email" className="form-control"
                                                     id="email"
                                                     name="correo"
-                                                    value={mostrar.correo}
+                                                    value={datos.correo}                        
                                                     placeholder=""
                                                     onChange={handleTarget}
 
+                                                />
+                                            </div>
+
+                                            <div className="col-sm-12">
+                                                <label htmlFor="firstName" className="form-label ">
+                                                    profesion
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    className="form-control bg-white border-green"
+                                                    name="profesion"
+                                                    value={datos.profesion}
+                                                    id="firstName"
+                                                    placeholder=""
+                                                    required
+                                                    onChange={handleTarget}
                                                 />
                                             </div>
 
@@ -190,7 +206,7 @@ const DatosAjustes = () => {
                                                 <label htmlFor="validationGenero" className="form-label">Genero</label>
                                                 <select className="form-select"
                                                     name="genero"
-                                                    value={mostrar.genero}
+                                                    value={datos.genero}                               
                                                     onChange={handleTarget}
                                                     id="validationGenero" aria-label="Default select example" required>
                                                     <option disable="true" >Genero</option>
@@ -208,7 +224,7 @@ const DatosAjustes = () => {
                                                     className="form-control  bg-white border-green"
                                                     id="email"
                                                     name="numTelefono"
-                                                    value={mostrar.numTelefono}
+                                                    value={datos.numTelefono}
                                                     placeholder=""
                                                     required
                                                     onChange={handleTarget}

@@ -6,7 +6,7 @@ import Footer from "../componentes/Footer";
 import BtnInicio from '../../landing/data/BtnInicioSesion'
 // Modales
 import InicioSesion from '../../landing/modales/InicioSesion'
-import DatosAjustes from '../../landing/modales/Ajustes'
+import DatosAjustes from '../../profesionales/modales/ajustesProfesional'
 import NotificacionAseptar from '../../landing/modales/AceptarRechazarCharla'
 import RegistroAprendiz from '../../landing/modales/RegistroAprendiz'
 import RegistroProfesional from '../../landing/modales/RegistroProfesional'
