@@ -300,7 +300,7 @@ export const verAdmin = async (id)=>{
 export const verUsuarios = async ()=>{
   try {
     const {data} = await axios.get(`/verUsuarios`)
-    const user = data.filter((d)=>d.rol[0]==="643a096498ad2ddb07994dfc")
+    const user = data.filter((d)=>d.rol[0].nombre === "aprendiz")
     
 
 return user

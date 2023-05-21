@@ -14,7 +14,7 @@ export const datosCronograma= async () => {
       
   const {data} = await axios.get("/verEventos");
   // Filtrar los eventos que tengan el tipo "cronograma"
-  const cronograma = data.filter(evento => evento.tipo === "destacado");
+  const cronograma = data.filter(evento => evento.tipo === "cronograma");
   
   return cronograma;
 }
