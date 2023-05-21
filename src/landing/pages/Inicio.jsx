@@ -1,32 +1,39 @@
 import React, {useEffect, useState} from "react";
 import IconPregunta from '../../assets/img/IconPregunta.png'
-import Psicologa1 from '../../assets/img/psicologa1.jfif'
-import Psicologa2 from '../../assets/img/psicologa2.jfif'
-import Psicologo1 from '../../assets/img/psicologo1.webp'
 import {Link} from 'react-router-dom'
 import Slider from '../componentes/SliderInicioSesion'
-import { datosInicio } from "../data/DataInicioSesion";
-
+import { datosInicio, verPro} from "../data/DataInicioSesion";
+import FechaNotificacion from './../../assets/js/FechaNotificacion';
+import {useNavigate} from 'react-router-dom'
 
 
 const Contenido = () => {
   
+  const navigate = useNavigate()
   
 const [dataInicio, setDataInicio] = useState([]);
+const [dataPro, setDataPro] = useState([])
 
   useEffect(()=>{
   const fetchData = async () =>{
   const datos = await datosInicio()
-
-    setDataInicio(datos)
+  const destacados = datos.filter(evento => evento.tipo === "noticia");
+  const dataPro= await verPro();
+    setDataInicio(destacados.reverse())
+    setDataPro(dataPro)
+    
   }
   fetchData();
 },[])
 
 
+
+
+
   return (<>
     <Slider/>
-    <div className="card-group d-flex justify-content-around">
+    <div className="card-group justify-content-around">
+
       {dataInicio.map((data)=>(
              <div className="card mx-sm-5 my-sm-5 border rounded-0" key={data._id}>
              <img className="card-img-top"
@@ -48,7 +55,7 @@ const [dataInicio, setDataInicio] = useState([]);
              </div>
              <div className="card-footer bg-green">
                <small className="text-muted1">
-                 Ultima actualización hace 3 minutos..
+               {data.updatedAt?FechaNotificacion(data.updatedAt):""}
                </small>
              </div>
            </div>
@@ -94,40 +101,25 @@ const [dataInicio, setDataInicio] = useState([]);
             </p>
           </div>
         </div>
-        <div className="w-100 d-flex flex-wrap my-5">
-          <div className="text-center mx-auto mt-4">
+        <div className="w-100 card-group my-5">
+          {dataPro.map((d)=>(
+
+
+          <div className="text-center mx-auto mt-4" key={d._id}>
             <div>
               <p className="fs-5 mb-2">
-                Ana Maria Echeverry <br /> Enfermera
+                {d.nombres}{" "}{d.apellidos} <br /> {d.profesion}
               </p>
-              <img src={Psicologa1} className="img-profesionales" alt="" />
+              <img src={d.perfil.urlImg} className="img-profesionales" alt="" />
             </div>
-            <Link href="/dashboard/charla.html" className="btn btn-green mt-3">
+            <button onClick={()=>navigate("/charla", { replace: true })} className="btn btn-green mt-3">
               Solicitar charla
-            </Link>
+            </button>
           </div>
-          <div className="text-center mx-auto mt-4">
-            <div className="">
-              <p className="fs-5 mb-2">
-                Angie Lorena Quintana <br /> Psicóloga
-              </p> 
-              <img src={Psicologa2} className="img-profesionales" alt="" />
-            </div>
-            <Link href="/dashboard/charla.html" className="btn btn-green mt-3">
-              Solicitar charla
-            </Link>
-          </div>
-          <div className="text-center mx-auto mt-4">
-            <div className="">
-              <p className="fs-5 mb-2">
-                Jose Danilo Ortega <br /> Psicólogo
-              </p>
-              <img src={Psicologo1}className="img-profesionales" alt="" />
-            </div>
-            <Link href="/dashboard/charla.html" className="btn btn-green mt-3">
-              Solicitar charla
-            </Link>
-          </div>
+
+          ))
+          }
+         
         </div>
       </section>
     </div>

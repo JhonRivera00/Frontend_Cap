@@ -16,8 +16,8 @@ useEffect(() => {
 const datos = async () =>{
 const solicitudesProfesional = await solicitudesprofesional()
 const soliRechazadasProfesional = await solicitudesRechazadasProfesional();
-setSoliRechazadas(soliRechazadasProfesional)
-setData(solicitudesProfesional)
+setSoliRechazadas(soliRechazadasProfesional.reverse())
+setData(solicitudesProfesional.reverse())
 }
 datos()
 }, [])
@@ -37,7 +37,7 @@ setDataPro(dataProfesional)
         <img src={Imgnav} className="w-100 img-titulo-fondo" alt="" />
         <h1 className="text-titulo position-absolute text-center w-100">
           SOLICITUD PROFESIONAL
-          <div className="d-flex justify-content-around pt-2">
+          <div className="d-flex justify-content-around">
             <div className="bg-green p-1 w-25"></div>
             <div className="bg-green p-1 w-25"></div>
           </div>
@@ -67,13 +67,13 @@ setDataPro(dataProfesional)
                 <th>NIT</th>
                 <th>PROFESION</th>
                 <th>ESTADO</th>
-                <th>BOTONES</th>
+                <th>OPCIONES</th>
               </tr>
             </thead>
             <tbody>
               {
-                data.map((d)=>(
-                  <tr>
+                data.map((d,i)=>(
+                  <tr key={i}>
                   <td data-label="paciente">{d.nombres}{" "}{d.apellidos}</td>
                   <td data-label="Nit">{d.documento.numeroDocumento}</td>
                   <td data-label="profesion">{d.profesion}</td>

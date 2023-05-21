@@ -1,22 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import ImagNav from '../../assets/img/imgnav.jpg'
-import Psicologa1 from '../../assets/img/psicologa1.jfif'
-import Psicologa2 from '../../assets/img/psicologa2.jfif'
-import Psicologo1 from '../../assets/img/psicologo1.webp'
 import Swal from 'sweetalert2'
 import InicioSesion from '../modales/InicioSesion'
 import axios from 'axios'
-import { dataSolicitudCharla } from '../data/DataSolicitudCharla'
+import { dataSolicitudCharla} from '../data/DataSolicitudCharla'
+import { verPro } from '../data/DataInicioSesion'
 const Charla = () => {
-  //Datos
-  
+ 
   const [fecha, setFecha] = useState("");
   const [profesional, setProfesional] = useState("");
   const [motivo, setMotivo] = useState("");
 
 
+
+  const [dataPro, setDataPro] = useState([])
+    useEffect(()=>{
+    const fetchData = async () =>{
+    const dataPro= await verPro();
+      setDataPro(dataPro)
+      
+    }
+    fetchData();
+  },[])
+
   //Opciones Profesionales
   const [profesionales, setProfesionales] = useState([]);
+
+   const fechaActual = new Date(); 
+
+  fechaActual.setHours(fechaActual.getHours() - 5);
+    
+  const fechaNueva = fechaActual.toISOString().slice(0, 16); 
+   
+   
+  
   useEffect(() => {
     const dataProfesionales = async () => {
       const data = await axios.get("/verUsuariosProfesionales")
@@ -67,37 +84,43 @@ const Charla = () => {
               estudiantes y colaboradores del Centro de Teleinformatica y Produccion Industrial (CTPI).</p>
           </div>
         </div>
-        <div className="w-100 d-flex flex-wrap my-5">
-          <div className="text-center mx-auto mt-4">
-            <div className="">
-              <p className="fs-5 mb-2">Ana Maria Echeverry <br /> Enfermera</p>
-              <img src={Psicologa1} className="img-profesionales" alt="" />
+        <div className="w-100 card-group my-5">
+          {dataPro.map((d)=>(
+
+
+          <div className="text-center mx-auto mt-4" key={d._id}>
+            <div>
+              <p className="fs-5 mb-2">
+                {d.nombres}{" "}{d.apellidos} <br /> {d.profesion}
+              </p>
+              <img src={d.perfil.urlImg} className="img-profesionales" alt="" />
             </div>
+            
           </div>
-          <div className="text-center mx-auto mt-4">
-            <div className="">
-              <p className="fs-5 mb-2">Angie Lorena Quintana <br /> Psicóloga</p>
-              <img src={Psicologa2} className="img-profesionales" alt="" />
-            </div>
-          </div>
-          <div className="text-center mx-auto mt-4">
-            <div className="">
-              <p className="fs-5 mb-2">Jose Danilo Ortega <br /> Psicólogo</p>
-              <img src={Psicologo1} className="img-profesionales" alt="" />
-            </div>
-          </div>
+
+          ))
+          }
+         
         </div>
       </section>
       {/* <!-- Profesionales --> */}
       <main className="text-center d-flex flex-column justify-content-center align-items-center" id="form-charla">
-        <p className="fs-3 fw-semibold w-50 ">SOLICITA TU CHARLA DE FORMA GRUPAL O PERSONAL CON UNO DE NUESTROS PROFESIONALES</p>
+      <div className='w-50 '>
+
+     
+
+        <p className="fs-3 fw-semibold">SOLICITA TU CHARLA DE FORMA GRUPAL O PERSONAL CON UNO DE NUESTROS PROFESIONALES</p>
+        <div className='w-100 d-flex justify-content-center'>
+
         <div className="bg-green pt-1 w-25 "></div>
-        <form className="needs-validation w-50 " onSubmit={validarToken} >
+        </div>
+        <form className="needs-validation  " onSubmit={validarToken} >
           <div className="row g-2 my-2">
 
             <div className="col-sm-12 mt-4 mt-md-5">
               <div className="input-group has-validation">
-                <input type="datetime-local" className="form-control border-green" id="fecha"
+                <input type="datetime-local" className="form-control border-green" id="fecha-hora"
+                 min={fechaNueva}
                   onChange={(e) => setFecha(e.target.value)} />
 
               </div>
@@ -129,6 +152,9 @@ const Charla = () => {
           </div>
         </form>
         <InicioSesion/>
+        </div>
+        
+
       </main>
     </>
   )

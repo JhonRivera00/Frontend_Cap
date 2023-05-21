@@ -13,6 +13,7 @@ import CharlaProfesional from "../profesionales/pages/SolicitudCharla";
 import ContactanosProfesional from "../profesionales/pages/Contactanos";
 import CronogramaProfesional from "../profesionales/pages/Cronograma";
 import ConocenosProfesional from "../profesionales/pages/Cononcenos";
+import Eventos from '../profesionales/pages/Eventos';
 import EventoProfesional from '../profesionales/pages/Eventos'
 
 //Administrador
@@ -25,9 +26,12 @@ import Admincronograma from '../administrador/pages/ListaCronograma'
 import Adminprofesional from '../administrador/pages/SolicitudesProfesional'
 import { ProtectRoutesAdmin,ProtectRoutesProfesional } from './ProtectRoutes'
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+import "bootstrap/dist/js/bootstrap.min.js"
+
 
 const App = () => {
-  return (
+  return (  
     <div>
       <Routes>
         <Route path="/" element={<Navbar/>}>
@@ -46,7 +50,6 @@ const App = () => {
           <Route path="/profesional/charla" element={<CharlaProfesional />} />
           <Route path="/profesional/contactanos" element={<ContactanosProfesional />} />
           <Route path="/profesional/cronograma" element={<CronogramaProfesional />} />
-          <Route path="/profesional/evento" element={<EventoProfesional />} />
           </Route>
         </Route>
 

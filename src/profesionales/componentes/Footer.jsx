@@ -52,6 +52,9 @@ const Fotter = () => {
                 <Link className="nav-link" to="/cronograma" >
                   CRONOGRAMA
                 </Link>
+                <Link className="nav-link" to="/eventos" >
+                  EVENTOS
+                </Link>
                 <Link className="nav-link" to="/contactanos" >
                   CONTACTANOS
                 </Link>

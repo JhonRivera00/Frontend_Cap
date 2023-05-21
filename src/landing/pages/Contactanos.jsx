@@ -3,8 +3,6 @@ import Imgnav from "../../assets/img/imgnav.jpg";
 import Phone from "../../assets/img/icons/phone.svg";
 import House from "../../assets/img/icons/house.svg";
 import Chat from "../../assets/img/icons/chat-dots.svg";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.js";
 import { formPqrs } from "../data/DataInicioSesion";
 import Swal from 'sweetalert2'
 import jwt_decoded from 'jwt-decode'

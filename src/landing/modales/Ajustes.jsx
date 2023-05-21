@@ -1,8 +1,86 @@
 
-import React from "react";
+import { useEffect, useState } from "react";
+import jwt_decode from 'jwt-decode';
+import { verAdmin } from '../../administrador/data/DataAdmin'
+import { acualizarAprendiz } from "../data/DataRegistro";
 
 
 const DatosAjustes = () => {
+    
+    const [id, setId] = useState("");
+    const [imagen, setImagen] = useState(null);
+    const [mostrar, setMostrar] = useState({
+        nombres: "",
+        apellidos: "",
+        idImg: "",
+        correo: "",
+        genero: "",
+        numTelefono: "",
+    });
+
+
+
+
+    useEffect(() => {
+
+        const token = localStorage.getItem('Token-Aprendiz');
+        if (!token) {
+
+            return
+        } else {
+
+            const { id } = jwt_decode(token);
+            setId(id);
+
+            const fetAprendiz = async () => {
+                const { data } = await verAdmin(id)
+                setMostrar(data);
+            }
+            fetAprendiz()
+        }
+    }, []);
+
+    const handleTarget = ({ target }) => {
+        setMostrar({ ...mostrar, [target.name]: target.value });
+    };
+
+    const handleOnsumbit = (e) => {
+        e.preventDefault();
+
+
+        // Put para actulalizar
+        const fromDateImg = new FormData()
+        fromDateImg.append('nombres', mostrar.nombres);
+        fromDateImg.append('apellidos', mostrar.apellidos);
+        fromDateImg.append('imgAprendiz', imagen);
+        fromDateImg.append('correo', mostrar.correo);
+        fromDateImg.append('genero', mostrar.genero);
+        fromDateImg.append('numTelefono', mostrar.numTelefono);
+
+        acualizarAprendiz(id, fromDateImg);
+
+
+    };
+
+    function selectImage() {
+        
+        const imageInput = document.getElementById('image-input');
+        imageInput.click();
+
+        imageInput.onchange = function (e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const image = document.getElementById('image');
+                image.src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        };
+    }
+
+
     return (
         <>
             {/* <!-- Modal datos ajustes --> */}
@@ -19,6 +97,7 @@ const DatosAjustes = () => {
                             className="needs-validation"
                             action=""
                             autoComplete="off"
+                            onSubmit={handleOnsumbit}
                         >
                             <div className="modal-header">
                                 <h4 className="modal-title w-100 text-center ">Datos Generales</h4>
@@ -31,7 +110,37 @@ const DatosAjustes = () => {
                             </div>
                             <div className="modal-body text-white">
                                 <div className="container">
-                                    <div className="col-md-7 col-lg-8 mx-auto">
+                                    <div className="col-md-12 col-lg-10 mx-auto">
+
+                                        <div className="d-flex justify-content-center mb-4 t-3" style={{ position: "relative" }}>
+                                            {mostrar && mostrar.perfil && mostrar.perfil.urlImg ? (
+                                                <>
+                                                    <img
+                                                        src={mostrar.perfil.urlImg}
+                                                        width={"40%"}
+                                                        id="image"
+                                                        className="shadow-black" 
+                                                        onClick={() => selectImage()}
+                                                        alt=""
+                                                        style={{ cursor: "pointer" }}
+                                                    />
+                                                    <input type="file" id="image-input" accept="image/* " onChange={(e) => setImagen(e.target.files[0])} style={{ display: "none" }} />
+                                                    <div
+                                                        style={{
+                                                            position: "absolute",
+                                                            top: "50%",
+                                                            left: "50%",
+                                                            transform: "translate(-50%, -50%)",
+                                                        }}
+                                                    >
+
+                                                    </div>
+                                                </>
+                                            ) : (
+                                                ""
+                                            )}
+                                        </div>
+
                                         <div className="row g-3">
                                             <div className="col-sm-6">
                                                 <label htmlFor="firstName" className="form-label ">
@@ -40,9 +149,12 @@ const DatosAjustes = () => {
                                                 <input
                                                     type="text"
                                                     className="form-control bg-white border-green"
+                                                    name="nombres"
+                                                    value={mostrar.nombres}
                                                     id="firstName"
-                                                    placeholder="Ingrese Nombre"
+                                                    placeholder=""
                                                     required
+                                                    onChange={handleTarget}
                                                 />
                                             </div>
 
@@ -53,51 +165,54 @@ const DatosAjustes = () => {
                                                 <input
                                                     type="text"
                                                     className="form-control  bg-white border-green"
+                                                    name="apellidos"
+                                                    value={mostrar.apellidos}
                                                     id="lastName"
-                                                    placeholder="Ingrese Apellido"
+                                                    placeholder=""
                                                     required
+                                                    onChange={handleTarget}
+                                                />
+                                            </div>
+
+
+                                            <div className="col-12">
+                                                <label htmlFor="email" className="form-label">Correo</label>
+                                                <input type="email" className="form-control"
+                                                    id="email"
+                                                    name="correo"
+                                                    value={mostrar.correo}
+                                                    placeholder=""
+                                                    onChange={handleTarget}
+
                                                 />
                                             </div>
 
                                             <div className="col-12">
-                                                <label htmlFor="username" className="form-label">
-                                                    correo electronico
-                                                </label>
-                                                <div className="input-group has-validation">
-                                                    <span className="input-group-text border-green">@</span>
-                                                    <input
-                                                        type="text"
-                                                        className="form-control  bg-white border-green"
-                                                        id="username"
-                                                        placeholder="Ingrese el correo Electronico"
-                                                        required
-                                                    />
-                                                </div>
+                                                <label htmlFor="validationGenero" className="form-label">Genero</label>
+                                                <select className="form-select"
+                                                    name="genero"
+                                                    value={mostrar.genero}
+                                                    onChange={handleTarget}
+                                                    id="validationGenero" aria-label="Default select example" required>
+                                                    <option disable="true" >Genero</option>
+                                                    <option defaultValue="Masculino" >Masculino</option>
+                                                    <option defaultValue="Femenino" >Femenino</option>
+                                                </select>
                                             </div>
 
                                             <div className="col-12">
                                                 <label htmlFor="email" className="form-label">
-                                                    Numero Telefono<span className="text-muted"></span>
+                                                    Telefono<span className="text-muted"></span>
                                                 </label>
                                                 <input
                                                     type="number"
                                                     className="form-control  bg-white border-green"
                                                     id="email"
-                                                    placeholder="Ingrese Numero Telefono"
+                                                    name="numTelefono"
+                                                    value={mostrar.numTelefono}
+                                                    placeholder=""
                                                     required
-                                                />
-                                            </div>
-
-                                            <div className="col-12">
-                                                <label htmlFor="address" className="form-label">
-                                                    Direccion:
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control  bg-white border-green"
-                                                    id="address"
-                                                    placeholder="Ingrese Dirreccion"
-                                                    required
+                                                    onChange={handleTarget}
                                                 />
                                             </div>
                                         </div>
@@ -105,16 +220,9 @@ const DatosAjustes = () => {
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <button
-                                    type="button"
-                                    className="btn btn-secondary"
-                                    data-bs-dismiss="modal"
-                                >
-                                    Cerrar
-                                </button>
 
                                 <button type="submit" className="btn btn-green border-green">
-                                    Guardar cambios
+                                    Actualizar cambios
                                 </button>
                             </div>
                         </form>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom';
 import person_circle from '../../assets/img/icons/person-circle.svg'
 import house1 from '../../assets/img/icons/house1.svg'
@@ -8,26 +8,37 @@ import chatdots from '../../assets/img/icons/chat-dotsadm.svg'
 import badgde from '../../assets/img/icons/badge-fill.svg'
 import linesfi from '../../assets/img/icons/person-lines-fill.svg'
 import envelopef from '../../assets/img/icons/envelope-fill.svg'
-
+import jwt_decode from 'jwt-decode'
+import { verAdmin } from '../data/DataAdmin';
 
 
 function Menulateral() {
+  const token = localStorage.getItem("Token-Administrador")
+  const [dataAdmin, setDataAdmin] = useState("")
+  const {id}= jwt_decode(token)
+  useEffect(() => {
+   (async()=>{
+    const {data} = await verAdmin(id)
+    setDataAdmin(data)
+   })()
+  }, [])
+  
   return (
     <>
       <MenuSup />
       <div className="row">
         <div className="col-3  col-md-3 col-sm-3  col-lg-4">
           {/* Menu Lateral */}
-          <div className="col-auto col-md-3 col-lg-4 col-xl-4 px-sm-2 px-0 bg-color-blue position-fixed">
+          <div className="col-3 col-md-3 col-lg-4 col-xl-4 px-sm-2 px-0 bg-color-blue position-fixed">
             <div className="d-flex flex-column align-items-center align-items-sm-start px-0 px-sm-3 pt-2 text-white min-vh-100 bg-white bg-opacity-25 mx-3">
               <div className="py-2 mt-2 mb-md-0 me-md-auto text-white text-decoration-none d-flex shadow-black rounded-3 w-100">
-                <img src={person_circle} className="ms-3" alt="" />
+                <img src="https://res.cloudinary.com/dvuzzneet/image/upload/v1684280453/sinF_ksqjai.png" style={{ maxWidth: "65px", maxHeight: "65px" }} className="ms-md-3 " alt="" />
 
                 <div className="d-flex flex-column ms-3 mt-1">
                   <div className="d-lg-flex d-none w-100 d-flex justify-content-around">
-                    <span className="text-white fw-light ms-1">Jennifer Villegas Pino</span>
+                    <span className="text-white fw-light ms-1">{dataAdmin.nombres}{" "}{dataAdmin.apellidos}</span>
 
-                    <span className="badge rounded-pill bg-green w-25 float-right">En línea</span>
+                    <span className="badge rounded-pill bg-green float-right ms-2" style={{display: "inline-flex", alignItems: "center", width: "fit-content"}}>En línea</span>
 
                   </div>
                 </div>

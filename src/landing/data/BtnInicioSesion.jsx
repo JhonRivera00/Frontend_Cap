@@ -10,12 +10,15 @@ import FechaNotificacion from "../../assets/js/FechaNotificacion";
 import { notificacionVista } from "./DataInicioSesion";
 import Swal from "sweetalert2";
 import VerNotificacion from "../modales/VerNotificacion";
+import { verProfesional } from "../../profesionales/data/dataProfesional";
+
 
 const BtnInicioSesion = () => {
   const [notificaciones, setnotificaciones] = useState([]);
-  console.log(notificaciones,"estas son las notificaciones");
   const [siHay, setSiHay] = useState("");
   const [datosMotivoNoti, setDatosMotivoNoti] = useState({})
+  const [dataPro, setDataPro] = useState({})
+
 
   const botonesIncio = () => {
     const tokenAprendiz = localStorage.getItem("Token-Aprendiz");
@@ -35,25 +38,23 @@ const BtnInicioSesion = () => {
         </>
       );
     } else if (token) {
-      setTimeout(function () {
+      setTimeout(function() {
         localStorage.clear();
         Swal.fire({
-          title: "Se ha cerrado sesion",
-          icon: "success",
-          timer: 1000
-        })
-          .then(
-            location.reload()
-          )
-      }, 1800000);
+          title: "Por tu seguridad se ha cerrado sesión",
+          icon: "success"
+        }).then(() => {
+          Swal.clickConfirm();
+          location.reload();
+        });
+      }, 3600000);
       const { id } = jwt_decode(token);
-
-      const notificacionesAbiertas = (id,motivo,nombreProf,apellidoProf,fechaAplazada,titulo,nombreApre,apellidoApre,numeroDocApre) => {
+      const notificacionesAbiertas = (id, motivo, nombreProf, apellidoProf, fechaAplazada, titulo, nombreApre, apellidoApre, numeroDocApre) => {
         (async () => {
           notificacionVista(id);
         })();
         const datos = {
-          motivo,nombreProf,apellidoProf,fechaAplazada,titulo,nombreApre,apellidoApre,numeroDocApre
+          motivo, nombreProf, apellidoProf, fechaAplazada, titulo, nombreApre, apellidoApre, numeroDocApre
         }
         setDatosMotivoNoti(datos)
       };
@@ -61,7 +62,6 @@ const BtnInicioSesion = () => {
         (async () => {
 
           const dataNotificaciones = await misNotificaciones(id);
-          console.log(dataNotificaciones, "data Notificaciones");
           dataNotificaciones.forEach((i) => {
             i.estado === false ? setSiHay(i.estado) : ""
 
@@ -74,6 +74,14 @@ const BtnInicioSesion = () => {
         const dataNotificaciones = await misNotificaciones(id);
         setnotificaciones(dataNotificaciones.reverse());
       };
+
+
+      useEffect(() => {
+        (async () => {
+          const { data } = await verProfesional(id)
+          setDataPro(data)
+        })()
+      }, [])
 
       return (
         <>
@@ -98,7 +106,7 @@ const BtnInicioSesion = () => {
                 </div>
               </Link>
 
-              <div  className="dropdown-menu dropdown-menu-end notificaciones">
+              <div className="dropdown-menu dropdown-menu-end notificaciones">
                 <h6 className="dropdown-header ">
                   {notificaciones.length <= 0
                     ? "No tienes notificaciones"
@@ -108,7 +116,7 @@ const BtnInicioSesion = () => {
                 {notificaciones.map((n, i) => (
                   // aquí muestras cada notificación en tu componente
 
-                  <div className={n.estado === false ? "notificacion dropdown-item contenedor-notificaciones notificacion-no-leida" : "dropdown-item contenedor-notificaciones "} onClick={() => notificacionesAbiertas(n._id,n.motivo,n.profesionalId?.nombres,n.profesionalId?.apellidos,n.fechaAplazada,n.titulo,n.aprendizId?.nombres,n.aprendizId?.apellidos,n.aprendizId?.documento.numeroDocumento)} key={i} data-bs-toggle="modal" data-bs-target="#verNotificacion">
+                  <div className={n.estado === false ? "notificacion dropdown-item contenedor-notificaciones notificacion-no-leida" : "dropdown-item contenedor-notificaciones "} onClick={() => notificacionesAbiertas(n._id, n.motivo, n.profesionalId?.nombres, n.profesionalId?.apellidos, n.fechaAplazada, n.titulo, n.aprendizId?.nombres, n.aprendizId?.apellidos, n.aprendizId?.documento.numeroDocumento)} key={i} data-bs-toggle="modal" data-bs-target="#verNotificacion">
                     <div className="media">
                       <div className="media-body">
                         <h6 className="mt-0 mb-1 fw-bold ">{n.titulo}</h6>
@@ -127,17 +135,20 @@ const BtnInicioSesion = () => {
           <div className="navbar-nav ms-3 user">
             <li className="nav-item dropdown ">
               <Link
-                className="nav-link "
+                className="nav-link dropdown-toggle"
                 id="navbarDropdownMenuLink"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-              >
-                <img src={person_circle} alt="icon-user" />
+              >{dataPro && dataPro.perfil && dataPro.perfil.urlImg ?
+                <img src={dataPro.perfil.urlImg} alt="icon-user" style={{ width: "70px", height: "70px" }} className="rounded-circle" />
+              :
+                <img src={person_circle} alt="icon-user" style={{ width: "70px", height: "70px" }} className="rounded-circle" />
+            }
               </Link>
               <ul
-                className="dropdown-menu bg-green border-green"
-                style={{ left: "-120px", backgroundColor: "#00324d" }}
+                className="dropdown-menu dropdown-menu-end bg-green border-green"
+                style={{backgroundColor: "#00324d" }}
                 aria-labelledby="navbarDropdownMenuLink"
               >
                 <li>
@@ -166,7 +177,7 @@ const BtnInicioSesion = () => {
               </ul>
             </li>
           </div>
-          <VerNotificacion datosMotivoNoti={datosMotivoNoti}/>
+          <VerNotificacion datosMotivoNoti={datosMotivoNoti} />
         </>
       );
     }

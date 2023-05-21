@@ -53,7 +53,7 @@ const InicioSesion = () => {
 
     return (
         <>
-            <div className="modal fade" id="exampleModal1" data-bs-backdrop="static"   aria-labelledby="staticBackdropLabel" >
+            <div className="modal fade " id="exampleModal1" data-bs-backdrop="static"   aria-labelledby="staticBackdropLabel" >
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -73,7 +73,7 @@ const InicioSesion = () => {
 
                             <div className="tab-content">
                                 {/*Inicio Sesion Aprendiz */}
-                                <div className="tab-pane show active " id="pills-login-aprendiz" role="tabpanel" aria-labelledby="tab-login-aprendiz">
+                                <div className="tab-pane show active bg-opacity-0" id="pills-login-aprendiz" role="tabpanel" aria-labelledby="tab-login-aprendiz">
                                     <form className="row g-2 needs-validation pt-4" onSubmit={handleSumbitAprendiz}  >
                                         <div className="col-12 mt-0 form-outline" style={{ padding: "0 70px" }}>
                                             <label htmlFor="inicioSesion" className="form-label">Usuario</label>
@@ -182,14 +182,16 @@ const InicioSesion = () => {
 {/*inicio Sesion Admin */}
             <div className="modal text-white " id="inicioSesionAdmin" >
                 <div className="modal-dialog">
-                    <div className="modal-content bg-color-opacity  ">
+                    <div className="modal-content text-black">
                         <div className="modal-header">
+                        <h1 className="modal-title fs-5" id="exampleModalLabel">Inicia Sesion</h1>
+
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                                 <form className="row pt-4 g-2 needs-validation" onSubmit={handleSumbitAdmin} >
                                 <div className="text-center w-100">
-                                    <h2 className="h2 pt-4 pb-5 f">Administrador</h2>
+                                    <h2 className="mb-5">Administrador</h2>
                                 </div>
                                         <div className="col-12 mt-0" style={{ padding: "0 70px" }}>
                                             <label htmlFor="validationCustom01" className="form-label">

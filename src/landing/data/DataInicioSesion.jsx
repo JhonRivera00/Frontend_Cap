@@ -4,14 +4,22 @@ import axios from 'axios'
 
 export const datosInicio = async () => {
       
-  const { data } = await axios.get("/verEventos");
+  const {data} = await axios.get("/verEventos");
   // Filtrar los eventos que tengan el tipo "destacado"
   const destacados = data.filter(evento => evento.tipo === "destacado");
   
   return destacados;
 }
+export const datosCronograma= async () => {
+      
+  const {data} = await axios.get("/verEventos");
+  // Filtrar los eventos que tengan el tipo "cronograma"
+  const cronograma = data.filter(evento => evento.tipo === "destacado");
+  
+  return cronograma;
+}
 
-export const loginAprendiz = async (correo, contrasena) => {
+export const loginAprendiz= async (correo, contrasena) => {
 
   const URL = "/loginAprendiz";
   try {
@@ -25,6 +33,8 @@ export const loginAprendiz = async (correo, contrasena) => {
       Swal.fire({
         title: response.data.messagge,
         icon: "success",
+        text:"! Bienvenido ¡",
+        showConfirmButton: false,
         timer: 2000
       }).then(() => {
         localStorage.setItem("Token-Aprendiz", response.data.token)
@@ -60,6 +70,8 @@ export const loginProfesional= async (correo, contrasena) => {
       Swal.fire({
         title: response.data.messagge,
         icon: "success",
+        text:"! Bienvenido ¡",
+        showConfirmButton: false,
         timer: 2000
       }).then(() => {
         localStorage.setItem("Token-Profesional", response.data.token)
@@ -94,9 +106,12 @@ export const loginAdmin= async (correo, contrasena) => {
       Swal.fire({
         title: response.data.messagge,
         icon: "success",
+        text:"! Bienvenido ¡",
+        showConfirmButton: false,
         timer: 2000
       }).then(() => {
         localStorage.setItem("Token-Administrador", response.data.token)
+     
       }).then(() => {
         location.replace("/admin")
 
@@ -141,6 +156,15 @@ export const notificacionVista = async (id)=>{
   try {
     const data= await axios.put(`/notificacionVista/${id}`)
     
+  } catch (error) {
+  console.error(error.data)
+  }
+}
+
+export const verPro = async ()=>{
+  try {
+    const {data}= await axios.get(`/verUsuariosProfesionales`)
+    return data
   } catch (error) {
   console.error(error.data)
   }

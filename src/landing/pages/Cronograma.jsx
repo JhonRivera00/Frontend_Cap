@@ -4,20 +4,20 @@ import Calentdar2 from '../../assets/img/icons/calendar2-week.svg'
 import Check from '../../assets/img/icons/check-circle.svg'
 import { format, subDays } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { datosCronograma } from '../../profesionales/data/DataSolicitudes';
-
+import { datosCronograma } from '../data/DataInicioSesion';
+import { horaLocal } from '../../assets/js/FormatoHora';
 const Cronograma = () => {
 
   const [dataCronograma, setDataCronograma] = useState([]);
 
-  console.log(dataCronograma)
 
+  console.log(dataCronograma)
 
   useEffect(() => {
     const fetchData = async () => {
       const datos = await datosCronograma()
 
-      setDataCronograma(datos)
+      setDataCronograma(datos.reverse())
     }
     fetchData();
   }, [])
@@ -47,8 +47,8 @@ const Cronograma = () => {
         <div className="container-fluid mt-6">
           <div className="row d-flex justify-content-around">
             {dataCronograma.map((data, i) => (
-              <div className="col-12 col-lg-4 col-md-6 my-4 d-flex align-items-stretch contenedor-actividades">
-                <div className="border-green mx-2 px-4 py-3 ">
+              <div className="col-12 col-lg-4 col-md-6 my-4 d-flex align-items-stretch contenedor-actividades" key={i}>
+                <div className="border-green mx-2 px-4 py-3 contenedor-actividades">
                   <p className="fs-5 fw-bold">
                     {" "}
                     <img src={Check} className="me-3" alt="" />
@@ -58,14 +58,14 @@ const Cronograma = () => {
                     <b>Descripcion:</b>{data.descripcion}
                   </p>
                   <p className="fs-6  m-0">
-                    <b>Lugar:</b> Agora CTPI
+                    <b>Lugar:</b> {data.lugar}
                   </p>
                   <p className="fs-6  m-0">
-                    <b>Hora:</b> {(data.fecha_inicio).substring(11, 16)}
+                    <b>Hora:</b> {horaLocal(data.fecha_inicio)}
                   </p>
                   <p className="fs-6 fw-semibold text-muted m-0 mt-3 w-100">
                     {" "}
-                    {(format(subDays((new Date(data.fecha_inicio)), -1), 'eeee d \'de\' MMMM', { locale: es }))}
+                    {(format(subDays((new Date(data.fecha_inicio)), 0), 'eeee d \'de\' MMMM', { locale: es }))}
 
                   </p>
                 </div>
