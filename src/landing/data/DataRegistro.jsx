@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 export const registroAprendiz = async (data)=>{
         try {
             const loading = Swal.fire({
-                title: 'Registrando profesional',
+                title: 'Registrando aprendiz',
                 text: 'Espere un momento por favor...',
                 allowOutsideClick: false,
                 showConfirmButton: false,
