@@ -347,3 +347,41 @@ console.log(response)
     
   }
 }
+export const agregarPrograma = async (data)=>{
+  try {
+    const tokenAdmin = localStorage.getItem("Token-Administrador");
+
+    const headers = {
+      "acceso-token": tokenAdmin,
+    };
+
+    const loading = Swal.fire({
+      title: 'Agregando ficha',
+      text: 'Espere un momento por favor...',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => {
+          Swal.showLoading();
+        },
+      });
+      
+      const response = await axios.post(`/crearPrograma`,data,{headers})
+    loading.close()
+   
+      Swal.fire({
+        title: response.data,
+        icon: "success",  
+        showConfirmButton: false,
+        timer: 2000,
+      })
+      .then(location.reload())
+    
+  } catch (error) {
+   
+      Swal.fire({
+        icon: "error",
+        title: error.response.data,
+      });
+    
+  }
+}

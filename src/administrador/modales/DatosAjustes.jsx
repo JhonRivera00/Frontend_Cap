@@ -8,65 +8,65 @@ const DatosAjustes = () => {
 
             {/* <!-- Modal datos ajustes --> */}
             <div
-                class="modal fade"
+                className="modal fade"
                 id="modalInicioDatos"
                 data-bs-backdrop="static"
             >
-                <div class="modal-dialog ">
-                    <div class="modal-content bg-color-blue  text-white ">
+                <div className="modal-dialog ">
+                    <div className="modal-content bg-color-blue  text-white ">
                         <form
-                            class="needs-validation"
+                            className="needs-validation"
                             action=""
-                            autocomplete="off"
+                            autoComplete="off"
                         >
-                            <div class="modal-header">
-                                <h4 class="modal-title w-100 text-center ">Datos Generales</h4>
+                            <div className="modal-header">
+                                <h4 className="modal-title w-100 text-center ">Datos Generales</h4>
                                 <button
                                     type="button"
-                                    class="btn-close"
+                                    className="btn-close"
                                     data-bs-dismiss="modal"
                                     aria-label="Close"
                                 ></button>
                             </div>
-                            <div class="modal-body text-white">
-                                <div class="container">
-                                    <div class="col-md-7 col-lg-8 mx-auto">
-                                        <div class="row g-3">
-                                            <div class="col-sm-6">
-                                                <label for="firstName" class="form-label ">
+                            <div className="modal-body text-white">
+                                <div className="container">
+                                    <div className="col-md-7 col-lg-8 mx-auto">
+                                        <div className="row g-3">
+                                            <div className="col-sm-6">
+                                                <label htmlFor="firstName" className="form-label ">
                                                     Nombre
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    class="form-control bg-white border-green"
+                                                    className="form-control bg-white border-green"
                                                     id="firstName"
                                                     placeholder="Ingrese Nombre"
                                                     required
                                                 />
                                             </div>
 
-                                            <div class="col-sm-6">
-                                                <label for="lastName" class="form-label">
+                                            <div className="col-sm-6">
+                                                <label htmlFor="lastName" className="form-label">
                                                     Apellido
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    class="form-control  bg-white border-green"
+                                                    className="form-control  bg-white border-green"
                                                     id="lastName"
                                                     placeholder="Ingrese Apellido"
                                                     required
                                                 />
                                             </div>
 
-                                            <div class="col-12">
-                                                <label for="username" class="form-label">
+                                            <div className="col-12">
+                                                <label htmlFor="username" className="form-label">
                                                     correo electronico
                                                 </label>
-                                                <div class="input-group has-validation">
-                                                    <span class="input-group-text border-green">@</span>
+                                                <div className="input-group has-validation">
+                                                    <span className="input-group-text border-green">@</span>
                                                     <input
                                                         type="text"
-                                                        class="form-control  bg-white border-green"
+                                                        className="form-control  bg-white border-green"
                                                         id="username"
                                                         placeholder="Ingrese el correo Electronico"
                                                         required
@@ -74,26 +74,26 @@ const DatosAjustes = () => {
                                                 </div>
                                             </div>
 
-                                            <div class="col-12">
-                                                <label for="email" class="form-label">
-                                                    Numero Telefono<span class="text-muted"></span>
+                                            <div className="col-12">
+                                                <label htmlFor="email" className="form-label">
+                                                    Numero Telefono<span className="text-muted"></span>
                                                 </label>
                                                 <input
                                                     type="number"
-                                                    class="form-control  bg-white border-green"
+                                                    className="form-control  bg-white border-green"
                                                     id="email"
                                                     placeholder="Ingrese Numero Telefono"
                                                     required
                                                 />
                                             </div>
 
-                                            <div class="col-12">
-                                                <label for="address" class="form-label">
+                                            <div className="col-12">
+                                                <label htmlFor="address" className="form-label">
                                                     Direccion:
                                                 </label>
                                                 <input
                                                     type="text"
-                                                    class="form-control  bg-white border-green"
+                                                    className="form-control  bg-white border-green"
                                                     id="address"
                                                     placeholder="Ingrese Dirreccion"
                                                     required
@@ -103,16 +103,16 @@ const DatosAjustes = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
+                            <div className="modal-footer">
                                 <button
                                     type="button"
-                                    class="btn btn-secondary"
+                                    className="btn btn-secondary"
                                     data-bs-dismiss="modal"
                                 >
                                     Cerrar
                                 </button>
 
-                                <button type="submit" class="btn btn-green border-green">
+                                <button type="submit" className="btn btn-green border-green">
                                     Guardar cambios
                                 </button>
                             </div>

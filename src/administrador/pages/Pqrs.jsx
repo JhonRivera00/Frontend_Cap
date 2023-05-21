@@ -43,15 +43,6 @@ setdataModalPqrs(datos)
         </div>
         {/* <!-- Fin Titulo --> */}
 
-        {/* Buscador */}
-
-        <div className="row d-flex justify-content-center">
-          <div className="input-group w-75 mt-4 ">
-            <input type="search" className="form-control rounded" placeholder="Buscar..." aria-label="Search" aria-describedby="search-addon" />
-            <img src={search} className="btn btn-outline-primary" alt="" />
-          </div>
-        </div>
-        {/* Fin buscador */}
 
         {/* Fin selecionar filtro */}
 

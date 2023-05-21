@@ -8,7 +8,6 @@ import { verUsuarios } from "../data/DataAdmin";
 
 const Solicitudes = () => {
   const [usuarios, setUsuarios] = useState([])
-  console.log(usuarios);
   useEffect(() => {
     (async () => {
       const usuario = await verUsuarios()
@@ -34,13 +33,7 @@ const Solicitudes = () => {
 
       {/* Buscador */}
 
-      <div className="row d-flex justify-content-center">
-        <div className="input-group w-75 mt-4 ">
-          <input type="search" className="form-control rounded" placeholder="Buscar..." aria-label="Search" aria-describedby="search-addon" />
-          <img src={search} className="btn btn-outline-primary" alt="" />
-        </div>
-      </div>
-      {/* Fin buscador */}
+   
 
 
       {/* Fin selecionar filtro */}

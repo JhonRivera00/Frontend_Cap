@@ -45,16 +45,6 @@ setDataPro(dataProfesional)
       </div>
       {/* Fin Titulo */}
 
-      {/* Buscador */}
-
-      <div className="row d-flex justify-content-center">
-        <div className="input-group w-75 mt-4 ">
-          <input type="search" className="form-control rounded" placeholder="Buscar..." aria-label="Search" aria-describedby="search-addon" />
-          <img src={search} className="btn btn-outline-primary" alt="" />
-        </div>
-      </div>
-      {/* Fin buscador */}
-
       {/* Fin selecionar filtro */}
 
       {/* Inicio Contenido*/}
@@ -90,8 +80,8 @@ setDataPro(dataProfesional)
                 ))
               }
                            {
-                solirechazadas.map((d)=>(
-                  <tr>
+                solirechazadas.map((d,i)=>(
+                  <tr key={i}>
                   <td data-label="paciente">{d.nombres}{" "}{d.apellidos}</td>
                   <td data-label="Nit">{d.documento.numeroDocumento}</td>
                   <td data-label="profesion">{d.profesion}</td>

@@ -41,13 +41,6 @@ const Charlas = () => {
         </h1>
       </div>
 
-      <div className="row">
-
-        <div className="input-group w-75 mt-4 mx-auto">
-          <input type="search" className="form-control rounded" placeholder="Buscar..." aria-label="Search" aria-describedby="search-addon" />
-          <img src={search} className="btn btn-outline-primary" alt="" />
-        </div>
-      </div>
       <main className="mt-3">
         <div className="table-responsive">
           <table className="table table-hover table-sm border-green">

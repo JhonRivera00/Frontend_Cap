@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 const Inicio = () => {
     const [dataInicio, setDataInicio] = useState([]);
     const [dataEvento, setDataEvento] = useState("")
-    console.log(dataInicio);
+   
 
     useEffect(() => {
         const fetchData = async () => {

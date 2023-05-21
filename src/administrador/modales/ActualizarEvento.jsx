@@ -60,10 +60,6 @@ const ActualizarEvento = ({ data }) => {
     const fechaInicio = fechaActual.toISOString().slice(0, 16);
 
 
-
-
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData();

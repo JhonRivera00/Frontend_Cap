@@ -3,10 +3,12 @@ import Horizontal from '../../assets/img/Horizontal.png'
 import favicon2 from '../../assets/img/favicon2.png'
 import gear from '../../assets/img/icons/gear.svg'
 import box_arrow from '../../assets/img/icons/box-arrow-right.svg'
+import plus_circle from '../../assets/img/icons/plus-circle.svg'
 import { Link } from 'react-router-dom';
 // Modales
 import CrearEvento from '../modales/CrearEvento'
 import DatosAjustes from '../modales/DatosAjustes'
+import AgregarFicha from '../modales/AgregarFicha'
 
 function MenuSup() {
   return (
@@ -24,43 +26,49 @@ function MenuSup() {
           </button>
           <div className="collapse navbar-collapse navbar " id="navbarSupportedContent">
 
-          <Link className="btn btn-green ms-auto" data-bs-toggle="modal" data-bs-target="#exampleModalIN" >
-            + Crear evento</Link>
+            <Link className="btn btn-green ms-auto" data-bs-toggle="modal" data-bs-target="#exampleModalIN" >
+              + Crear evento</Link>
 
-          <div className="d-inline d-flex navbar-brand ms-auto" id="navbarSupportedContent">
-            <div className="navbar-nav ms-3">
-              
+            <div className="d-inline d-flex navbar-brand ms-auto" id="navbarSupportedContent">
+              <div className="navbar-nav ms-3">
+
+              </div>
+              <div className="navbar-nav ms-3 h-100">
+                <li className="nav-item dropdown ">
+                  <Link className="nav-link dropdown-toggle h-100" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">   <img src="https://res.cloudinary.com/dvuzzneet/image/upload/v1684280453/sinF_ksqjai.png" style={{ width: "65px", height: "65px" }} className="ms-3" alt="" /></Link>
+                  <ul className="dropdown-menu dropdown-menu-end bg-color-blue" aria-labelledby="navbarDropdownMenuLink">
+                    <li>
+                      <Link className="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#modalInicioDatos" ><img src={gear} alt="icon-ajustes"
+                        className="me-3" />
+                        Ajustes</Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item text-white" data-bs-target="#agregarFicha"  data-bs-toggle="modal">  <img src={plus_circle}
+                          className="me-3" />
+                        Agregar ficha
+                      </Link>
+                      
+                    </li>
+                    <li>
+                      <Link className="dropdown-item text-white" onClick={() => localStorage.clear((location.reload()))}>
+                        <img src={box_arrow}
+                          alt="icon-cerrarsesion" className="me-3" />
+                        Cerrar Sesion
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
+              </div>
             </div>
-            <div className="navbar-nav ms-3 h-100">
-              <li className="nav-item dropdown ">
-                <Link className="nav-link dropdown-toggle h-100" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">   <img src="https://res.cloudinary.com/dvuzzneet/image/upload/v1684280453/sinF_ksqjai.png" style={{ width: "65px", height: "65px" }} className="ms-3" alt="" /></Link>
-                <ul className="dropdown-menu dropdown-menu-end bg-color-blue" aria-labelledby="navbarDropdownMenuLink">
-                  <li>
-                    <Link className="dropdown-item text-white" data-bs-toggle="modal" href="" data-bs-target="#modalInicioDatos" ><img src={gear} alt="icon-ajustes"
-                      className="me-3" />
-                      Ajustes</Link>
-                  </li>
-                  <li>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item text-white" onClick={() => localStorage.clear((location.reload()))}>
-                      <img src={box_arrow}
-                        alt="icon-cerrarsesion" className="me-3" />
-                      Cerrar Sesion
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-            </div>
-          </div>
           </div>
         </div>
       </nav>
+      <AgregarFicha/>
 
       {/* Modales */}
       <CrearEvento />
-      <DatosAjustes/>
+      <DatosAjustes />
 
     </>
   )
