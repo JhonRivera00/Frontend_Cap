@@ -25,10 +25,9 @@ body {
 .card {
   border-color: #39a900 !important;
   border: 1px solid;
-  max-width: 800px;
 }
 .card-img-top {
-  height: 270px;
+  height: 300px;
   object-fit: cover;
 }
 .card-group > div {
@@ -165,5 +164,14 @@ overflow-y: auto;
   .img-logo-mini {
     max-height: 4rem;
     display: flex !important;
+  }
+  .card-group > div {
+    min-width: 270px;
+  }
+}
+@media (min-width: 800px) {
+  .card {
+
+    max-width: 700px;
   }
 }

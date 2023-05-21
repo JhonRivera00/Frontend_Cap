@@ -4,9 +4,20 @@ import Swal from 'sweetalert2'
 export const registroAprendiz = async (formDataApren) => {
 
     try {
+        const loading = Swal.fire({
+            title: 'Registrando aprendiz',
+            text: 'Espere un momento por favor...',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+        });
         const response = await axios.post('/registrarAprendiz', formDataApren)
-        console.log(response);
-        if (response.status === 200) {
+
+        loading.close()
+
+        
             Swal.fire({
                 title: response.data.messagge,
                 icon: "success",
@@ -15,7 +26,7 @@ export const registroAprendiz = async (formDataApren) => {
                 .then((
                     location.reload()
                 ))
-        }
+        
 
     } catch (error) {
         if (error.response.status  === 400 || 500) {
@@ -31,8 +42,19 @@ export const registroAprendiz = async (formDataApren) => {
 
 export const registroProfesional = async (formData) => {
     try {
+        const loading = Swal.fire({
+            title: 'Registrando profesional',
+            text: 'Espere un momento por favor...',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+        });
         const response = await axios.post(`/registrarProfesional`, formData)
-        if (response.status === 200) {
+
+        loading.close()
+        
             Swal.fire({
                 title: response.data.messagge,
                 icon: "success",
@@ -41,7 +63,7 @@ export const registroProfesional = async (formData) => {
                 .then((
                     location.reload()
                 ))
-        }
+        
     } catch (error) {
         if (error.response.status === 400 || error.response.status === 500) {
             Swal.fire({
@@ -55,14 +77,25 @@ export const registroProfesional = async (formData) => {
 
 export const acualizarAprendiz = async (id, data) => {
     try {
+        const loading = Swal.fire({
+            title: 'Actualizando datos',
+            text: 'Espere un momento por favor...',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+        });
         const response = await axios.put(`/actualizarAprendiz/${id}`, data);
-        if(response.status === 200){
+
+        loading.close()
+        
             Swal.fire({
                 title: response.data,
                 icon: "success",
                 timer: 2000
             })
-        }
+        
     } catch (error) {
         Swal.fire({
             icon: "error",

@@ -37,6 +37,8 @@ export const loginAprendiz= async (correo, contrasena) => {
       Swal.fire({
         title: response.data.messagge,
         icon: "success",
+        text:"! Bienvenido ¡",
+        showConfirmButton: false,
         timer: 2000
       }).then(() => {
         localStorage.setItem("Token-Aprendiz", response.data.token)
@@ -71,6 +73,8 @@ export const loginProfesional= async (correo, contrasena) => {
       Swal.fire({
         title: response.data.messagge,
         icon: "success",
+        text:"! Bienvenido ¡",
+        showConfirmButton: false,
         timer: 2000
       }).then(() => {
         localStorage.setItem("Token-Profesional", response.data.token)
@@ -105,9 +109,12 @@ export const loginAdmin= async (correo, contrasena) => {
       Swal.fire({
         title: response.data.messagge,
         icon: "success",
+        text:"! Bienvenido ¡",
+        showConfirmButton: false,
         timer: 2000
       }).then(() => {
         localStorage.setItem("Token-Administrador", response.data.token)
+     
       }).then(() => {
         location.replace("/admin")
 
@@ -152,6 +159,15 @@ export const notificacionVista = async (id)=>{
   try {
     const data= await axios.put(`/notificacionVista/${id}`)
     
+  } catch (error) {
+  console.error(error.data)
+  }
+}
+
+export const verPro = async ()=>{
+  try {
+    const {data}= await axios.get(`/verUsuariosProfesionales`)
+    return data
   } catch (error) {
   console.error(error.data)
   }

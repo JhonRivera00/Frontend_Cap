@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { actualizarEvento } from '../data/DataAdmin';
+import Swal from 'sweetalert2'
 
 const ActualizarEvento = ({ data }) => {
 
@@ -35,22 +36,39 @@ const ActualizarEvento = ({ data }) => {
         setFechaInicial(fechas(data.fecha_inicio))
         setFechaFinal(fechas(data.fecha_final))
         setDescripcion(data.descripcion)
+        setTimeout(function () {
+            localStorage.clear();
+            Swal.fire({
+              title: "Se ha cerrado sesion",
+              icon: "success",
+              timer: 1000
+            })
+              .then(
+                location.reload()
+              )
+          }, 60000 );
 
         if ( data.tipo === "cronograma" ) {
-            if (document.querySelector("#con-lugar").classList.contains("d-none")) {
-                document.querySelector("#con-lugar").classList.remove("d-none")
+            if (document.querySelector("#cont-lugar").classList.contains("d-none")) {
+                document.querySelector("#cont-lugar").classList.remove("d-none")
+            } if(!document.querySelector("#con-imgs").classList.contains("d-none")){
+
+                document.querySelector("#con-imgs").classList.toggle("d-none")
             }
-            document.querySelector("#con-img").classList.toggle("d-none")
-            document.querySelector("#con-pdf").classList.toggle("d-none")
+            if(!document.querySelector("#con-pdfs").classList.contains("d-none")){
+
+                document.querySelector("#con-pdfs").classList.toggle("d-none")
+            }
+           
         } else {
-            if (document.querySelector("#con-lugar").classList.contains("d-none")) {
-                document.querySelector("#con-img").classList.remove("d-none")
-                document.querySelector("#con-pdf").classList.remove("d-none")
+            if (document.querySelector("#cont-lugar").classList.contains("d-none")) {
+                document.querySelector("#con-imgs").classList.remove("d-none")
+                document.querySelector("#con-pdfs").classList.remove("d-none")
             } else {
 
-                document.querySelector("#con-img").classList.remove("d-none")
-                document.querySelector("#con-pdf").classList.remove("d-none")
-                document.querySelector("#con-lugar").classList.toggle("d-none")
+                document.querySelector("#con-imgs").classList.remove("d-none")
+                document.querySelector("#con-pdfs").classList.remove("d-none")
+                document.querySelector("#cont-lugar").classList.toggle("d-none")
             }}
     }, [data])
     
@@ -76,58 +94,42 @@ const ActualizarEvento = ({ data }) => {
         formData.append('pdf', pdf)
         formData.append('descripcion', descripcion)
 
-      
+       
         actualizarEvento(data._id,formData)
+
 
     }
     
 
     const selectFuncion = (e) => {
         setTipoEvento(e)
-        if (e === "cronograma"  ) {
-            if (document.querySelector("#con-lugar").classList.contains("d-none")) {
-                document.querySelector("#con-lugar").classList.remove("d-none")
+        if (e === "cronograma" ) {
+            if (document.querySelector("#cont-lugar").classList.contains("d-none")) {
+                document.querySelector("#cont-lugar").classList.remove("d-none")
             }
-                document.querySelector("#con-img").classList.toggle("d-none")
-                document.querySelector("#con-pdf").classList.toggle("d-none")
-            
+            document.querySelector("#con-imgs").classList.toggle("d-none")
+            document.querySelector("#con-pdfs").classList.toggle("d-none")
         } else {
             console.log(e);
-            if (document.querySelector("#con-lugar").classList.contains("d-none")) {
-                document.querySelector("#con-img").classList.remove("d-none")
-                document.querySelector("#con-pdf").classList.remove("d-none")
+            if (document.querySelector("#cont-lugar").classList.contains("d-none")) {
+                document.querySelector("#con-imgs").classList.remove("d-none")
+                document.querySelector("#con-pdfs").classList.remove("d-none")
             } else {
-                
-                document.querySelector("#con-img").classList.remove("d-none")
-                document.querySelector("#con-pdf").classList.remove("d-none")
-                document.querySelector("#con-lugar").classList.toggle("d-none")
+
+                document.querySelector("#con-imgs").classList.remove("d-none")
+                document.querySelector("#con-pdfs").classList.remove("d-none")
+                document.querySelector("#cont-lugar").classList.toggle("d-none")
             }
             
 //2023-05-20T02:13
         }
     }
-    function selectImage() {
-        
-        const imageInput = document.getElementById('image-input');
-        imageInput.click();
-
-        imageInput.onchange = function (e) {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                const image = document.getElementById('image');
-                image.src = e.target.result;
-            };
-
-            reader.readAsDataURL(file);
-        };
-    }
+    
 
     return (
         <>
             {/* Modal CREAR EVENTO */}
-            <div className="modal fade" id="actualizarEvento" data-bs-backdrop="static">
+            <div className="modal fade" id="actualizarCronograma" data-bs-backdrop="static">
                 <div className="modal-dialog ">
                     <div className="modal-content bg-color-blue text-white">
 
@@ -138,34 +140,7 @@ const ActualizarEvento = ({ data }) => {
 
                         <div className="modal-body mt-2" >
                             <form className="row g-2 needs-validation" onSubmit={handleSubmit}>
-                            <div className="d-flex justify-content-center position-relative " id='con-img'>
-                                            {data && data.urlImg  ? (
-                                                <>
-                                                    <img
-                                                        src={data.urlImg}
-                                                        width={"50%"}
-                                                        id="image"
-                                                        className='mb-4 shadow-black '
-                                                        onClick={() => selectImage()}
-                                                        alt=""
-                                                        style={{ cursor: "pointer" }}
-                                                    />
-                                                    <input type="file" id="image-input" accept="image/* " onChange={(e) => setImagenes(e.target.files[0])} style={{ display: "none" }} />
-                                                    <div
-                                                        style={{
-                                                            position: "absolute",
-                                                            top: "50%",
-                                                            left: "50%",
-                                                            transform: "translate(-50%, -50%)",
-                                                        }}
-                                                    >
-
-                                                    </div>
-                                                </>
-                                            ) : (
-                                                ""
-                                            )}
-                                        </div>
+                        
                                 {/* Tipo de evento */}
                                 <div className="col-12 mt-0" style={{ padding: "0 50px" }}>
                                     <label htmlFor="exampleFormControlSelect1" className="form-label">CATEGORIA EVENTO</label>
@@ -181,7 +156,7 @@ const ActualizarEvento = ({ data }) => {
                                     <label htmlFor="validationCustom01" className="form-label">TITULO DEL EVENTO</label>
                                     <input type="text" className="form-control" placeholder='Titulo' id="validationCustom01" value={evento} onChange={(e) => (setEvento(e.target.value))} />
                                 </div>
-                                <div className="col-12 mt-0 mt-4" id='con-lugar' style={{ padding: "0 50px" }}>
+                                <div className="col-12 mt-0 mt-4" id='cont-lugar' style={{ padding: "0 50px" }}>
                                     <label htmlFor="validationCustom01" className="form-label">LUGAR EVENTO</label>
                                     <input type="text" className="form-control" placeholder='Lugar evento' id="validationCustom01" value={lugar} onChange={(e) => (setLugar(e.target.value))} />
                                 </div>
@@ -196,9 +171,12 @@ const ActualizarEvento = ({ data }) => {
                                     <label htmlFor="validationCustom03" className="form-label">FECHA Y HORA FINAL</label>
                                     <input type="datetime-local" className="form-control" min={fechaInicial} id="validationCustom03" value={fechaFinal} onChange={(e) => setFechaFinal(e.target.value)} />
                                 </div>
-
+                                <div id='con-imgs' className="col-12 mt-4" style={{ padding: "0 50px 0 50px" }}>
+                                    <label htmlFor="validationCustom01" className="form-label">ADJUNTAR IMAGEN</label>
+                                    <input type="file" className="form-control" placeholder='Ingresar descripcion' accept="image/*" id="validationCustom01" onChange={(e) => setImagenes(e.target.files[0])} />
+                                </div>
                                
-                                <div id='con-pdf' className="col-12 mt-4" style={{ padding: "0 50px 0 50px" }}>
+                                <div id='con-pdfs' className="col-12 mt-4" style={{ padding: "0 50px 0 50px" }}>
                                     <label htmlFor="validationCustom01" className="form-label">ADJUNTAR PDF (Opcional)</label>
                                     <input type="file" className="form-control" id="validationCustom01" accept="application/pdf"  onChange={(e) => setPdf(e.target.files[0])} />
                                 </div>

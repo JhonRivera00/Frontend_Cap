@@ -9,7 +9,6 @@ import { verUsuarios } from "../data/DataAdmin";
 const Solicitudes = () => {
   const [usuarios, setUsuarios] = useState([])
   console.log(usuarios);
-  console.log(usuarios);
   useEffect(() => {
     (async () => {
       const usuario = await verUsuarios()
@@ -23,7 +22,7 @@ const Solicitudes = () => {
 
       <div className="position-relative d-inline-block w-100" >
         <img src={Imgnav} className="w-100 img-titulo-fondo" alt="" />
-        <h1 className="text-titulo position-absolute text-center  w-100">LISTA DE SOLICITUDES
+        <h1 className="text-titulo position-absolute text-center  w-100">USUARIOS
           <div className=" d-flex justify-content-around ">
             <div className="bg-green p-1 w-25" ></div>
             <div className="bg-green p-1 w-25" ></div>
@@ -63,27 +62,27 @@ const Solicitudes = () => {
               <th scope="col">Identificacion</th>
               <th scope="col">Ficha</th>
               <th scope="col">Estado</th>
-              <th Roll scope="col text-center">Roll</th>
+              {/* <th Roll scope="col text-center">Roll</th> */}
             </tr>
           </thead>
           <tbody>
             {
               usuarios.map((user,i) => (
-                <tr>
+                <tr key={user._id}>
                   <th scope="row">{i}</th>
                   <td>{user.nombres}{" "}{user.apellidos}</td>
                   <td>{user.documento.numeroDocumento}</td>
-                  <td></td>
+                  <td>{user.programa.ficha}</td>
                   <td className=" link-light ">
                     <div >
                       <p className="bg-success rounded-pill text-center w-75"> Habilitado</p>
                     </div>
                   </td>
                   <td>
-                    <div className="form-check form-switch">
+                    {/* <div className="form-check form-switch">
                       <input className="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckChecked" />
                       <p className="text-muted">Aprendiz</p>
-                    </div>
+                    </div> */}
                   </td>
                 </tr>
 

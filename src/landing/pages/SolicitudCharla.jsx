@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import ImagNav from '../../assets/img/imgnav.jpg'
-import Psicologa1 from '../../assets/img/psicologa1.jfif'
-import Psicologa2 from '../../assets/img/psicologa2.jfif'
-import Psicologo1 from '../../assets/img/psicologo1.webp'
 import Swal from 'sweetalert2'
 import InicioSesion from '../modales/InicioSesion'
 import axios from 'axios'
 import { dataSolicitudCharla} from '../data/DataSolicitudCharla'
+import { verPro } from '../data/DataInicioSesion'
 const Charla = () => {
-  //Datos
-  
+ 
   const [fecha, setFecha] = useState("");
   const [profesional, setProfesional] = useState("");
   const [motivo, setMotivo] = useState("");
 
+
+
+  const [dataPro, setDataPro] = useState([])
+    useEffect(()=>{
+    const fetchData = async () =>{
+    const dataPro= await verPro();
+      setDataPro(dataPro)
+      
+    }
+    fetchData();
+  },[])
 
   //Opciones Profesionales
   const [profesionales, setProfesionales] = useState([]);
@@ -76,25 +84,23 @@ const Charla = () => {
               estudiantes y colaboradores del Centro de Teleinformatica y Produccion Industrial (CTPI).</p>
           </div>
         </div>
-        <div className="w-100 d-flex flex-wrap my-5">
-          <div className="text-center mx-auto mt-4">
-            <div className="">
-              <p className="fs-5 mb-2">Ana Maria Echeverry <br /> Enfermera</p>
-              <img src={Psicologa1} className="img-profesionales" alt="" />
+        <div className="w-100 card-group my-5">
+          {dataPro.map((d)=>(
+
+
+          <div className="text-center mx-auto mt-4" key={d._id}>
+            <div>
+              <p className="fs-5 mb-2">
+                {d.nombres}{" "}{d.apellidos} <br /> {d.profesion}
+              </p>
+              <img src={d.perfil.urlImg} className="img-profesionales" alt="" />
             </div>
+            
           </div>
-          <div className="text-center mx-auto mt-4">
-            <div className="">
-              <p className="fs-5 mb-2">Angie Lorena Quintana <br /> Psicóloga</p>
-              <img src={Psicologa2} className="img-profesionales" alt="" />
-            </div>
-          </div>
-          <div className="text-center mx-auto mt-4">
-            <div className="">
-              <p className="fs-5 mb-2">Jose Danilo Ortega <br /> Psicólogo</p>
-              <img src={Psicologo1} className="img-profesionales" alt="" />
-            </div>
-          </div>
+
+          ))
+          }
+         
         </div>
       </section>
       {/* <!-- Profesionales --> */}

@@ -10,6 +10,7 @@ export const datosInicio = async (op) => {
       return destacados;
     }
     else{
+
       const destacados = data.filter((data) => data.tipo === op );
       return destacados;
     }
@@ -254,16 +255,31 @@ export const crearEvento = async (data) => {
     const headers = {
       "acceso-token": tokenAdmin,
     };
+    const loading = Swal.fire({
+      title: 'Creando evento',
+      text: 'Espere un momento por favor...',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => {
+          Swal.showLoading();
+      },
+  });
+
+
     const response = await axios.post(`/crearEventos`, data,{headers});
 
-    if (response.status === 200) {
-      Swal.fire({
-        title: response.data,
-        icon: "success",
-        timer: 2000,
-      })
-      // .then(location.reload())
-    }
+
+  // Cierra la alerta de espera
+  loading.close();
+
+  Swal.fire({
+      icon: 'success',
+      title: response.data,
+      showConfirmButton: false,
+      timer: 1500
+  }).then(() => {
+      location.reload()
+  });
   } catch (error) {
     if (error.response.status === 400) {
       Swal.fire({
@@ -300,22 +316,34 @@ export const actualizarEvento= async(id,data)=>{
     const headers = {
       "acceso-token": tokenAdmin,
     };
+    const loading = Swal.fire({
+      title: 'Actualizando evento',
+      text: 'Espere un momento por favor...',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => {
+          Swal.showLoading();
+      },
+  });
 
-    const response = await axios.put(`/actualizarEvento${id}`,data,{headers})
-    if (response.status === 200) {
+    const response = await axios.put(`/actualizarEvento/${id}`,data,{headers})
+console.log(response)
+    loading.close()
+   
       Swal.fire({
         title: response.data,
-        icon: "success",
+        icon: "success",  
+        showConfirmButton: false,
         timer: 2000,
       })
       .then(location.reload())
-    }
+    
   } catch (error) {
-    if (error.response.status === 400) {
+   
       Swal.fire({
         icon: "error",
         title: error.response.data,
       });
-    }
+    
   }
 }

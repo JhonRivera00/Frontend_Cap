@@ -38,17 +38,16 @@ const BtnInicioSesion = () => {
         </>
       );
     } else if (token) {
-      setTimeout(function () {
+      setTimeout(function() {
         localStorage.clear();
         Swal.fire({
-          title: "Se ha cerrado sesion",
-          icon: "success",
-          timer: 1000
-        })
-          .then(
-            location.reload()
-          )
-      }, 1800000);
+          title: "Por tu seguridad se ha cerrado sesión",
+          icon: "success"
+        }).then(() => {
+          Swal.clickConfirm();
+          location.reload();
+        });
+      }, 3600000);
       const { id } = jwt_decode(token);
       const notificacionesAbiertas = (id, motivo, nombreProf, apellidoProf, fechaAplazada, titulo, nombreApre, apellidoApre, numeroDocApre) => {
         (async () => {
@@ -136,7 +135,7 @@ const BtnInicioSesion = () => {
           <div className="navbar-nav ms-3 user">
             <li className="nav-item dropdown ">
               <Link
-                className="nav-link "
+                className="nav-link dropdown-toggle"
                 id="navbarDropdownMenuLink"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -148,8 +147,8 @@ const BtnInicioSesion = () => {
             }
               </Link>
               <ul
-                className="dropdown-menu bg-green border-green"
-                style={{ left: "-120px", backgroundColor: "#00324d" }}
+                className="dropdown-menu dropdown-menu-end bg-green border-green"
+                style={{backgroundColor: "#00324d" }}
                 aria-labelledby="navbarDropdownMenuLink"
               >
                 <li>

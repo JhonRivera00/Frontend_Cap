@@ -1,30 +1,54 @@
 import ImagenTitulo from '../../assets/img/imgnav.jpg';
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
-import { datosInicio } from '../../administrador/data/DataAdmin'
+import { datosInicio} from '../../administrador/data/DataAdmin'
 import ActualizarEvento from '../modales/ActualizarEvento'
+import FechaNotificacion from '../../assets/js/FechaNotificacion';
+import Swal from 'sweetalert2'
 
 
 const Inicio = () => {
     const [dataInicio, setDataInicio] = useState([]);
     const [dataEvento, setDataEvento] = useState("")
+    console.log(dataInicio);
 
     useEffect(() => {
         const fetchData = async () => {
             const data = await datosInicio(1);
             setDataInicio(data.reverse());
         }
+        setTimeout(function() {
+            localStorage.clear();
+            Swal.fire({
+              title: "Por tu seguridad se ha cerrado sesión",
+              icon: "success"
+            }).then(() => {
+              Swal.clickConfirm();
+              location.reload();
+            });
+          }, 3600000);
+          
         fetchData()
     }, []);
 
     const verEventos = async (e) => {
+        const loading = Swal.fire({
+            title: 'Filtrando',
+            text: 'Espere un momento...',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+        });
         const data = await datosInicio(e);
         setDataInicio(data.reverse());
+        loading.close()
     }
-    const dataEventos = (_id,descripcion,fecha_inicio,fecha_final,idImg,urlImg,lugar,tipo,titulo)=>{
-const data ={_id,descripcion,fecha_inicio,fecha_final,idImg,urlImg,lugar,tipo,titulo};
-setDataEvento(data)
+    const dataEventos = (_id, descripcion, fecha_inicio, fecha_final, idImg, urlImg, lugar, tipo, titulo) => {
+        const data = { _id, descripcion, fecha_inicio, fecha_final, idImg, urlImg, lugar, tipo, titulo };
+        setDataEvento(data)
     }
+
 
     return (
         <>
@@ -38,22 +62,22 @@ setDataEvento(data)
                         </div>
                     </h1>
                 </div>
-                <div className="filter-container ">
+                <div className="filter-container mb-sm-0 mb-4">
                     <div className='d-flex justify-content-end'>
 
-                    <select
-                        id="filtro-eventos"
-                        className="form-select w-25 me-5 mt-4"
-                        defaultValue=""
-                        onChange={(e) => verEventos(e.target.value)}
+                        <select
+                            id="filtro-eventos"
+                            className="form-select w-25  me-5 mt-4"
+                            defaultValue=""
+                            onChange={(e) => verEventos(e.target.value)}
                         >
-                        <option value="" disabled>
-                            Filtrar por...
-                        </option>
-                        <option value="destacado">Destacados</option>
-                        <option value="noticia">Noticias</option>
-                    </select>
-                        </div>
+                            <option value="" disabled>
+                                Filtrar por...
+                            </option>
+                            <option value="destacado">Destacados</option>
+                            <option value="noticia">Noticias</option>
+                        </select>
+                    </div>
                 </div>
 
 
@@ -71,15 +95,16 @@ setDataEvento(data)
                                     data.descripcion
                                 }
                                 </p>
-                                <p>
-                                    Mas info en:
-                                    <Link href="https://www.sena.edu.co/es-co/Paginas/default.aspx">Click aqui</Link>
-                                </p>
+                                {data.pdf.urlPdf ? <p>
+                                    <a href={data.pdf.urlPdf} target="_blank" rel="noopener noreferrer">Ver documento</a>
+                                </p>:""}
+                               
+
                             </div>
                             <div className="card-footer bg-green">
-                                <small className="text-muted1 d-flex justify-content-between pt-0">Ultima actualización hace 3 minutos..
+                                <small className="text-muted1 d-flex justify-content-between pt-0">Ultima actualización {data.updatedAt?FechaNotificacion(data.updatedAt):""}
                                     <div className="">
-                                    <button className='btn btn-sm btn-secondary' data-bs-toggle="modal" data-bs-target="#actualizarEvento" onClick={()=>dataEventos(data._id,data.descripcion,data.fecha_inicio,data.fecha_final,data.imagen.idImg,data.imagen.urlImg,data.lugar,data.tipo,data.titulo)}>Actualizar</button>
+                                        <button className='btn btn-sm btn-secondary' data-bs-toggle="modal" data-bs-target="#actualizarEvento" onClick={() => dataEventos(data._id, data.descripcion, data.fecha_inicio, data.fecha_final, data.imagen.idImg, data.imagen.urlImg, data.lugar, data.tipo, data.titulo)}>Actualizar</button>
                                     </div>
                                 </small>
                             </div>
@@ -91,8 +116,8 @@ setDataEvento(data)
 
                 </div>
             </div>
-            
-            <ActualizarEvento data={dataEvento}/>
+
+            <ActualizarEvento data={dataEvento} />
         </>
     )
 }

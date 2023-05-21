@@ -112,13 +112,14 @@ const DatosAjustes = () => {
                                 <div className="container">
                                     <div className="col-md-12 col-lg-10 mx-auto">
 
-                                        <div className="d-flex justify-content-center" style={{ position: "relative" }}>
+                                        <div className="d-flex justify-content-center mb-4 t-3" style={{ position: "relative" }}>
                                             {mostrar && mostrar.perfil && mostrar.perfil.urlImg ? (
                                                 <>
                                                     <img
                                                         src={mostrar.perfil.urlImg}
-                                                        width={"20%"}
+                                                        width={"40%"}
                                                         id="image"
+                                                        className="shadow-black" 
                                                         onClick={() => selectImage()}
                                                         alt=""
                                                         style={{ cursor: "pointer" }}

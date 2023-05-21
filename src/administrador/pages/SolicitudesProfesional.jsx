@@ -72,8 +72,8 @@ setDataPro(dataProfesional)
             </thead>
             <tbody>
               {
-                data.map((d)=>(
-                  <tr>
+                data.map((d,i)=>(
+                  <tr key={i}>
                   <td data-label="paciente">{d.nombres}{" "}{d.apellidos}</td>
                   <td data-label="Nit">{d.documento.numeroDocumento}</td>
                   <td data-label="profesion">{d.profesion}</td>
