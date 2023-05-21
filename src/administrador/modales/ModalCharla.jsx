@@ -16,7 +16,7 @@ charlaAceptada(props.dataAprendiz.idCharla);
 
             {/* Modal Solicitud */}
 
-            <div className="modal" id="solicitud" >
+            <div className="modal" id="solicitud" data-bs-backdrop="static" >
                 <div className="modal-dialog  modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">

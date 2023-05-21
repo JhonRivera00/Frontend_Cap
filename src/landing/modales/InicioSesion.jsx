@@ -53,7 +53,7 @@ const InicioSesion = () => {
 
     return (
         <>
-            <div className="modal bg-black bg-opacity-50" id="exampleModal1" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="exampleModal1" data-bs-backdrop="static"   aria-labelledby="staticBackdropLabel" >
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -61,13 +61,13 @@ const InicioSesion = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <ul className="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-                                <li className="nav-item " role="presentation">
-                                    <a className="nav-link active active-green shadow-lg"
+                            <ul className="nav nav-pills nav-justified mb-3 " style={{backgroundColor:"#E9FFE2"}} id="ex1" role="tablist">
+                                <li className="nav-item  " role="presentation">
+                                    <a className="nav-link active active-green"
                                         onClick={() => (setbtnActive(false))} id="tab-login-aprendiz" data-bs-toggle="pill" href="#pills-login-aprendiz" role="tab" aria-controls="pills-login-aprendiz" aria-selected="true">Aprendiz</a>
                                 </li>
                                 <li className="nav-item" role="presentation">
-                                    <a className="nav-link shadow-lg " onClick={() => (setbtnActive(true))} id="tab-login-profesional" data-bs-toggle="pill" href="#pills-login-profesional" role="tab" aria-controls="pills-login-profesional" aria-selected="false">Profesional</a>
+                                    <a className="nav-link  " onClick={() => (setbtnActive(true))} id="tab-login-profesional" data-bs-toggle="pill" href="#pills-login-profesional" role="tab" aria-controls="pills-login-profesional" aria-selected="false">Profesional</a>
                                 </li>
                             </ul>
 
@@ -102,7 +102,7 @@ const InicioSesion = () => {
                                                     type="button"
                                                     className="btn text-primary"
                                                     data-bs-toggle="modal"
-                                                    data-bs-target="#resgistroAprendiz"
+                                                    data-bs-target="#registroAprendiz"
                                                 >
                                                     Registrarte
                                                 </button>
@@ -158,7 +158,7 @@ const InicioSesion = () => {
                                                     type="button"
                                                     className="btn text-primary"
                                                     data-bs-toggle="modal"
-                                                    data-bs-target="#modalRegistrarse"
+                                                    data-bs-target="#registroProfesional"
                                                 >
                                                     Registrarte
                                                 </button>
@@ -220,21 +220,8 @@ const InicioSesion = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-12">
-                                            <span className="mt-2 me-4 pe-2 d-flex justify-content-end align-items-center">
-
-                                                No tienes cuenta?{" "}
-                                                <button
-                                                    type="button"
-                                                    className="btn text-primary"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#modalRegistrarse"
-                                                >
-                                                    Registrarte
-                                                </button>
-                                            </span>
-                                        </div>
-                                        <div className="w-100 d-flex justify-content-center">
+                                    
+                                        <div className="w-100 pt-5 d-flex justify-content-center">
                                             <button
                                                 className="col-12  mb-2 btn btn-green w-50"
                                                 type="submit"

@@ -1,6 +1,3 @@
-import Imagen1 from "../../assets/img/imgslider1.jpg";
-import Imagen2 from "../../assets/img/imgslider2.jpg";
-import Imagen3 from "../../assets/img/imgslider4.jpg";
 import ImagenTitulo from '../../assets/img/imgnav.jpg';
 import Threevertical from '../../assets/img/icons/three-dots-vertical.svg'
 import React, { useState, useEffect } from 'react'

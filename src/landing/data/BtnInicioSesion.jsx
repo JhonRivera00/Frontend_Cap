@@ -1,158 +1,176 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import box_arrow_right from "../../assets/img/icons/box-arrow-right.svg";
 import person_circle from "../../assets/img/icons/person-circle.svg";
 import bell2 from "../../assets/img/icons/bell2.svg";
-import gear from '../../assets/img/icons/gear.svg'
-import { Link, Outlet } from "react-router-dom";
+import gear from "../../assets/img/icons/gear.svg";
+import { Link } from "react-router-dom";
+import { misNotificaciones } from "../../administrador/data/DataAdmin";
+import jwt_decode from "jwt-decode";
+import FechaNotificacion from "../../assets/js/FechaNotificacion";
+import { notificacionVista } from "./DataInicioSesion";
+import Swal from "sweetalert2";
+import VerNotificacion from "../modales/VerNotificacion";
 
 const BtnInicioSesion = () => {
+  const [notificaciones, setnotificaciones] = useState([]);
+  console.log(notificaciones,"estas son las notificaciones");
+  const [siHay, setSiHay] = useState("");
+  const [datosMotivoNoti, setDatosMotivoNoti] = useState({})
 
+  const botonesIncio = () => {
+    const tokenAprendiz = localStorage.getItem("Token-Aprendiz");
+    const tokenProfesional = localStorage.getItem("Token-Profesional");
+    const tokenAdministrador = localStorage.getItem("Token-Administrador");
+    const token = tokenAprendiz || tokenProfesional || tokenAdministrador;
+    if (!token) {
+      return (
+        <>
+          <button
+            className="btn btn-green ms-4"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal1"
+          >
+            Iniciar Sesion
+          </button>
+        </>
+      );
+    } else if (token) {
+      setTimeout(function () {
+        localStorage.clear();
+        Swal.fire({
+          title: "Se ha cerrado sesion",
+          icon: "success",
+          timer: 1000
+        })
+          .then(
+            location.reload()
+          )
+      }, 1800000);
+      const { id } = jwt_decode(token);
 
-    const botonesIncio = () => {
-        const tokenAprendiz = localStorage.getItem("Token-Aprendiz")
-        const tokenProfesional = localStorage.getItem("Token-Profesional")
-        const tokenAdministrador = localStorage.getItem("Token-Administrador")
-        const token = tokenAprendiz || tokenProfesional || tokenAdministrador
-        if (!token) {
-            return (
-                <>
-                    <button className="btn btn-green ms-4" data-bs-toggle="modal" data-bs-target="#exampleModal1">Iniciar Sesion</button>
-                </>
-            )
-
-
+      const notificacionesAbiertas = (id,motivo,nombreProf,apellidoProf,fechaAplazada,titulo,nombreApre,apellidoApre,numeroDocApre) => {
+        (async () => {
+          notificacionVista(id);
+        })();
+        const datos = {
+          motivo,nombreProf,apellidoProf,fechaAplazada,titulo,nombreApre,apellidoApre,numeroDocApre
         }
-        else {
-            return (
-                <>
+        setDatosMotivoNoti(datos)
+      };
+      useEffect(() => {
+        (async () => {
 
+          const dataNotificaciones = await misNotificaciones(id);
+          console.log(dataNotificaciones, "data Notificaciones");
+          dataNotificaciones.forEach((i) => {
+            i.estado === false ? setSiHay(i.estado) : ""
 
-                    <div className="navbar-nav ms-3 user">
-                        <li className="nav-item dropdown ">
-                            <Link
-                                className="nav-link "
-                                href="#"
-                                id="navbarDropdownMenuLink"
-                                role="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                            >
-                                {" "}
-                                <div className="d-inline-block position-relative">
-                                    <img src={bell2} alt="icon-cerrarsesion" className="" />
-                                    <span className="position-absolute top-0 start-100 translate-middle p-1 bg-green border  rounded-circle"></span>
-                                </div>
-                            </Link>
+          })
+          setnotificaciones(dataNotificaciones.reverse());
+        })();
+      }, []);
 
-                            <div
-                                className="dropdown-menu dropdown-menu-end"
-                                aria-labelledby="dropdownNotifications"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modalAseptarRecha"
-                            >
-                                <h6 className="dropdown-header ">Nuevas notificaciones</h6>
-                                <Link className="dropdown-item" href="#">
-                                    <div className="media">
-                                        <img
-                                            src="https://via.placeholder.com/50x50"
-                                            className="mr-3 rounded-circle"
-                                            alt="..."
-                                        />
+      const obtenerNotificaciones = async () => {
+        const dataNotificaciones = await misNotificaciones(id);
+        setnotificaciones(dataNotificaciones.reverse());
+      };
 
-                                        <div className="media-body">
-                                            <h6 className="mt-0 mb-1">Notificación 1</h6>
-                                            <p>Descripción de la notificación 1.</p>
-                                            <small className="text-muted">Hace 5 minutos</small>
-                                        </div>
-                                    </div>
-                                </Link>
+      return (
+        <>
+          <div className="navbar-nav ms-3 user">
+            <li className="nav-item dropdown ">
+              <Link
+                className="nav-link "
+                href="#"
+                id="navbarDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {" "}
+                <div
+                  className="d-inline-block position-relative"
+                  onClick={obtenerNotificaciones}
+                  onMouseMove={obtenerNotificaciones}
+                >
+                  <img src={bell2} alt="icon-cerrarsesion" className="" />
+                  <span className={siHay === false ? "position-absolute top-0 start-100 translate-middle p-1 bg-green border  rounded-circle" : ""}></span>
+                </div>
+              </Link>
 
-                                <Link className="dropdown-item" href="#">
-                                    <div className="media">
-                                        <img
-                                            src="https://via.placeholder.com/50x50"
-                                            className="mr-3 rounded-circle"
-                                            alt="..."
-                                        />
-                                        <div className="media-body">
-                                            <h6 className="mt-0 mb-1">Notificación 2</h6>
-                                            <p>Descripción de la notificación 2.</p>
-                                            <small className="text-muted">Hace 10 minutos</small>
-                                        </div>
-                                    </div>
-                                </Link>
+              <div  className="dropdown-menu dropdown-menu-end notificaciones">
+                <h6 className="dropdown-header ">
+                  {notificaciones.length <= 0
+                    ? "No tienes notificaciones"
+                    : "Notificaciones"}
+                </h6>
 
-                                <Link className="dropdown-item" href="#">
-                                    <div className="media">
-                                        <img
-                                            src="https://via.placeholder.com/50x50"
-                                            className="mr-3 rounded-circle"
-                                            alt="..."
-                                        />
-                                        <div className="media-body">
-                                            <h6 className="mt-0 mb-1">Notificación 3</h6>
-                                            <p>Descripción de la notificación 3.</p>
-                                            <small className="text-muted">Hace 15 minutos</small>
-                                        </div>
-                                    </div>
-                                </Link>
-                                <div className="dropdown-divider"></div>
-                                <Link className="dropdown-item text-center" href="#">
-                                    Ver todas las notificaciones
-                                </Link>
-                            </div>
-                        </li>
+                {notificaciones.map((n, i) => (
+                  // aquí muestras cada notificación en tu componente
+
+                  <div className={n.estado === false ? "notificacion dropdown-item contenedor-notificaciones notificacion-no-leida" : "dropdown-item contenedor-notificaciones "} onClick={() => notificacionesAbiertas(n._id,n.motivo,n.profesionalId?.nombres,n.profesionalId?.apellidos,n.fechaAplazada,n.titulo,n.aprendizId?.nombres,n.aprendizId?.apellidos,n.aprendizId?.documento.numeroDocumento)} key={i} data-bs-toggle="modal" data-bs-target="#verNotificacion">
+                    <div className="media">
+                      <div className="media-body">
+                        <h6 className="mt-0 mb-1 fw-bold ">{n.titulo}</h6>
+                        <p className=" text-wrap ">{n.contenido}</p>
+                        <small className="text-muted">
+                          {FechaNotificacion(n.createdAt)}
+                        </small>
+                      </div>
                     </div>
+                  </div>
+                ))}
+              </div>
+            </li>
+          </div>
 
-                    <div className="navbar-nav ms-3 user">
-                        <li className="nav-item dropdown ">
-                            <Link
-                                className="nav-link "
-                                href="#"
-                                id="navbarDropdownMenuLink"
-                                role="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                            >
-                                <img src={person_circle} alt="icon-user" />
-                            </Link>
-                            <ul
-                                className="dropdown-menu bg-green border-green"
-                                style={{ left: "-120px", backgroundColor: "#00324d" }}
-                                aria-labelledby="navbarDropdownMenuLink"
-                            >
-                                <li>
-                                    <Link
-                                        className="dropdown-item text-white"
-                                        data-bs-toggle="modal"
-                                        href=""
-                                        data-bs-target="#modalInicioDatos"
-                                    >
-                                        <img src={gear} alt="icon-ajustes" className="me-3" />
-                                        Ajustes
-                                    </Link>
-                                </li>
-                                <li>
-                                    <button className="dropdown-item text-white" onClick={() => localStorage.clear((location.reload()))}>
-                                        <img
-                                            src={box_arrow_right}
-                                            alt="icon-cerrarsesion"
-                                            className="me-3"
-
-                                        />
-                                        Cerrar Sesion
-                                    </button>
-                                </li>
-                            </ul>
-                        </li>
-                    </div>
-
-                </>
-            )
-        }
+          <div className="navbar-nav ms-3 user">
+            <li className="nav-item dropdown ">
+              <Link
+                className="nav-link "
+                id="navbarDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img src={person_circle} alt="icon-user" />
+              </Link>
+              <ul
+                className="dropdown-menu bg-green border-green"
+                style={{ left: "-120px", backgroundColor: "#00324d" }}
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <li>
+                  <Link
+                    className="dropdown-item text-white"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalInicioDatos"
+                  >
+                    <img src={gear} alt="icon-ajustes" className="me-3" />
+                    Ajustes
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item text-white"
+                    onClick={() => localStorage.clear(location.reload())}
+                  >
+                    <img
+                      src={box_arrow_right}
+                      alt="icon-cerrarsesion"
+                      className="me-3"
+                    />
+                    Cerrar Sesion
+                  </button>
+                </li>
+              </ul>
+            </li>
+          </div>
+          <VerNotificacion datosMotivoNoti={datosMotivoNoti}/>
+        </>
+      );
     }
-    return botonesIncio();
-}
+  };
+  return botonesIncio();
+};
 export default BtnInicioSesion;
-
-

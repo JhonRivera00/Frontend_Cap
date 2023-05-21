@@ -17,6 +17,7 @@ const Charlas = () => {
     }
     dataCharlas()
   }, []);
+
   
   const handleModal = (nombre, ficha, telefono, correo, motivo, fechaSolicitadaA,apellidos,jornada,nombresProfesional,apellidosProfesional,idCharla) => {
     const fechaISO = fechaSolicitadaA;

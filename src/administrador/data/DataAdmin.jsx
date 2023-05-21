@@ -111,6 +111,26 @@ export const solicitudesprofesional = async () => {
     }
   }
 }
+export const solicitudesRechazadasProfesional = async () => {
+  try {
+
+    const tokenAdmin = localStorage.getItem("Token-Administrador")
+    const token = {
+      headers: {
+        'acceso-token': tokenAdmin
+      }
+    }
+    const { data } = await axios.get("/solicitudesRechazadasProfesional", token);
+    return data
+  } catch (error) {
+    if (error.response.status === 400) {
+      Swal.fire({
+        icon: "error",
+        title: error.response.data
+      });
+    }
+  }
+}
 export const charlaAceptada = async (id) => {
   try {
     const response = await axios.put(`/solicitudesAceptar/${id}`)
@@ -160,5 +180,74 @@ export const aceptarProfesional = async (id)=>{
         title: error.response.data
       });
     }
+  }
+}
+export const rechazarProfesional = async(motivoRechazo,id)=>{
+try {
+  const tokenAdmin = localStorage.getItem("Token-Administrador")
+  
+   const headers = {
+      'acceso-token': tokenAdmin
+  }
+  const response = await axios.put(`/rechazarProfesional/${id}`,{motivoRechazo},{headers})
+  if (response.status === 200) {
+    Swal.fire({
+      title: response.data,
+      icon: "success",
+      timer: 2000
+    })
+      .then((
+        location.reload()
+      ))
+  }
+} catch (error) {
+  if (error.response.status === 400) {
+    Swal.fire({
+      icon: "error",
+      title: error.response.data
+    });
+  }
+}
+
+}
+
+export const datosPqrs = async ()=>{
+  try {
+    const {data} = await axios.get("/verPqrsPendientes")
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const responderPqrs = async (respuesta,id)=>{
+  try {
+    const response= await axios.put(`/responderPqrs/${id}`,{respuesta})
+    if (response.status === 200) {
+      Swal.fire({
+        title: response.data,
+        icon: "success",
+        timer: 2000
+      })
+        .then((
+          location.reload()
+        ))
+    }
+  } catch (error) {
+    if (error.response.status === 400) {
+      Swal.fire({
+        icon: "error",
+        title: error.response.data
+      });
+    }
+  }
+}
+export const misNotificaciones = async (id)=>{
+  try {
+    const {data} = await axios.get(`/notificaciones/${id}`)
+    console.log(data,"notificacionesId ");
+    return data
+  } catch (error) {
+    console.error(error);
   }
 }

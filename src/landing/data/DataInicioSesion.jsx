@@ -114,3 +114,34 @@ export const loginAdmin= async (correo, contrasena) => {
 
   }
 }
+export const formPqrs = async (id_usuario,tipo,motivo)=>{
+  try {
+    const pqrs = {id_usuario,tipo,motivo}
+    const response = await axios.post(`/crearPqrs`,pqrs)
+    if (response.status === 200) {
+        Swal.fire({
+          title: response.data,
+          icon: "success",
+          timer: 2000
+        })
+    .then((
+      location.reload()
+    ))}
+  } catch (error) {
+    if (error.response.status === 400) {
+      Swal.fire({
+        icon: "error",
+        title: error.response.data
+      });
+  }
+}
+}
+
+export const notificacionVista = async (id)=>{
+  try {
+    const data= await axios.put(`/notificacionVista/${id}`)
+    
+  } catch (error) {
+  console.error(error.data)
+  }
+}

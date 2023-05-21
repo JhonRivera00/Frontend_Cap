@@ -1,13 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import Imgnav from "../../assets/img/imgnav.jpg";
 import Phone from "../../assets/img/icons/phone.svg";
 import House from "../../assets/img/icons/house.svg";
 import Chat from "../../assets/img/icons/chat-dots.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js";
+import { formPqrs } from "../data/DataInicioSesion";
+import Swal from 'sweetalert2'
+import jwt_decoded from 'jwt-decode'
 
 
 const Contactanos = () => {
+  const [tipoPqrs, setTipoPqrs] = useState("")
+  const [motivo, setMotivo] = useState("")
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const tokenApre = localStorage.getItem("Token-Aprendiz")
+    if (!tokenApre) {
+
+      Swal.fire({
+        title: "Debes Iniciar Sesion Primero",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: `<i  className="btn btn-green"    data-bs-toggle="modal"    data-bs-target="#exampleModal1" >  Iniciar sesion</i>`,
+
+      })
+    }
+    else if (tokenApre) {
+      const { id } = jwt_decoded(tokenApre);
+      formPqrs(id, tipoPqrs, motivo)
+    }
+  }
+
   return (
     <>
       {/* <!-- Titulo --> */}
@@ -27,17 +53,17 @@ const Contactanos = () => {
       {/* <!--CONTACT STAR--> */}
       <main className="my-5">
         <div className="d-flex flex-wrap justify-content-around">
-          <div className="bg-green p-5 mt-5 rounded-4 text-center w-25 shadow-black align-items-stretch contenedor-icons-contact">
+          <div className="bg-green py-4 mt-5 rounded-4 text-center shadow-black align-items-stretch contenedor-icons-contact">
             <img src={Phone} alt="" />
             <p className="text-white fs-5 mt-5">+57 321 0908 000</p>
             <p className="text-white fs-5">+57 321 0908 000</p>
           </div>
-          <div className="bg-green p-5 mt-5 rounded-4 text-center w-25 shadow-black align-items-stretch contenedor-icons-contact">
+          <div className="bg-green py-4 mt-5 rounded-4 text-center shadow-black align-items-stretch contenedor-icons-contact">
             <img src={House} alt="" />
             <p className="text-white fs-5 mt-5"> a 3-111, Cra. 3 #3-1</p>
             <p className="text-white fs-5">Popayán, Cauca</p>
           </div>
-          <div className="bg-green p-5 mt-5 rounded-4 text-center w-25 shadow-black align-items-stretch contenedor-icons-contact">
+          <div className="bg-green py-4 mt-5 rounded-4 text-center  shadow-black align-items-stretch contenedor-icons-contact">
             <img src={Chat} alt="" />
             <p className="text-white fs-5 mt-5">soysena@sena.edu.co</p>
             <p className="text-white fs-5">baprendiz@sena.edu.co</p>
@@ -51,62 +77,48 @@ const Contactanos = () => {
             <br /> le responderemos a la brevedad.
           </h6>
 
-          <form className="needs-validation w-50" >
-            <div className="row g-2 my-2">
-              <div className="col-sm-12 mt-4 mt-md-5">
-                <input
-                  type="text"
-                  className="form-control border-green"
-                  id="firstName"
-                  placeholder="Nombre completo*"
-                  required
-                />
-              </div>
+          <form className="needs-validation" onSubmit={handleSubmit} >
+              <div className="row g-2 my-2">
 
-              <div className="col-sm-6 mt-4 mt-md-5">
-                <div className="input-group has-validation">
-                  <input
-                    type="number"
+
+                <div className="col-sm-12  mt-md-5" >
+                  <div className="col-md-12 ">
+
+                    <select className="form-select col-md-12 border-green" id="validationCustom04" onChange={(e) => setTipoPqrs(e.target.value)}>
+                      <option selected disabled value="" key={0}>Motivo mensaje...</option>
+                      <option defaultValue={"Felicitacion"} key={1}>Felicitacion</option>
+                      <option defaultValue={"Peticion"} key={2}>Peticion</option>
+                      <option defaultValue={"Queja"} key={3}>Queja</option>
+                      <option defaultValue={"Reclamo"} key={4}>Reclamo</option>
+                      <option defaultValue={"Sugerencia"} key={5}>Sugerencia</option>
+
+                    </select>
+                  </div>
+                </div>
+
+                <div className="col-sm-12  mt-md-5">
+                  <textarea
+                    type="text"
+                    defaultValue={motivo}
                     className="form-control border-green"
-                    id="fecha"
-                    placeholder="Numero telefono*"
-                    required
-                  />
+                    id="address2"
+                    rows="5"
+                    placeholder="Mensaje..." onChange={(e) => setMotivo(e.target.value)}
+
+                  ></textarea>
+                </div>
+
+
+                <div className="col-md-12 my-4 mt-md-5">
+                  <button
+                    type="submit"
+                    className="btn btn-green btn-lg"
+                  >
+                    Enviar mensaje
+                  </button>
                 </div>
               </div>
-
-              <div className="col-sm-6 mt-4 mt-md-5">
-                <input
-                  type="email"
-                  className="form-control border-green"
-                  id="motivo"
-                  placeholder="Email*"
-                  required
-                />
-              </div>
-
-              <div className="col-sm-12 mt-4 mt-md-5">
-                <textarea
-                  type="text"
-                  className="form-control border-green"
-                  id="address2"
-                  rows="5"
-                  placeholder="Mensaje*"
-                  required
-                ></textarea>
-              </div>
-
-
-              <div className="col-md-12 my-4 mt-md-5">
-                <button
-                  type="submit"
-                  className="btn btn-green btn-lg"
-                >
-                  Enviar mensaje
-                </button>
-              </div>
-            </div>
-          </form>
+            </form>
         </div>
       </main>
 

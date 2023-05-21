@@ -10,9 +10,7 @@ const DatosAjustes = () => {
             <div
                 class="modal fade"
                 id="modalInicioDatos"
-                tabindex="-1"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
+                data-bs-backdrop="static"
             >
                 <div class="modal-dialog ">
                     <div class="modal-content bg-color-blue  text-white ">

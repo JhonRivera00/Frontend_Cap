@@ -19,8 +19,7 @@ const Charla = () => {
   const [profesionales, setProfesionales] = useState([]);
   useEffect(() => {
     const dataProfesionales = async () => {
-      const URL = "https://backend-cap-273v.vercel.app/verUsuariosProfesionales"
-      const data = await axios.get(URL)
+      const data = await axios.get("/verUsuariosProfesionales")
       setProfesionales(data.data)
     }
     dataProfesionales();

@@ -13,7 +13,7 @@ import moment from 'moment'
 const localizer = momentLocalizer(moment);
 
 const fechaCrono = (dato) => {
-
+  
   const fechaString = dato;
   const fechaMoment = moment(fechaString, 'DD [de] MMMM [del] YYYY [a las] HH:mm a');
   const anio = fechaMoment.year();

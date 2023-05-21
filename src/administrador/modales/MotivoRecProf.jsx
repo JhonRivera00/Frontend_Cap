@@ -1,22 +1,21 @@
 import React from "react";
 import Users1 from "../../assets/img/user1.png";
 import { aceptarProfesional } from "../data/DataAdmin";
-import RechazarProfesional from '../modales/RechazarProfesional'
+import RechazarProfesional from './RechazarProfesional'
 
 const ModalProfesional = ({dataProfesional}) => { 
-  const btnAceptarProfesional = ()=>{
-   aceptarProfesional(dataProfesional.id);
-  }
   return (
     <>
       {/* Modal solicitud profesional */}
 
       <div
         className="modal fade"
-        id="profesional"
+        id="rechazoProfesional"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
-       
+        tabIndex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog modal-lg">
           <div className="modal-content">
@@ -57,33 +56,19 @@ const ModalProfesional = ({dataProfesional}) => {
                     <p className=" fw-bold">Correo: </p>
                     <p className="ms-2">{dataProfesional.correo}</p>
                   </div>
-                  <p></p>
+                  
                 </div>
                 <div className="col-6">
                   <div className=" d-flex">
                     <p className=" fw-bold">Profesion: </p>
                     <p className="ms-2">{dataProfesional.profesion}</p>
                   </div>
+                  <div className=" d-flex">
+                    <p className=" fw-bold">Motivo Rechazo: </p>
+                    <p className="ms-2">{dataProfesional.motivoRechazo}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-success"
-                data-bs-dismiss="modal" onClick={btnAceptarProfesional}
-              >
-                Aceptar
-              </button>
-              <button
-                type="button"
-                className="btn btn-danger"
-                data-bs-toggle="modal"
-                data-bs-target="#rechazarProfesional"
-                
-              >
-                Rechazar
-              </button>
             </div>
           </div>
         </div>

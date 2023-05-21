@@ -3,10 +3,16 @@ import React, { useState } from 'react'
 const CrearEvento = () => {
     const [evento, setEvento] = useState("");
     const [tipoEvento, setTipoEvento] = useState("");
-    const [fechaInicial, sEtFechaInicial] = useState("");
+    const [fechaInicial, setFechaInicial] = useState("");
+    const [imagenes, setImagenes] = useState("")
+    const [descripcion, setDescripcion] = useState("")
     
     const handleSubmit=()=>{
+        const formData = new FormData();
+        formData.append("evento",evento)
+        formData.append('tipoEvento',tipoEvento)
         
+
         }
 
 
@@ -14,7 +20,7 @@ const CrearEvento = () => {
     return(
         <>
          {/* Modal CREAR EVENTO */}
-         <div className="modal fade" id="exampleModalIN" tabIndex="-1" aria-labelledby="exampleModalINLabel" aria-hidden="true">
+         <div className="modal fade" id="exampleModalIN" data-bs-backdrop="static">
                 <div className="modal-dialog ">
                     <div className="modal-content bg-color-blue text-white">
 
@@ -34,11 +40,11 @@ const CrearEvento = () => {
                                 {/* Tipo de evento */}
                                 <div className="col-12 mt-0" style={{ padding: "0 50px 0 50px" }}><br></br>
                                     <label htmlFor="exampleFormControlSelect1" className="form-label">TIPO DE EVENTO</label>
-                                    <select className="form-control" id="exampleFormControlSelect1" defaultValue="1" onChange={(e)=>setTipoEvento(e.target.value)}>
-                                        <option value="1" disabled>Seleccionar...</option>
-                                        <option value="2">DESTACADO</option>
-                                        <option value="3">NOTICIA</option>
-                                        <option value="4">CRONOGRAMA</option>
+                                    <select className="form-control" id="exampleFormControlSelect1"  onChange={(e)=>setTipoEvento(e.target.value)}>
+                                        <option value="1">Seleccionar...</option>
+                                        <option value="2">Destacado</option>
+                                        <option value="3">Noticia</option>
+                                        <option value="4">Cronograma</option>
                                     </select>
                                 </div>
                                 {/* Fecha y hora de inicio */}
@@ -54,7 +60,7 @@ const CrearEvento = () => {
 
                                 <div className="col-12 mt-0" style={{ padding: "0 50px 0 50px" }}><br></br>
                                     <label htmlFor="validationCustom01" className="form-label">ADJUNTAR IMAGEN</label>
-                                    <input type="file" rows="3" className="form-control" placeholder='Ingresar descripcion' id="validationCustom01" onChange={(e)=>setImagenes(e.target.value)}/>
+                                    <input type="file" rows="3" className="form-control" placeholder='Ingresar descripcion' id="validationCustom01" onChange={(e)=>setImagenes(e.target.files)}/>
                                 </div>
                                 {/* Descripcion */}
                                 <div className="col-12 mt-0" style={{ padding: "0 50px 0 50px" }}><br></br>

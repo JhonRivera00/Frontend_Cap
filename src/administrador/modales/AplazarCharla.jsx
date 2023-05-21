@@ -26,7 +26,7 @@ const handleSubmit =(e)=>{
     return (
         <>
             {/* Modal Aplazar Charla */}
-            <div className="modal" id="modalAplazar"  >
+            <div className="modal" id="modalAplazar"  data-bs-backdrop="static">
                 <div className="modal-dialog ">
                     <div className="modal-content bg-color-blue text-white">
                         <div className="modal-header">

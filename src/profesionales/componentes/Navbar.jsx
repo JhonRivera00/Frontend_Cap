@@ -8,8 +8,8 @@ import BtnInicio from '../../landing/data/BtnInicioSesion'
 import InicioSesion from '../../landing/modales/InicioSesion'
 import DatosAjustes from '../../landing/modales/Ajustes'
 import NotificacionAseptar from '../../landing/modales/AceptarRechazarCharla'
-import Registrarse from '../../landing/modales/Registrarse'
-
+import RegistroAprendiz from '../../landing/modales/RegistroAprendiz'
+import RegistroProfesional from '../../landing/modales/RegistroProfesional'
 
 const Navbar = () => {
 
@@ -90,7 +90,8 @@ const Navbar = () => {
                     <InicioSesion/>
                     <DatosAjustes/>
                     <NotificacionAseptar/>
-                    <Registrarse/>
+                    <RegistroAprendiz/>
+                    <RegistroProfesional/>
 
       <Outlet />
       <Footer />

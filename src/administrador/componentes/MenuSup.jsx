@@ -84,7 +84,7 @@ function MenuSup() {
                   <li>
                   </li>
                   <li>
-                    <Link className="dropdown-item text-white" to="/">
+                    <Link className="dropdown-item text-white" onClick={() => localStorage.clear((location.reload()))}>
                       <img src={box_arrow}
                         alt="icon-cerrarsesion" className="me-3" />
                       Cerrar Sesion
