@@ -88,6 +88,9 @@ export const acualizarAprendiz = async (id, data) => {
                 icon: "success",
                 timer: 2000
             })
+            .then( 
+                location.reload()
+            )
         
     } catch (error) {
         Swal.fire({

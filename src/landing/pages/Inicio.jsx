@@ -17,7 +17,6 @@ const [dataPro, setDataPro] = useState([])
 useEffect(()=>{
   const fetchData = async () =>{
     const datos = await datosInicio()
-    console.log(datos)
   const destacados = datos.filter(evento => evento.tipo === "noticia");
   const dataPro= await verPro();
     setDataInicio(destacados.reverse())
