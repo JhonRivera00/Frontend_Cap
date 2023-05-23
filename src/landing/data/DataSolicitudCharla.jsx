@@ -4,8 +4,11 @@ import Swal from 'sweetalert2'
 
 export const dataSolicitudCharla = async (fecha, profesional, motivo) => {
     try {
-      const URL = "https://backend-cap-273v.vercel.app/crearSolicitud";
+      const URL = "/crearSolicitud";
       const token = localStorage.getItem("Token-Aprendiz");
+      const headers = {
+        "acceso-token": token,
+      };
       const decodedToken = jwt_decode(token);
       const nombre = decodedToken.id;
    
@@ -16,8 +19,17 @@ export const dataSolicitudCharla = async (fecha, profesional, motivo) => {
       id_profesional:profesional,
       motivo:motivo
     };
-    const response = await axios.post(URL, datosSolicitud);
-    
+    const loading = Swal.fire({
+      title: 'Solicitando',
+      text: 'Espere un momento por favor...',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => {
+          Swal.showLoading();
+      },
+  });
+    const response = await axios.post(URL, datosSolicitud,{headers});
+    loading.close();
     if (response.status === 200) {
       
       Swal.fire({
@@ -30,12 +42,12 @@ export const dataSolicitudCharla = async (fecha, profesional, motivo) => {
     }
     } catch (error) {
       console.log(error)
-      if (error.response.status === 400){
+      
         Swal.fire({
             icon: "error",
             title: error.response.data
           });
-    }
+    
     }
     
   }

@@ -43,20 +43,37 @@ const Charla = () => {
   }, [])
 
   const validarToken = (e) => {
-    const token = localStorage.getItem("Token-Aprendiz")
+    const tokenApre = localStorage.getItem("Token-Aprendiz")
+    const tokenPro = localStorage.getItem("Token-Profesional")
+    const tokenAdmin = localStorage.getItem("Token-Administrador")
+    const token = tokenApre || tokenPro || tokenAdmin
     e.preventDefault();
 
     if (!token) {
-      Swal.fire({
-        title: "Debes Iniciar Sesion Primero",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: `<i  className="btn btn-green"    data-bs-toggle="modal"    data-bs-target="#exampleModal1" >  Iniciar sesion</i>`,
+      
 
-      })
-    }
+       Swal.fire({
+          title: "Debes Iniciar Sesion Primero",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: `<i  className="btn btn-green"    data-bs-toggle="modal"    data-bs-target="#exampleModal1" >  Iniciar sesion</i>`,
+          
+        })
+        
+    
+  }
     else if(token){
-      dataSolicitudCharla( fecha, profesional, motivo)
+     if(tokenApre){
+
+       dataSolicitudCharla( fecha, profesional, motivo)
+      }else{
+        Swal.fire({
+          title: "No eres aprendiz",
+          icon: "warning",
+         
+          
+        })
+      }
     }
   }
   return (
