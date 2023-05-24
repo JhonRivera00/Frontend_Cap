@@ -286,12 +286,12 @@ export const crearEvento = async (data) => {
         icon: "error",
         title: error.response.data,
       });
-    }
+    } 
   }
 };
 export const verAdmin = async (id)=>{
   try {
-    const response = await axios.get(`/usuario/${id}`)
+    const response = await axios.get(`/usuario/${id}`);
     return response;
   } catch (error) {
     console.log(error.response.data);

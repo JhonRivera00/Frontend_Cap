@@ -3,7 +3,6 @@ import { charlaAceptada } from "../data/DataAdmin";
 import AplazarCharla from "./AplazarCharla";
 
 
-
 const ModalCharla = (props) => {
 const aceptarCharla=(e)=>{
  e.preventDefault();

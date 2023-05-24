@@ -1,8 +1,42 @@
 
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import jwt_decode from 'jwt-decode';
+import { verAdmin } from '../../administrador/data/DataAdmin'
 
 const DatosAjustes = () => {
+    const [id, setId] = useState("");
+    const [adminDatos, setAdminDatos] = useState({
+      nombres: "",
+      apellidos: "",
+      correo: "",
+      genero: "",
+      numTelefono: ""
+    });
+    
+    useEffect(() => {
 
+        const token = localStorage.getItem('Token-Administrador');
+        if (!token) { 
+
+            return
+        } else {
+
+            const { id } = jwt_decode(token);
+            setId(id);
+
+            const fetAdmin = async () => {
+                const { data } = await verAdmin(id);
+                setAdminDatos(data);
+            }
+            fetAdmin()
+        }
+    }, []);
+    
+    const handleTarget = ({ target }) => {
+      setAdminDatos({ ...adminDatos, [target.name]: target.value });
+    };
+
+    
     return (
         <>
 
@@ -20,7 +54,7 @@ const DatosAjustes = () => {
                             autoComplete="off"
                         >
                             <div className="modal-header">
-                                <h4 className="modal-title w-100 text-center ">Datos Generales</h4>
+                                <h4 className="modal-title w-100 text-center ">Perfil</h4>
                                 <button
                                     type="button"
                                     className="btn-close"
@@ -30,7 +64,7 @@ const DatosAjustes = () => {
                             </div>
                             <div className="modal-body text-white">
                                 <div className="container">
-                                    <div className="col-md-7 col-lg-8 mx-auto">
+                                    <div className="col-md-7 col-lg-10   mx-auto">
                                         <div className="row g-3">
                                             <div className="col-sm-6">
                                                 <label htmlFor="firstName" className="form-label ">
@@ -39,9 +73,11 @@ const DatosAjustes = () => {
                                                 <input
                                                     type="text"
                                                     className="form-control bg-white border-green"
+                                                    value={adminDatos.nombres}
                                                     id="firstName"
-                                                    placeholder="Ingrese Nombre"
+                                                    placeholder=""
                                                     required
+                                                    onChange={handleTarget}
                                                 />
                                             </div>
 
@@ -52,27 +88,38 @@ const DatosAjustes = () => {
                                                 <input
                                                     type="text"
                                                     className="form-control  bg-white border-green"
+                                                    value={adminDatos.apellidos}
                                                     id="lastName"
-                                                    placeholder="Ingrese Apellido"
+                                                    placeholder=""
                                                     required
+                                                    onChange={handleTarget}
                                                 />
                                             </div>
 
                                             <div className="col-12">
-                                                <label htmlFor="username" className="form-label">
-                                                    correo electronico
-                                                </label>
-                                                <div className="input-group has-validation">
-                                                    <span className="input-group-text border-green">@</span>
-                                                    <input
-                                                        type="text"
-                                                        className="form-control  bg-white border-green"
-                                                        id="username"
-                                                        placeholder="Ingrese el correo Electronico"
-                                                        required
-                                                    />
-                                                </div>
+                                                <label htmlFor="email" className="form-label">Correo</label>
+                                                <input type="email" className="form-control"
+                                                    id="email"
+                                                    name="correo"
+                                                    value={adminDatos.correo}
+                                                    placeholder=""
+                                                    onChange={handleTarget}
+                                                />
                                             </div>
+
+                                            <div className="col-12">
+                                                <label htmlFor="validationGenero" className="form-label">Genero</label>
+                                                <select className="form-select"
+                                                    name="genero"
+                                                    value={adminDatos.genero}
+                                                    onChange={handleTarget}
+                                                    id="validationGenero" aria-label="Default select example" required>
+                                                    <option disable="true" >Genero</option>
+                                                    <option defaultValue="Masculino" >Masculino</option>
+                                                    <option defaultValue="Femenino" >Femenino</option>
+                                                </select>
+                                            </div>
+
 
                                             <div className="col-12">
                                                 <label htmlFor="email" className="form-label">
@@ -81,39 +128,21 @@ const DatosAjustes = () => {
                                                 <input
                                                     type="number"
                                                     className="form-control  bg-white border-green"
+                                                    value={adminDatos.numTelefono}
                                                     id="email"
-                                                    placeholder="Ingrese Numero Telefono"
+                                                    placeholder="   "
                                                     required
+                                                    onChange={handleTarget}
                                                 />
                                             </div>
 
-                                            <div className="col-12">
-                                                <label htmlFor="address" className="form-label">
-                                                    Direccion:
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    className="form-control  bg-white border-green"
-                                                    id="address"
-                                                    placeholder="Ingrese Dirreccion"
-                                                    required
-                                                />
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="modal-footer">
-                                <button
-                                    type="button"
-                                    className="btn btn-secondary"
-                                    data-bs-dismiss="modal"
-                                >
-                                    Cerrar
-                                </button>
-
+                            <div className="modal-footer w-100  d-flex justify-content-center">
                                 <button type="submit" className="btn btn-green border-green">
-                                    Guardar cambios
+                                    Actualizar cambios
                                 </button>
                             </div>
                         </form>

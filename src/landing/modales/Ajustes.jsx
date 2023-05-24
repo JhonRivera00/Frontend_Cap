@@ -19,12 +19,10 @@ const DatosAjustes = () => {
     });
 
 
-
-
     useEffect(() => {
 
         const token = localStorage.getItem('Token-Aprendiz');
-        if (!token) {
+        if (!token) { 
 
             return
         } else {
@@ -34,6 +32,7 @@ const DatosAjustes = () => {
 
             const fetAprendiz = async () => {
                 const { data } = await verAdmin(id)
+                console.log(data)
                 setMostrar(data);
             }
             fetAprendiz()
@@ -99,7 +98,7 @@ const DatosAjustes = () => {
                             onSubmit={handleOnsumbit}
                         >
                             <div className="modal-header">
-                                <h4 className="modal-title w-100 text-center ">Datos Generales</h4>
+                                <h4 className="modal-title w-100 text-center ">Perfil</h4>
                                 <button
                                     type="button"
                                     className="btn-close"
@@ -218,8 +217,7 @@ const DatosAjustes = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="modal-footer">
-
+                            <div className="modal-footer w-100  d-flex justify-content-center">
                                 <button type="submit" className="btn btn-green border-green">
                                     Actualizar cambios
                                 </button>

@@ -39,12 +39,15 @@ const Conocenos = () => {
       {/* <!-- Fin section --> */}
 
       {/* <!-- Video --> */}
-      <section className="video">
-        <p className="fs-1 fw-semibold d-flex justify-content-center titulos">
+
+      <section className="video d-flexr align-items-center justify-content-center">
+        <p className="fs-1 fw-semibold text-center titulos">
           VIDEO PRESENTACION
         </p>
-        <video src={Video} width="640" height="580" controls></video>
+        <video src={Video} className="w-75 border border-1 border-secondary rounded" style={{ height: "auto" }} controls></video>
       </section>
+
+
 
       {/* <!-- Fin Video --> */}
 
@@ -56,7 +59,7 @@ const Conocenos = () => {
             Los Centros de Formación Profesional Integral incorporarán estrategias para la inclusión de aprendices pertenecientes a las comunidades minoritarias y vulnerables</p>
         </div>
       </div>
-      
+
     </>
   );
 };
