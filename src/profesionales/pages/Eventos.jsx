@@ -6,8 +6,8 @@ import { datosCronograma } from '../../profesionales/data/DataSolicitudes';
 import jwt_decode from 'jwt-decode';
 import moment from 'moment';
 import { convertirFecha } from '../../assets/js/FormatoEventos';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+// import Modal from 'react-bootstrap/Modal';
+// import Button from 'react-bootstrap/Button';
 
 // Pasar a español
 const localizer = momentLocalizer(moment);
