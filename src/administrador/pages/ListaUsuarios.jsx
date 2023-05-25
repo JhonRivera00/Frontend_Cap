@@ -47,6 +47,7 @@ const Solicitudes = () => {
               <th scope="col">Identificacion</th>
               <th scope="col">Ficha</th>
               <th scope="col">Estado</th>
+              <th scope="col">Opción</th>
               {/* <th Roll scope="col text-center">Roll</th> */}
             </tr>
           </thead>
@@ -58,12 +59,17 @@ const Solicitudes = () => {
                   <td>{user.nombres}{" "}{user.apellidos}</td>
                   <td>{user.documento.numeroDocumento}</td>
                   <td>{user.programa.ficha}</td>
+
                   <td className=" link-light ">
                     <div >
                       <p className="bg-success rounded-pill text-center w-75"> Habilitado</p>
                     </div>
                   </td>
+
                   <td>
+                    <div className="form-check form-check-inline form-switch">
+                    <input type="checkbox" className="form-check-input" />
+                    </div>
                   </td>
                 </tr>
 
