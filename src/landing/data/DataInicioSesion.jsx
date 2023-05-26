@@ -131,8 +131,24 @@ export const loginAdmin= async (correo, contrasena) => {
 }
 export const formPqrs = async (id_usuario,tipo,motivo)=>{
   try {
+    const token = localStorage.getItem("Token-Aprendiz");
+
+    const headers = {
+      "acceso-token": token,
+    };
+    const loading = Swal.fire({
+      title: 'Solicitando Pqrs',
+      text: 'Espere un momento por favor...',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => {
+          Swal.showLoading();
+      },
+  });
+
     const pqrs = {id_usuario,tipo,motivo}
-    const response = await axios.post(`/crearPqrs`,pqrs)
+    const response = await axios.post(`/crearPqrs`,pqrs,{headers})
+    loading.close()
     if (response.status === 200) {
         Swal.fire({
           title: response.data,
