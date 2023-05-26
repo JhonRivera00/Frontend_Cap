@@ -91,8 +91,12 @@ const ActualizarEvento = ({ data }) => {
             if (document.querySelector("#con-lugar").classList.contains("d-none")) {
                 document.querySelector("#con-lugar").classList.remove("d-none")
             }
-                document.querySelector("#con-img").classList.toggle("d-none")
+            if (!document.querySelector("#con-pdf").classList.contains("d-none")) {
                 document.querySelector("#con-pdf").classList.toggle("d-none")
+            }
+            if (!document.querySelector("#con-img").classList.contains("d-none")) {
+                document.querySelector("#con-img").classList.toggle("d-none")
+            }
             
         } else {
 
@@ -101,6 +105,9 @@ const ActualizarEvento = ({ data }) => {
                 }else{
                     document.querySelector("#con-pdf").classList.toggle("d-none")
 
+                }
+                if (document.querySelector("#con-img").classList.contains("d-none")) {
+                    document.querySelector("#con-img").classList.remove("d-none")
                 }
             }
             else  if (document.querySelector("#con-lugar").classList.contains("d-none")) {
