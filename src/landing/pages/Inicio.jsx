@@ -1,69 +1,64 @@
-import React, {useEffect, useState} from "react";
-import IconPregunta from '../../assets/img/IconPregunta.png'
-import {Link} from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import IconPregunta from '../../assets/img/biene.jpg'
+import { Link } from 'react-router-dom'
 import Slider from '../componentes/SliderInicioSesion'
-import { datosInicio, verPro} from "../data/DataInicioSesion";
+import { datosInicio, verPro } from "../data/DataInicioSesion";
 import FechaNotificacion from './../../assets/js/FechaNotificacion';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
+import '../../assets/css/slider.css'
 
 
 const Contenido = () => {
-  
+
   const navigate = useNavigate()
-  
-const [dataInicio, setDataInicio] = useState([]);
-const [dataPro, setDataPro] = useState([])
+  const [dataInicio, setDataInicio] = useState([]);
+  const [dataPro, setDataPro] = useState([])
 
-useEffect(()=>{
-  const fetchData = async () =>{
-    const datos = await datosInicio()
-  const destacados = datos.filter(evento => evento.tipo === "noticia");
-  const dataPro= await verPro();
-    setDataInicio(destacados.reverse())
-    setDataPro(dataPro)
-    
-  }
-  fetchData();
-},[])
+  useEffect(() => {
+    const fetchData = async () => {
+      const datos = await datosInicio()
+      const destacados = datos.filter(evento => evento.tipo === "noticia");
+      const dataPro = await verPro();
+      setDataInicio(destacados.reverse())
+      setDataPro(dataPro)
 
-
-
+    }
+    fetchData();
+  }, [])
 
 
   return (<>
-    <Slider/>
+    <Slider />
     <div className="card-group justify-content-around">
+      {dataInicio.map((data) => (
+        <div className="card mx-sm-5 my-sm-5 border rounded-0" key={data._id}>
+          <img className="card-img-top"
+            src={data.imagen.urlImg}
+            alt="img" />
+          <div className="card-body">
+            <h5 className="card-title text-uppercase text-center mb-3">
+              {data.titulo}
+            </h5>
+            <p className="card-text">
+              {data.descripcion}
+            </p>
+            <p>
+              Mas info en:
+              <Link href="https://www.sena.edu.co/es-co/Paginas/default.aspx">
+                Click aqui
+              </Link>
+            </p>
+          </div>
+          <div className="card-footer bg-green">
+            <small className="text-muted1">
+              {data.updatedAt ? FechaNotificacion(data.updatedAt) : ""}
+            </small>
+          </div>
+        </div>
 
-      {dataInicio.map((data)=>(
-             <div className="card mx-sm-5 my-sm-5 border rounded-0" key={data._id}>
-             <img className="card-img-top"
-             src={data.imagen.urlImg}
-             alt="img" />
-             <div className="card-body">
-               <h5 className="card-title text-uppercase text-center mb-3">
-                 {data.titulo}
-               </h5>
-               <p className="card-text">
-                 {data.descripcion}
-               </p>
-               <p>
-                 Mas info en:
-                 <Link href="https://www.sena.edu.co/es-co/Paginas/default.aspx">
-                   Click aqui
-                 </Link>
-               </p>
-             </div>
-             <div className="card-footer bg-green">
-               <small className="text-muted1">
-               {data.updatedAt?FechaNotificacion(data.updatedAt):""}
-               </small>
-             </div>
-           </div>
-           
       ))
-
       }
- 
     </div>
     <div>
       <section className="container-fluid py-5 ">
@@ -77,12 +72,12 @@ useEffect(()=>{
             blandas, al deporte, la actividad física, el aprovechamiento del
             tiempo libre y el arte.
             <Link
-              to="/conocenos" 
+              to="/conocenos"
               className="btn btn-green btn-md w-50 mt-5 "
             >
               Conoce mas...
             </Link>
-            
+
           </div>
         </div>
       </section>
@@ -101,29 +96,49 @@ useEffect(()=>{
             </p>
           </div>
         </div>
+
         <div className="w-100 card-group my-5">
-          {dataPro.map((d)=>(
+          {dataPro.map((d) => (
+            <div className="text-center mx-auto mt-4" key={d._id}>
+              <div className="container">
+                <input type="radio" name="dot" id='one' />
+                <input type="radio" name='dot' id='two' />
+                <div className="main-card">
+                  <div className="cards">
+                    <div className="card">
+                      <div className="content" >
+                        <div className="img">
+                          <img src={d.perfil.urlImg} className="img-profesionales" alt="" />
+                        </div>
+                        <div className='details'>
+                          <p className="fs-5 mb-2">
+                            {d.nombres}{" "}{d.apellidos} <br /> {d.profesion}
+                          </p>
+                        </div>
+                        <div>
+                          <button onClick={() => navigate("/charla", { replace: true })} className="btn btn-green mt-3">
+                            Solicitar charla
+                          </button>
+                        </div>
+                      </div>
+                    </div>
 
-
-          <div className="text-center mx-auto mt-4" key={d._id}>
-            <div>
-              <p className="fs-5 mb-2">
-                {d.nombres}{" "}{d.apellidos} <br /> {d.profesion}
-              </p>
-              <img src={d.perfil.urlImg} className="img-profesionales" alt="" />
+                  </div>
+                </div>
+                <div className="button">
+                  <label htmlFor="one" className='one active'></label>
+                  <label htmlFor="two" className='two'></label>
+                </div>
+              </div>
             </div>
-            <button onClick={()=>navigate("/charla", { replace: true })} className="btn btn-green mt-3">
-              Solicitar charla
-            </button>
-          </div>
 
           ))
           }
-         
+
         </div>
       </section>
     </div>
-    </>
+  </>
   );
 };
 

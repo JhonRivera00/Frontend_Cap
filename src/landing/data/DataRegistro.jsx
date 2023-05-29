@@ -69,7 +69,7 @@ export const registroProfesional = async (formData) => {
         }
     }
 }
-
+ 
 export const acualizarAprendiz = async (id, data) => {
     try {
         const loading = Swal.fire({

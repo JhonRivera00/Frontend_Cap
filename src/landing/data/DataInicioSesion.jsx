@@ -159,7 +159,7 @@ export const notificacionVista = async (id)=>{
   } catch (error) {
   console.error(error.data)
   }
-}
+} 
 
 export const verPro = async ()=>{
   try {
@@ -168,4 +168,4 @@ export const verPro = async ()=>{
   } catch (error) {
   console.error(error.data)
   }
-}
+}  

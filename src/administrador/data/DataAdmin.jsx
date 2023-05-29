@@ -5,13 +5,13 @@ import Swal from "sweetalert2";
 export const datosInicio = async (op) => {
   try {
     const { data } = await axios.get("/verEventos");
-    if(op=== 1){
+    if (op === 1) {
       const destacados = data.filter((data) => data.tipo === "destacado" || data.tipo === "noticia");
       return destacados;
     }
-    else{
+    else {
 
-      const destacados = data.filter((data) => data.tipo === op );
+      const destacados = data.filter((data) => data.tipo === op);
       return destacados;
     }
   } catch (error) {
@@ -261,35 +261,35 @@ export const crearEvento = async (data) => {
       allowOutsideClick: false,
       showConfirmButton: false,
       didOpen: () => {
-          Swal.showLoading();
+        Swal.showLoading();
       },
-  });
+    });
 
 
-    const response = await axios.post(`/crearEventos`, data,{headers});
+    const response = await axios.post(`/crearEventos`, data, { headers });
 
 
-  // Cierra la alerta de espera
-  loading.close();
+    // Cierra la alerta de espera
+    loading.close();
 
-  Swal.fire({
+    Swal.fire({
       icon: 'success',
       title: response.data,
       showConfirmButton: false,
       timer: 1500
-  }).then(() => {
+    }).then(() => {
       location.reload()
-  });
+    });
   } catch (error) {
     if (error.response.status === 400) {
       Swal.fire({
         icon: "error",
         title: error.response.data,
       });
-    } 
+    }
   }
 };
-export const verAdmin = async (id)=>{
+export const verAdmin = async (id) => {
   try {
     const response = await axios.get(`/usuario/${id}`);
     return response;
@@ -297,19 +297,17 @@ export const verAdmin = async (id)=>{
     console.log(error.response.data);
   }
 }
-export const verUsuarios = async ()=>{
+export const verUsuarios = async () => {
   try {
-    const {data} = await axios.get(`/verUsuarios`)
-    const user = data.filter((d)=>d.rol[0].nombre === "aprendiz")
-    
+    const { data } = await axios.get(`/verUsuarios`)
+    const user = data.filter((d) => d.rol[0].nombre === "aprendiz")
+    return user
 
-return user
-    
   } catch (error) {
     console.log(error.response);
   }
 }
-export const actualizarEvento= async(id,data)=>{
+export const actualizarEvento = async (id, data) => {
   try {
     const tokenAdmin = localStorage.getItem("Token-Administrador");
 
@@ -322,32 +320,31 @@ export const actualizarEvento= async(id,data)=>{
       allowOutsideClick: false,
       showConfirmButton: false,
       didOpen: () => {
-          Swal.showLoading();
+        Swal.showLoading();
       },
-  });
+    });
 
-    const response = await axios.put(`/actualizarEvento/${id}`,data,{headers})
-console.log(response)
+    const response = await axios.put(`/actualizarEvento/${id}`, data, { headers })
     loading.close()
-   
-      Swal.fire({
-        title: response.data,
-        icon: "success",  
-        showConfirmButton: false,
-        timer: 2000,
-      })
+
+    Swal.fire({
+      title: response.data,
+      icon: "success",
+      showConfirmButton: false,
+      timer: 2000,
+    })
       .then(location.reload())
-    
+
   } catch (error) {
-   
-      Swal.fire({
-        icon: "error",
-        title: error.response.data,
-      });
-    
+
+    Swal.fire({
+      icon: "error",
+      title: error.response.data,
+    });
+
   }
 }
-export const agregarPrograma = async (data)=>{
+export const agregarPrograma = async (data) => {
   try {
     const tokenAdmin = localStorage.getItem("Token-Administrador");
 
@@ -361,27 +358,77 @@ export const agregarPrograma = async (data)=>{
       allowOutsideClick: false,
       showConfirmButton: false,
       didOpen: () => {
-          Swal.showLoading();
-        },
-      });
-      
-      const response = await axios.post(`/crearPrograma`,data,{headers})
+        Swal.showLoading();
+      },
+    });
+
+    const response = await axios.post(`/crearPrograma`, data, { headers })
     loading.close()
-   
-      Swal.fire({
-        title: response.data,
-        icon: "success",  
-        showConfirmButton: false,
-        timer: 2000,
-      })
+
+    Swal.fire({
+      title: response.data,
+      icon: "success",
+      showConfirmButton: false,
+      timer: 2000,
+    })
       .then(location.reload())
-    
+
   } catch (error) {
-   
-      Swal.fire({
-        icon: "error",
-        title: error.response.data,
-      });
-    
+
+    Swal.fire({
+      icon: "error",
+      title: error.response.data,
+    });
+
   }
 }
+
+export const inhabilitarUsu = async (id) => {
+
+  try {
+    const response = await axios.put(`/inhabilitarUsuario/${id}`);
+
+    if (response.status === 200) {
+      Swal.fire({
+        title: response.data,
+        icon: 'success',
+        timer: 2000,
+      }).then(() => {
+        location.reload();
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    Swal.fire({
+      icon: 'error',
+      title: error.response.data,
+      timer: 2000
+    });
+  }
+};
+
+export const habilitarUsu = async (id) => {
+
+  try {
+    const response = await axios.put(`/habilitarUsuario/${id}`);
+
+    if (response.status === 200) {
+      Swal.fire({
+        title: response.data,
+        icon: 'success',
+        timer: 2000,
+      }).then(() => {
+        location.reload();
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    Swal.fire({
+      icon: 'error',
+      title: error.response.data,
+      timer: 2000
+    });
+  }
+};
+
+

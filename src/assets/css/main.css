@@ -23,7 +23,7 @@ body {
  color: white;
 }
 .card {
-  border-color: #39a900 !important;
+  /* border-color: #39a900 !important; */
   border: 1px solid;
 }
 .card-img-top {

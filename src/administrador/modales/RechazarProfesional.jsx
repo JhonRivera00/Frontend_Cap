@@ -1,6 +1,6 @@
 import React, {useState } from 'react'
-import {rechazarProfesional} from '../data/DataAdmin'
-//Opciones Profesionales
+import {rechazarProfesional} from '../data/DataAdmin' 
+//Opciones Profesionales 
 
 
 const AplazarCharla = ({idProfesional}) => {
