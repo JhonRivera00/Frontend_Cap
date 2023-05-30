@@ -29,7 +29,7 @@ charlaAceptada(props.dataAprendiz.idCharla);
                             <h5>Psicologia</h5>
                             <div className="row mt-4 ">
                                 <div className="col-2">
-                                    <img className="w-100 rounded-circle" src={users1} />
+                                    <img className="w-100 rounded-circle" src={props.imgPro} />
                                 </div>
                                 <div className="col-4">
                                     <div className=" d-flex">

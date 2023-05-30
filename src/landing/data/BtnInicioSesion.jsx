@@ -15,6 +15,7 @@ import { verProfesional } from "../../profesionales/data/dataProfesional";
 
 const BtnInicioSesion = () => {
   const [notificaciones, setnotificaciones] = useState([]);
+  console.log(notificaciones)
   const [siHay, setSiHay] = useState("");
   const [datosMotivoNoti, setDatosMotivoNoti] = useState({})
   const [dataPro, setDataPro] = useState({})
@@ -49,12 +50,12 @@ const BtnInicioSesion = () => {
         });
       }, 3600000);
       const { id } = jwt_decode(token);
-      const notificacionesAbiertas = (id, motivo, nombreProf, apellidoProf, fechaAplazada, titulo, nombreApre, apellidoApre, numeroDocApre) => {
+      const notificacionesAbiertas = (id, motivo, nombreProf, apellidoProf, fechaAplazada, titulo, nombreApre, apellidoApre, numeroDocApre, usuarioNom,usuarioApe,contenido) => {
         (async () => {
           notificacionVista(id);
         })();
         const datos = {
-          motivo, nombreProf, apellidoProf, fechaAplazada, titulo, nombreApre, apellidoApre, numeroDocApre
+          motivo, nombreProf, apellidoProf, fechaAplazada, titulo, nombreApre, apellidoApre, numeroDocApre,usuarioNom,usuarioApe,contenido
         }
         setDatosMotivoNoti(datos)
       };
@@ -116,7 +117,7 @@ const BtnInicioSesion = () => {
                 {notificaciones.map((n, i) => (
                   // aquí muestras cada notificación en tu componente
 
-                  <div className={n.estado === false ? "notificacion dropdown-item contenedor-notificaciones notificacion-no-leida" : "dropdown-item contenedor-notificaciones "} onClick={() => notificacionesAbiertas(n._id, n.motivo, n.profesionalId?.nombres, n.profesionalId?.apellidos, n.fechaAplazada, n.titulo, n.aprendizId?.nombres, n.aprendizId?.apellidos, n.aprendizId?.documento.numeroDocumento)} key={i} data-bs-toggle="modal" data-bs-target="#verNotificacion">
+                  <div className={n.estado === false ? "notificacion dropdown-item contenedor-notificaciones notificacion-no-leida" : "dropdown-item contenedor-notificaciones "} onClick={() => notificacionesAbiertas(n._id, n.motivo, n.profesionalId?.nombres, n.profesionalId?.apellidos, n.fechaAplazada, n.titulo, n.aprendizId?.nombres, n.aprendizId?.apellidos, n.aprendizId?.documento.numeroDocumento, n.usuarioId?.nombres,n.usuarioId?.apellidos,n.contenido)} key={i} data-bs-toggle="modal" data-bs-target="#verNotificacion">
                     <div className="media">
                       <div className="media-body">
                         <h6 className="mt-0 mb-1 fw-bold ">{n.titulo}</h6>
