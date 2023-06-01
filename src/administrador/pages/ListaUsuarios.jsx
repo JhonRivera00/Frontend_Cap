@@ -2,17 +2,35 @@
 import Imgnav from "../../assets/img/imgnav.jpg";
 import Person from '../../assets/img/icons/person-lines-fill.svg'
 import { useEffect, useState } from "react";
-import { verUsuarios } from "../data/DataAdmin";
+import { verUsuarios, inhabilitarUsu, habilitarUsu } from "../data/DataAdmin";
+
 
 
 const Solicitudes = () => {
-  const [usuarios, setUsuarios] = useState([])
+
+  const [usuarios, setUsuarios] = useState([]);
+
   useEffect(() => {
-    (async () => {
-      const usuario = await verUsuarios()
-      setUsuarios(usuario.reverse());
-    })()
-  }, [])
+      const fetchUsuarios = async () => {
+        try {
+          const usuarioData = await verUsuarios();
+          setUsuarios(usuarioData.reverse());
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchUsuarios();
+  }, []);
+
+  const inhabilitar = async (id, checked) => {
+    if(checked) {
+      habilitarUsu(id);
+    } else {
+      inhabilitarUsu(id);
+    }
+  };
+
+
 
   return (
     <>
@@ -53,7 +71,7 @@ const Solicitudes = () => {
           </thead>
           <tbody>
             {
-              usuarios.map((user,i) => (
+              usuarios.map((user, i) => (
                 <tr key={user._id}>
                   <th scope="row">{i}</th>
                   <td>{user.nombres}{" "}{user.apellidos}</td>
@@ -62,20 +80,30 @@ const Solicitudes = () => {
 
                   <td className=" link-light ">
                     <div >
-                      <p className="bg-success rounded-pill text-center w-75"> Habilitado</p>
+                      <p
+                        className={`bg-${user.estado.habilitado === false ? "danger" : "success"
+                          } rounded-pill text-center w-75`}
+                      >
+                        {user.estado.habilitado === false ? "Deshabilitado" : "Habilitado"}
+                      </p>
                     </div>
                   </td>
 
                   <td>
                     <div className="form-check form-check-inline form-switch">
-                    <input type="checkbox" className="form-check-input" />
+                      <div className="form-check form-check-inline form-switch">
+                        <input
+                          type="checkbox"
+                          checked={user.estado.habilitado}
+                          onChange={(e) => inhabilitar(user._id, e.target.checked)}
+                          className="form-check-input"
+                        />
+                      </div>
                     </div>
                   </td>
                 </tr>
 
               ))
-
-
             }
 
           </tbody>
