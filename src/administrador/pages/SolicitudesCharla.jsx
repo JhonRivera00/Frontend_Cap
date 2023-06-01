@@ -9,7 +9,6 @@ import es from 'date-fns/locale/es';
 const Charlas = () => {
   const [data, setData] = useState([]);
   const [dataAprendiz, setdataAprendiz] = useState({});
-  console.log(data)
   useEffect(() => {
     const dataCharlas = async () => {
       const dataCharla = await dataVerCharlas()

@@ -131,8 +131,15 @@ export const loginAdmin= async (correo, contrasena) => {
 }
 export const formPqrs = async (id_usuario,tipo,motivo)=>{
   try {
+
+    const tokenAdmin = localStorage.getItem("Token-Aprendiz");
+
+    const headers = {
+      "acceso-token": tokenAdmin,
+    };
+
     const pqrs = {id_usuario,tipo,motivo}
-    const response = await axios.post(`/crearPqrs`,pqrs)
+    const response = await axios.post(`/crearPqrs`,pqrs, {headers})
     if (response.status === 200) {
         Swal.fire({
           title: response.data,

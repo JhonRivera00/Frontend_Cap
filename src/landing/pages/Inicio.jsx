@@ -5,7 +5,6 @@ import Slider from '../componentes/SliderInicioSesion'
 import { datosInicio, verPro } from "../data/DataInicioSesion";
 import FechaNotificacion from './../../assets/js/FechaNotificacion';
 import { useNavigate } from 'react-router-dom'
-
 import '../../assets/css/slider.css'
 
 

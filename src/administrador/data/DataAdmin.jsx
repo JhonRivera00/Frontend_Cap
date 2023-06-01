@@ -299,7 +299,7 @@ export const verAdmin = async (id) => {
 }
 export const verUsuarios = async () => {
   try {
-    const { data } = await axios.get(`/verUsuarios`)
+    const { data } = await axios.get(`/verUsuarios`);
     const user = data.filter((d) => d.rol[0].nombre === "aprendiz")
     return user
 
@@ -382,7 +382,7 @@ export const agregarPrograma = async (data) => {
 
   }
 }
-
+  
 export const inhabilitarUsu = async (id) => {
 
   try {
