@@ -300,6 +300,7 @@ export const verAdmin = async (id) => {
 export const verUsuarios = async () => {
   try {
     const { data } = await axios.get(`/verUsuarios`);
+    console.log(data)
     const user = data.filter((d) => d.rol[0].nombre === "aprendiz")
     return user
 
@@ -411,6 +412,7 @@ export const habilitarUsu = async (id) => {
 
   try {
     const response = await axios.put(`/habilitarUsuario/${id}`);
+    console.log(response)
 
     if (response.status === 200) {
       Swal.fire({
@@ -430,5 +432,55 @@ export const habilitarUsu = async (id) => {
     });
   }
 };
+
+export const inhabilitarPro = async (id) => {
+
+  try {
+    const response = await axios.put(`/inhabilitarProfesional/${id}`);
+
+    if (response.status === 200) {
+      Swal.fire({
+        title: response.data,
+        icon: 'success',
+        timer: 2000,
+      }).then(() => {
+        location.reload();
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    Swal.fire({
+      icon: 'error',
+      title: error.response.data,
+      timer: 2000
+    });
+  }
+};
+
+export const habilitarPro = async (id) => {
+
+  try {
+    const response = await axios.put(`/habilitarProfesional/${id}`);
+    console.log(response)
+
+    if (response.status === 200) {
+      Swal.fire({
+        title: response.data,
+        icon: 'success',
+        timer: 2000,
+      }).then(() => {
+        location.reload();
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    Swal.fire({
+      icon: 'error',
+      title: error.response.data,
+      timer: 2000
+    });
+  }
+};
+
 
 

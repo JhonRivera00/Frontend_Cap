@@ -57,7 +57,7 @@ const Solicitudes = () => {
               <th scope="col">Identificacion</th>
               <th scope="col">Ficha</th>
               <th scope="col">Estado</th>
-              <th scope="col">Opción</th>
+              <th scope="col">Activar</th>
               {/* <th Roll scope="col text-center">Roll</th> */}
             </tr>
           </thead>
@@ -67,7 +67,7 @@ const Solicitudes = () => {
                 <th scope="row">{i + 1}</th>
                 <td>{`${user.nombres} ${user.apellidos}`}</td>
                 <td>{user.documento.numeroDocumento}</td>
-                <td>{user.programa.ficha}</td>
+                <td></td>
                 <td className="link-light">
                   <div>
                     <p

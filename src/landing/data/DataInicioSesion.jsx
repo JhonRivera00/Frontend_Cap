@@ -166,11 +166,11 @@ export const notificacionVista = async (id)=>{
   } catch (error) {
   console.error(error.data)
   }
-} 
+}  
 
 export const verPro = async ()=>{
   try {
-    const {data}= await axios.get(`/verUsuariosProfesionales`)
+    const {data}= await axios.get(`/verUsuariosProfesionales`);
     return data
   } catch (error) {
   console.error(error.data)

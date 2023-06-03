@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import IconPregunta from '../../assets/img/biene.jpg'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom' 
 import Slider from '../componentes/SliderInicioSesion'
 import { datosInicio, verPro } from "../data/DataInicioSesion";
 import FechaNotificacion from './../../assets/js/FechaNotificacion';

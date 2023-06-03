@@ -7,7 +7,7 @@ const expresiones = {
     apellidos: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
     contrasena: /^.{8,20}$/,
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    telefono: /^\d{7,14}$/
+    telefono: /^\d{7,14}$/	
 }
 
 const campos = {
