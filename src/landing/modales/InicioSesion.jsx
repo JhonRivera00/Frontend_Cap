@@ -15,14 +15,22 @@ const InicioSesion = () => {
     const [contrasenaAdmin, setContrasenaAdmin] = useState("");
     //LoginAdmin
     const [btnActive, setbtnActive] = useState(false);
-
+    // Validar Login
+    const [validationLogin, setValidationLogin] = useState({
+        inicioSesion: '',
+        validationCustom02: ''
+    })
+    const [errors, setErrors] = useState({})
 
     const handleSumbitAprendiz = (e) => {
         e.preventDefault();
 
-        loginAprendiz(correoAprendiz, contrasenaAprendiz)
-
+        loginAprendiz(correoAprendiz, contrasenaAprendiz);
+        setErrors(Validation(validationLogin));
+        setValidationLogin(prev => ({ ...prev, [event.target.name]: [event.target.value]}));
     }
+
+
     const handleSumbitProfesional = (e) => {
         e.preventDefault();
 
@@ -58,7 +66,7 @@ const InicioSesion = () => {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">Inicia Sesion</h1>
+                            <h1 className="modal-title fs-5 text-center w-100" id="exampleModalLabel">Inicia Sesion</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
@@ -75,10 +83,16 @@ const InicioSesion = () => {
                             <div className="tab-content">
                                 {/*Inicio Sesion Aprendiz */}
                                 <div className="tab-pane show active bg-opacity-0" id="pills-login-aprendiz" role="tabpanel" aria-labelledby="tab-login-aprendiz">
-                                    <form className="row g-2 needs-validation pt-4" onSubmit={handleSumbitAprendiz}  >
+                                    <form className="row g-2 needs-validation pt-4" onSubmit={handleSumbitAprendiz} >
                                         <div className="col-12 mt-0 form-outline" style={{ padding: "0 70px" }}>
                                             <label htmlFor="inicioSesion" className="form-label">Usuario</label>
-                                            <input type="email" className="form-control" id="inicioSesion" onChange={(e) => setCorreoAprendiz(e.target.value)} />
+                                            <input 
+                                            type="email" 
+                                            className="form-control" 
+                                            id="inicioSesion" 
+                                            name="inicioSesion" 
+                                            onChange={(e) => setCorreoAprendiz(e.target.value)} />
+                                            {errors.inicioSesion && <span className="text-danger">{errors.inicioSesion}</span>}
                                         </div>
 
 
@@ -89,16 +103,12 @@ const InicioSesion = () => {
                                             <input
                                             onChange={(e) => setContrasenaAprendiz(e.target.value)}
                                                 type="password"
+                                                name="validationCustom02"
                                                 className="form-control"
                                                 id="validationCustom02"
                                             />
-                                            <div className="invalid-feedback">
-                                                Por favor, ingrese su contraseña.
-                                            </div>
+                                            {errors.validationCustom02 && <span className="text-danger">{errors.validationCustom02}</span>}
                                         </div>
-
-
-
 
                                         <div className="col-12">
                                             <span className="mt-2 me-4 pe-2 d-flex justify-content-end align-items-center">

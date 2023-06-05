@@ -18,8 +18,54 @@ const Registrase = () => {
     const [contrasenaDos, setContrasenaDos] = useState("");
     const [genero, setGenero] = useState("");
 
+    const validarCampo = (expresion, valor) => {
+        if (expresion.test(valor)) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        if (!validarCampo(/^[a-zA-Z0-9\_\-]{1,40}$/, nombres)) {
+            return Swal.fire({
+                icon: "error",
+                title: "Error en el nombre",
+            });
+        }
+
+        if (!validarCampo(/^[a-zA-Z0-9\_\-]{1,40}$/, apellidos)) {
+            return Swal.fire({
+                icon: "error",
+                title: "Error en el apellido",
+            });
+        }
+
+        if (!validarCampo(/^3\d{8,13}$/, numTelefono)) {
+            return Swal.fire({
+                icon: "error",
+                title: "Error en el Numero Telefono",
+            });
+        }
+
+        if (!validarCampo(/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, correo)) {
+            return Swal.fire({
+                icon: "error",
+                title: "Error en el correo",
+            });
+        }
+
+        if (!validarCampo(/^.{8,20}$/, contrasenaUno)) {
+            return Swal.fire({
+                icon: "error",
+                title: "Error en la contraseña",
+            });
+        }
+
+
+
         if (contrasenaUno != contrasenaDos) {
             return Swal.fire({
                 icon: "error",
@@ -57,7 +103,7 @@ const Registrase = () => {
                             <div className="modal-content  bg-color-blue  text-white ">
                                 <form className="needs-validation contenedor-registro rounded-3 mx-3" onSubmit={handleSubmit} >
                                     <div className="row g-3  text-white  p-4 rounded-3 ">
-                                        <div className="w-100 d-flex justify-content-end "> 
+                                        <div className="w-100 d-flex justify-content-end ">
                                             <button type="button" className="btn-close bg-light" style={{ width: "20px", height: "20px" }} data-bs-dismiss="modal" aria-label="Close"></button>
 
                                         </div>
@@ -86,7 +132,7 @@ const Registrase = () => {
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="validationGenero" className="form-label">Profesion </label>
-                                            <select className="form-select" id="Genero" aria-label="Default select example"  onChange={(e) => setProfesion(e.target.value)} required>
+                                            <select className="form-select" id="Genero" aria-label="Default select example" onChange={(e) => setProfesion(e.target.value)} required>
                                                 <option disable="true" defaultValue="">Profesion...</option>
                                                 <option defaultValue="Psicologia">Psicologia</option>
                                                 <option defaultValue="Salud">Salud</option>
@@ -96,7 +142,7 @@ const Registrase = () => {
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="lastName" className="form-label">Foto de perfil</label>
-                                            <input type="file" className="form-control" id="lastName" placeholder=""  onChange={(e) => setImgProfesional(e.target.files[0])} />
+                                            <input type="file" className="form-control" id="lastName" placeholder="" onChange={(e) => setImgProfesional(e.target.files[0])} />
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="validationGenero" className="form-label">Genero</label>
@@ -109,7 +155,7 @@ const Registrase = () => {
 
                                         <div className="col-12">
                                             <label htmlFor="telefono" className="form-label">Telefono</label>
-                                            <input type="Number" className="form-control" id="telefono" placeholder=""value={numTelefono} onChange={(e) => setNumTelefono(e.target.value)} />
+                                            <input type="Number" className="form-control" id="telefono" placeholder="" value={numTelefono} onChange={(e) => setNumTelefono(e.target.value)} />
                                         </div>
 
 
