@@ -242,6 +242,7 @@ export const responderPqrs = async (respuesta, id) => {
 };
 export const misNotificaciones = async (id) => {
   try {
+
     const { data } = await axios.get(`/notificaciones/${id}`);
     return data;
   } catch (error) {
