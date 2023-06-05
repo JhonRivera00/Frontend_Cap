@@ -15,20 +15,29 @@ const InicioSesion = () => {
     const [contrasenaAdmin, setContrasenaAdmin] = useState("");
     //LoginAdmin
     const [btnActive, setbtnActive] = useState(false);
-
+    // Validar Login
+    const [validationLogin, setValidationLogin] = useState({
+        inicioSesion: '',
+        validationCustom02: ''
+    })
+    const [errors, setErrors] = useState({})
 
     const handleSumbitAprendiz = (e) => {
         e.preventDefault();
 
-        loginAprendiz(correoAprendiz, contrasenaAprendiz)
-
+        loginAprendiz(correoAprendiz, contrasenaAprendiz);
+        setErrors(Validation(validationLogin));
+        setValidationLogin(prev => ({ ...prev, [event.target.name]: [event.target.value]}));
     }
+
+
     const handleSumbitProfesional = (e) => {
         e.preventDefault();
 
         loginProfesional(correoProfesional, contrasenaProfesional)
 
     }
+
     const handleSumbitAdmin = (e) => {
         e.preventDefault();
 
@@ -53,15 +62,15 @@ const InicioSesion = () => {
 
     return (
         <>
-            <div className="modal fade " id="exampleModal1" data-bs-backdrop="static"   aria-labelledby="staticBackdropLabel" >
+            <div className="modal fade " id="exampleModal1" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel" >
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">Inicia Sesion</h1>
+                            <h1 className="modal-title fs-5 text-center w-100" id="exampleModalLabel">Inicia Sesion</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <ul className="nav nav-pills nav-justified mb-3 " style={{backgroundColor:"#E9FFE2"}} id="ex1" role="tablist">
+                            <ul className="nav nav-pills nav-justified mb-3 " style={{ backgroundColor: "#E9FFE2" }} id="ex1" role="tablist">
                                 <li className="nav-item  " role="presentation">
                                     <a className="nav-link active active-green"
                                         onClick={() => (setbtnActive(false))} id="tab-login-aprendiz" data-bs-toggle="pill" href="#pills-login-aprendiz" role="tab" aria-controls="pills-login-aprendiz" aria-selected="true">Aprendiz</a>
@@ -74,24 +83,31 @@ const InicioSesion = () => {
                             <div className="tab-content">
                                 {/*Inicio Sesion Aprendiz */}
                                 <div className="tab-pane show active bg-opacity-0" id="pills-login-aprendiz" role="tabpanel" aria-labelledby="tab-login-aprendiz">
-                                    <form className="row g-2 needs-validation pt-4" onSubmit={handleSumbitAprendiz}  >
+                                    <form className="row g-2 needs-validation pt-4" onSubmit={handleSumbitAprendiz} >
                                         <div className="col-12 mt-0 form-outline" style={{ padding: "0 70px" }}>
                                             <label htmlFor="inicioSesion" className="form-label">Usuario</label>
-                                            <input type="email" className="form-control" id="inicioSesion" onChange={(e) => setCorreoAprendiz(e.target.value)} />
+                                            <input 
+                                            type="email" 
+                                            className="form-control" 
+                                            id="inicioSesion" 
+                                            name="inicioSesion" 
+                                            onChange={(e) => setCorreoAprendiz(e.target.value)} />
+                                            {errors.inicioSesion && <span className="text-danger">{errors.inicioSesion}</span>}
                                         </div>
+
+
                                         <div className="col-12 " style={{ padding: "0 70px" }}>
                                             <label htmlFor="validationCustom02" className="form-label">
                                                 Contraseña
                                             </label>
                                             <input
+                                            onChange={(e) => setContrasenaAprendiz(e.target.value)}
                                                 type="password"
+                                                name="validationCustom02"
                                                 className="form-control"
                                                 id="validationCustom02"
-                                                onChange={(e) => setContrasenaAprendiz(e.target.value)}
                                             />
-                                            <div className="invalid-feedback">
-                                                Por favor, ingrese su contraseña.
-                                            </div>
+                                            {errors.validationCustom02 && <span className="text-danger">{errors.validationCustom02}</span>}
                                         </div>
 
                                         <div className="col-12">
@@ -179,59 +195,59 @@ const InicioSesion = () => {
                     </div>
                 </div>
             </div>
-{/*inicio Sesion Admin */}
+            {/*inicio Sesion Admin */}
             <div className="modal text-white " id="inicioSesionAdmin" >
                 <div className="modal-dialog">
                     <div className="modal-content text-black">
                         <div className="modal-header">
-                        <h1 className="modal-title fs-5" id="exampleModalLabel">Inicia Sesion</h1>
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Inicia Sesion</h1>
 
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                                <form className="row pt-4 g-2 needs-validation" onSubmit={handleSumbitAdmin} >
+                            <form className="row pt-4 g-2 needs-validation" onSubmit={handleSumbitAdmin} >
                                 <div className="text-center w-100">
                                     <h2 className="mb-5">Administrador</h2>
                                 </div>
-                                        <div className="col-12 mt-0" style={{ padding: "0 70px" }}>
-                                            <label htmlFor="validationCustom01" className="form-label">
-                                                Usuario
-                                            </label>
-                                            <input
-                                                type="email"
-                                                className="form-control"
-                                                id="validationCustom01"
-                                                onChange={(e) => setCorreoAdmin(e.target.value)}
-                                            />
-                                            <div className="invalid-feedback">
-                                                Por favor, ingrese su nombre de usuario.
-                                            </div>
-                                        </div>
-                                        <div className="col-12 " style={{ padding: "0 70px" }}>
-                                            <label htmlFor="validationCustom02" className="form-label">
-                                                Contraseña
-                                            </label>
-                                            <input
-                                                type="password"
-                                                className="form-control"
-                                                id="validationCustom02"
-                                                onChange={(e) => setContrasenaAdmin(e.target.value)}
-                                            />
-                                            <div className="invalid-feedback">
-                                                Por favor, ingrese su contraseña.
-                                            </div>
-                                        </div>
+                                <div className="col-12 mt-0" style={{ padding: "0 70px" }}>
+                                    <label htmlFor="validationCustom01" className="form-label">
+                                        Usuario
+                                    </label>
+                                    <input
+                                        type="email"
+                                        className="form-control"
+                                        id="validationCustom01"
+                                        onChange={(e) => setCorreoAdmin(e.target.value)}
+                                    />
+                                    <div className="invalid-feedback">
+                                        Por favor, ingrese su nombre de usuario.
+                                    </div>
+                                </div>
+                                <div className="col-12 " style={{ padding: "0 70px" }}>
+                                    <label htmlFor="validationCustom02" className="form-label">
+                                        Contraseña
+                                    </label>
+                                    <input
+                                        type="password"
+                                        className="form-control"
+                                        id="validationCustom02"
+                                        onChange={(e) => setContrasenaAdmin(e.target.value)}
+                                    />
+                                    <div className="invalid-feedback">
+                                        Por favor, ingrese su contraseña.
+                                    </div>
+                                </div>
 
-                                    
-                                        <div className="w-100 pt-5 d-flex justify-content-center">
-                                            <button
-                                                className="col-12  mb-2 btn btn-green w-50"
-                                                type="submit"
-                                            >
-                                                Iniciar Sesion
-                                            </button>
-                                        </div>
-                                    </form>
+
+                                <div className="w-100 pt-5 d-flex justify-content-center">
+                                    <button
+                                        className="col-12  mb-2 btn btn-green w-50"
+                                        type="submit"
+                                    >
+                                        Iniciar Sesion
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

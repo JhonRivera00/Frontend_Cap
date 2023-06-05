@@ -17,10 +17,6 @@ const CrearEvento = () => {
     const fechaInicio = fechaActual.toISOString().slice(0, 16);
 
 
-
-
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(fechaInicial);

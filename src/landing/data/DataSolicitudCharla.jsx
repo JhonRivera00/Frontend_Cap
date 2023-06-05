@@ -1,9 +1,9 @@
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import Swal from 'sweetalert2'
-
+ 
 export const dataSolicitudCharla = async (fecha, profesional, motivo) => {
-    try {
+    try { 
       const URL = "/crearSolicitud";
       const token = localStorage.getItem("Token-Aprendiz");
       const headers = {

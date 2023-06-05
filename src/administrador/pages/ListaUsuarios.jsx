@@ -1,8 +1,8 @@
-
 import Imgnav from "../../assets/img/imgnav.jpg";
 import Person from '../../assets/img/icons/person-lines-fill.svg'
 import { useEffect, useState } from "react";
 import { verUsuarios, inhabilitarUsu, habilitarUsu } from "../data/DataAdmin";
+
 
 
 
@@ -23,31 +23,27 @@ const Solicitudes = () => {
   }, []);
 
   const inhabilitar = async (id, checked) => {
-    if(checked) {
+    if (checked) {
+
       habilitarUsu(id);
     } else {
       inhabilitarUsu(id);
     }
   };
-
-
-
   return (
     <>
       {/* <!-- Contenido --> */}
-
-      <div className="position-relative d-inline-block w-100" >
+      <div className="position-relative d-inline-block w-100">
         <img src={Imgnav} className="w-100 img-titulo-fondo" alt="" />
-        <h1 className="text-titulo position-absolute text-center  w-100">USUARIOS
+        <h1 className="text-titulo position-absolute text-center  w-100">
+          USUARIOS
           <div className=" d-flex justify-content-around ">
-            <div className="bg-green p-1 w-25" ></div>
-            <div className="bg-green p-1 w-25" ></div>
+            <div className="bg-green p-1 w-25"></div>
+            <div className="bg-green p-1 w-25"></div>
           </div>
         </h1>
       </div>
       {/* <!-- Fin Titulo --> */}
-
-
 
       {/* <!-- Inicio Contenido --> */}
       <div className="table-responsive w-100">
@@ -65,47 +61,45 @@ const Solicitudes = () => {
               <th scope="col">Identificacion</th>
               <th scope="col">Ficha</th>
               <th scope="col">Estado</th>
-              <th scope="col">Opción</th>
+              <th scope="col">Activar</th>
               {/* <th Roll scope="col text-center">Roll</th> */}
             </tr>
           </thead>
           <tbody>
-            {
-              usuarios.map((user, i) => (
-                <tr key={user._id}>
-                  <th scope="row">{i}</th>
-                  <td>{user.nombres}{" "}{user.apellidos}</td>
-                  <td>{user.documento.numeroDocumento}</td>
-                  <td>{user.programa.ficha}</td>
 
-                  <td className=" link-light ">
-                    <div >
-                      <p
-                        className={`bg-${user.estado.habilitado === false ? "danger" : "success"
-                          } rounded-pill text-center w-75`}
-                      >
-                        {user.estado.habilitado === false ? "Deshabilitado" : "Habilitado"}
-                      </p>
-                    </div>
-                  </td>
-
-                  <td>
-                    <div className="form-check form-check-inline form-switch">
-                      <div className="form-check form-check-inline form-switch">
-                        <input
-                          type="checkbox"
-                          checked={user.estado.habilitado}
-                          onChange={(e) => inhabilitar(user._id, e.target.checked)}
-                          className="form-check-input"
-                        />
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-
-              ))
-            }
-
+            {usuarios.map((user, i) => (
+              <tr key={user._id}>
+                <th scope="row">{i + 1}</th>
+                <td>{`${user.nombres} ${user.apellidos}`}</td>
+                <td>{user.documento.numeroDocumento}</td>
+                <td></td>
+                <td className="link-light">
+                  <div>
+                    <p
+                      className={`bg-${
+                        user.estado.habilitado === false ? "danger" : "success"
+                      } rounded-pill text-center w-75`}
+                    >
+                      {user.estado.habilitado === false
+                        ? "Deshabilitado"
+                        : "Habilitado"}
+                    </p>
+                  </div>
+                </td>
+                <td>
+                  <div className="form-check form-check-inline form-switch">
+                    <input
+                      type="checkbox"
+                      checked={user.estado.habilitado}
+                      onChange={(e) =>
+                        inhabilitar(user._id, e.target.checked)
+                      }
+                      className="form-check-input"
+                    />
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

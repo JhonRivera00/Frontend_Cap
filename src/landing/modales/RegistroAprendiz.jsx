@@ -22,9 +22,52 @@ const Registrase = () => {
 
     const URLP = "/programas";
 
+    const validarCampo = (expresion, valor) => {
+        if (expresion.test(valor)) {
+            return true;
+        } else {
+            return false;
+        }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        if (!validarCampo(/^[a-zA-Z0-9\_\-]{1,40}$/, nombres)) {
+            return Swal.fire({
+                icon: "error",
+                title: "Error en el nombre",
+            });
+        }
+
+        if (!validarCampo(/^[a-zA-Z0-9\_\-]{1,40}$/, apellidos)) {
+            return Swal.fire({
+                icon: "error",
+                title: "Error en el apellido",
+            });
+        }
+
+        if (!validarCampo(/^3\d{8,13}$/, numTelefono)) {
+            return Swal.fire({
+                icon: "error",
+                title: "Error en el Numero Telefono",
+            });
+        }
+
+        if (!validarCampo(/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, correo)) {
+            return Swal.fire({
+                icon: "error",
+                title: "Error en el correo",
+            });
+        }
+
+        if (!validarCampo(/^.{8,20}$/, contrasenaUno)) {
+            return Swal.fire({
+                icon: "error",
+                title: "Error en la contraseña",
+            });
+        }
+
         if (contrasenaUno != contrasenaDos) {
             return Swal.fire({
                 icon: "error",
@@ -32,7 +75,7 @@ const Registrase = () => {
             });
 
         } else {
-            const contrasena  = contrasenaUno
+            const contrasena = contrasenaUno
 
             const formDataApren = new FormData();
             formDataApren.append('nombres', nombres);
@@ -56,7 +99,7 @@ const Registrase = () => {
 
             setOptions(programas.data);
         }
-       fetchData();
+        fetchData();
     }, [])
 
     return (
@@ -93,14 +136,14 @@ const Registrase = () => {
                                                 <option defaultValue="T.I">T.I</option>
                                             </select>
                                         </div>
-                                    
+
                                         <div className="col-sm-9">
                                             <label htmlFor="lastName" className="form-label">Numero Documento</label>
                                             <input type="number" className="form-control" id="lastName" placeholder="" onChange={(e) => setNumeroDocumento(e.target.value)} />
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="lastName" className="form-label">Foto de perfil</label>
-                                            <input type="file" className="form-control" id="lastName" placeholder=""  onChange={(e) => setImgAprendiz(e.target.files[0])} />
+                                            <input type="file" className="form-control" id="lastName" placeholder="" onChange={(e) => setImgAprendiz(e.target.files[0])} />
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="validationGenero" className="form-label">Genero</label>
@@ -158,7 +201,7 @@ const Registrase = () => {
                     </div>
                 </div>
             </div>
-            
+
         </>
     )
 }

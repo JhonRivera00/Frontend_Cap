@@ -3,10 +3,11 @@ import ImagNav from '../../assets/img/imgnav.jpg'
 import Swal from 'sweetalert2'
 import InicioSesion from '../modales/InicioSesion'
 import axios from 'axios'
-import { dataSolicitudCharla} from '../data/DataSolicitudCharla'
-import { verPro } from '../data/DataInicioSesion'
+import { dataSolicitudCharla } from '../data/DataSolicitudCharla'
+import { verPro, verProfesionales } from '../data/DataInicioSesion'
+import { verProfesional } from '../../profesionales/data/dataProfesional'
 const Charla = () => {
- 
+
   const [fecha, setFecha] = useState("");
   const [profesional, setProfesional] = useState("");
   const [motivo, setMotivo] = useState("");
@@ -14,26 +15,26 @@ const Charla = () => {
 
 
   const [dataPro, setDataPro] = useState([])
-    useEffect(()=>{
-    const fetchData = async () =>{
-    const dataPro= await verPro();
+  useEffect(() => {
+    const fetchData = async () => {
+      const dataPro = await verProfesionales();
       setDataPro(dataPro)
-      
+
     }
     fetchData();
-  },[])
+  }, [])
 
   //Opciones Profesionales
   const [profesionales, setProfesionales] = useState([]);
 
-   const fechaActual = new Date(); 
+  const fechaActual = new Date();
 
   fechaActual.setHours(fechaActual.getHours() - 5);
-    
-  const fechaNueva = fechaActual.toISOString().slice(0, 16); 
-   
-   
-  
+
+  const fechaNueva = fechaActual.toISOString().slice(0, 16);
+
+
+
   useEffect(() => {
     const dataProfesionales = async () => {
       const data = await axios.get("/verUsuariosProfesionales")
@@ -50,28 +51,28 @@ const Charla = () => {
     e.preventDefault();
 
     if (!token) {
-      
 
-       Swal.fire({
-          title: "Debes Iniciar Sesion Primero",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonText: `<i  className="btn btn-green"    data-bs-toggle="modal"    data-bs-target="#exampleModal1" >  Iniciar sesion</i>`,
-          
-        })
-        
-    
-  }
-    else if(token){
-     if(tokenApre){
 
-       dataSolicitudCharla( fecha, profesional, motivo)
-      }else{
+      Swal.fire({
+        title: "Debes Iniciar Sesion Primero",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: `<i  className="btn btn-green"    data-bs-toggle="modal"    data-bs-target="#exampleModal1" >  Iniciar sesion</i>`,
+
+      })
+
+
+    }
+    else if (token) {
+      if (tokenApre) {
+
+        dataSolicitudCharla(fecha, profesional, motivo)
+      } else {
         Swal.fire({
           title: "No eres aprendiz",
           icon: "warning",
-         
-          
+
+
         })
       }
     }
@@ -102,75 +103,88 @@ const Charla = () => {
           </div>
         </div>
         <div className="w-100 card-group my-5">
-          {dataPro.map((d)=>(
+          {dataPro.map((d) => (
+            <div className="text-center mx-auto mt-4" key={d._id}>
 
+              <div className="container">
+                <input type="radio" name="dot" id='one' />
+                <input type="radio" name='dot' id='two' />
+                <div className="main-card">
+                  <div className="cards">
+                    <div className="card">
+                      <div className="content" >
+                        <div className="img">
+                          <img src={d.perfil.urlImg} className="img-profesionales" alt="" />
+                        </div>
+                        <div className='details'>
+                          <p className="fs-5 mb-2">
+                            {d.nombres}{" "}{d.apellidos} <br /> {d.profesion}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
 
-          <div className="text-center mx-auto mt-4" key={d._id}>
-            <div>
-              <p className="fs-5 mb-2">
-                {d.nombres}{" "}{d.apellidos} <br /> {d.profesion}
-              </p>
-              <img src={d.perfil.urlImg} className="img-profesionales" alt="" />
+                  </div>
+                </div>
+              </div>
             </div>
-            
-          </div>
 
           ))
           }
-         
+
         </div>
       </section>
       {/* <!-- Profesionales --> */}
       <main className="text-center d-flex flex-column justify-content-center align-items-center" id="form-charla">
-      <div className='w-50 '>
+        <div className='w-50 '>
 
-     
 
-        <p className="fs-3 fw-semibold">SOLICITA TU CHARLA DE FORMA GRUPAL O PERSONAL CON UNO DE NUESTROS PROFESIONALES</p>
-        <div className='w-100 d-flex justify-content-center'>
 
-        <div className="bg-green pt-1 w-25 "></div>
-        </div>
-        <form className="needs-validation  " onSubmit={validarToken} >
-          <div className="row g-2 my-2">
+          <p className="fs-3 fw-semibold">SOLICITA TU CHARLA DE FORMA GRUPAL O PERSONAL CON UNO DE NUESTROS PROFESIONALES</p>
+          <div className='w-100 d-flex justify-content-center'>
 
-            <div className="col-sm-12 mt-4 mt-md-5">
-              <div className="input-group has-validation">
-                <input type="datetime-local" className="form-control border-green" id="fecha-hora"
-                 min={fechaNueva}
-                  onChange={(e) => setFecha(e.target.value)} />
+            <div className="bg-green pt-1 w-25 "></div>
+          </div>
+          <form className="needs-validation  " onSubmit={validarToken} >
+            <div className="row g-2 my-2">
+
+              <div className="col-sm-12 mt-4 mt-md-5">
+                <div className="input-group has-validation">
+                  <input type="datetime-local" className="form-control border-green" id="fecha-hora"
+                    min={fechaNueva}
+                    onChange={(e) => setFecha(e.target.value)} />
+
+                </div>
+              </div>
+
+              <div className="col-md-12 mt-4 mt-md-5">
+
+                <select className="form-select col-md-12 border-green" defaultValue="1" id="validationCustom04" onChange={(e) => { setProfesional(e.target.value) }}>
+                  <option disable="true" >Profesionales disponibles...</option>
+                  {profesionales.map((data) => (
+                    <option value={data._id} key={data._id}>{data.nombres}{" "}{data.apellidos}{"  -    "}{data.profesion}</option>
+                  ))
+                  }
+                </select>
 
               </div>
+
+              <div className="col-sm-12 mt-4 mt-md-5">
+                <textarea type="text" className="form-control border-green" id="address2" rows="5"
+                  placeholder="Motivo de su cita..." onChange={(e) => setMotivo(e.target.value)}></textarea>
+              </div>
+
+
+              <div className="col-md-12 my-4 mt-md-5">
+                <button
+                  type="submit"
+                  className="btn btn-green btn-lg">Solicitar</button>
+              </div>
             </div>
-
-            <div className="col-md-12 mt-4 mt-md-5">
-
-              <select className="form-select col-md-12 border-green" defaultValue="1" id="validationCustom04" onChange={(e) => { setProfesional(e.target.value) }}>
-                <option disable="true" >Profesionales disponibles...</option>
-                {profesionales.map((data) => (
-                  <option value={data._id} key={data._id}>{data.nombres}{" "}{data.apellidos}{"  -    "}{data.profesion}</option>
-                ))
-                }
-              </select>
-
-            </div>
-
-            <div className="col-sm-12 mt-4 mt-md-5">
-              <textarea type="text" className="form-control border-green" id="address2" rows="5"
-                placeholder="Motivo de su cita..." onChange={(e) => setMotivo(e.target.value)}></textarea>
-            </div>
-
-
-            <div className="col-md-12 my-4 mt-md-5">
-              <button
-                type="submit"
-                className="btn btn-green btn-lg">Solicitar</button>
-            </div>
-          </div>
-        </form>
-        <InicioSesion/>
+          </form>
+          <InicioSesion />
         </div>
-        
+
 
       </main>
     </>

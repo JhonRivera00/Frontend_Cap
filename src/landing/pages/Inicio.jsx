@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import IconPregunta from '../../assets/img/IconPregunta.png'
+import IconPregunta from '../../assets/img/biene.jpg'
 import { Link } from 'react-router-dom'
 import Slider from '../componentes/SliderInicioSesion'
-import { datosInicio, verPro } from "../data/DataInicioSesion";
+import { datosInicio, verProfesionales } from "../data/DataInicioSesion";
 import FechaNotificacion from './../../assets/js/FechaNotificacion';
 import { useNavigate } from 'react-router-dom'
 
@@ -18,16 +18,13 @@ const Contenido = () => {
     const fetchData = async () => {
       const datos = await datosInicio()
       const destacados = datos.filter(evento => evento.tipo === "noticia");
-      const dataPro = await verPro();
+      const dataPro = await verProfesionales();
       setDataInicio(destacados.reverse())
       setDataPro(dataPro)
 
     }
     fetchData();
   }, [])
-
-
-
 
 
   return (<>
@@ -47,9 +44,10 @@ const Contenido = () => {
               {data.descripcion}
             </p>
             <p>
-              {data.pdf.urlPdf ? <p>
-                <a href={data.pdf.urlPdf} target="_blank" rel="noopener noreferrer">Ver documento</a>
-              </p> : ""}
+              Mas info en:
+              <Link href="https://www.sena.edu.co/es-co/Paginas/default.aspx">
+                Click aqui
+              </Link>
             </p>
           </div>
           <div className="card-footer bg-green">
@@ -60,7 +58,6 @@ const Contenido = () => {
         </div>
 
       ))
-
       }
 
     </div>
@@ -100,6 +97,7 @@ const Contenido = () => {
             </p>
           </div>
         </div>
+
         <div className="w-100 card-group my-5">
           {dataPro.map((d) => (
 

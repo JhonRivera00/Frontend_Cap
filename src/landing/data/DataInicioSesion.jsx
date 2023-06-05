@@ -131,6 +131,7 @@ export const loginAdmin= async (correo, contrasena) => {
 }
 export const formPqrs = async (id_usuario,tipo,motivo)=>{
   try {
+
     const token = localStorage.getItem("Token-Aprendiz");
 
     const headers = {
@@ -149,6 +150,9 @@ export const formPqrs = async (id_usuario,tipo,motivo)=>{
     const pqrs = {id_usuario,tipo,motivo}
     const response = await axios.post(`/crearPqrs`,pqrs,{headers})
     loading.close()
+
+
+
     if (response.status === 200) {
         Swal.fire({
           title: response.data,
@@ -175,13 +179,22 @@ export const notificacionVista = async (id)=>{
   } catch (error) {
   console.error(error.data)
   }
-}
+}  
 
 export const verPro = async ()=>{
   try {
-    const {data}= await axios.get(`/verUsuariosProfesionales`)
+    const {data}= await axios.get(`/verProfesionales`);
     return data
   } catch (error) {
   console.error(error.data)
   }
-}
+}  
+
+export const verProfesionales = async ()=>{
+  try {
+    const {data}= await axios.get(`/verUsuariosProfesionales`);
+    return data
+  } catch (error) {
+  console.error(error.data)
+  }
+}  

@@ -4,7 +4,7 @@ import { aceptarProfesional } from "../data/DataAdmin";
 import RechazarProfesional from '../modales/RechazarProfesional'
 
 const ModalProfesional = ({dataProfesional}) => { 
-  const btnAceptarProfesional = ()=>{
+  const btnAceptarProfesional = ()=>{ 
    aceptarProfesional(dataProfesional.id);
   }
   return (
