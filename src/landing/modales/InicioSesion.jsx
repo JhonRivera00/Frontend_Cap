@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { loginAprendiz, loginProfesional, loginAdmin } from '../../landing/data/DataInicioSesion'
-
+import '../../assets/css/estilos.css'
+import Email from '../../assets/img/icons/email.svg'
+import Lock from '../../assets/img/icons/lock.svg'
+import Pass from '../../assets/img/icons/pass.svg'
 
 const InicioSesion = () => {
 
@@ -27,7 +30,7 @@ const InicioSesion = () => {
 
         loginAprendiz(correoAprendiz, contrasenaAprendiz);
         setErrors(Validation(validationLogin));
-        setValidationLogin(prev => ({ ...prev, [event.target.name]: [event.target.value]}));
+        setValidationLogin(prev => ({ ...prev, [event.target.name]: [event.target.value] }));
     }
 
 
@@ -80,37 +83,49 @@ const InicioSesion = () => {
                                 </li>
                             </ul>
 
+
                             <div className="tab-content">
                                 {/*Inicio Sesion Aprendiz */}
                                 <div className="tab-pane show active bg-opacity-0" id="pills-login-aprendiz" role="tabpanel" aria-labelledby="tab-login-aprendiz">
-                                    <form className="row g-2 needs-validation pt-4" onSubmit={handleSumbitAprendiz} >
-                                        <div className="col-12 mt-0 form-outline" style={{ padding: "0 70px" }}>
-                                            <label htmlFor="inicioSesion" className="form-label">Usuario</label>
-                                            <input 
-                                            type="email" 
-                                            className="form-control" 
-                                            id="inicioSesion" 
-                                            name="inicioSesion" 
-                                            onChange={(e) => setCorreoAprendiz(e.target.value)} />
+                                    <form className="form__container row g-2 needs-validation pt-4" onSubmit={handleSumbitAprendiz}>
+
+                                        <div className="form__group" style={{ padding: "0 70px" }}>
+                                            <span className="icon">
+                                                <img src={Email} className="mail" alt="" />
+                                            </span>
+                                            <input
+                                                type="email"
+                                                placeholder=" "
+                                                className="form__input"
+                                                id="inicioSesion"
+                                                name="inicioSesion"
+                                                onChange={(e) => setCorreoAprendiz(e.target.value)}
+
+                                            />
                                             {errors.inicioSesion && <span className="text-danger">{errors.inicioSesion}</span>}
+                                            <label htmlFor="inicioSesion" className="form__label">Correo</label>
                                         </div>
 
-
-                                        <div className="col-12 " style={{ padding: "0 70px" }}>
-                                            <label htmlFor="validationCustom02" className="form-label">
-                                                Contraseña
-                                            </label>
+                                        <div className="form__group" style={{ padding: "0 70px" }}>
+                                            <span className="icon">
+                                                <img src={Lock} className="mail" alt="" />
+                                            </span>
                                             <input
-                                            onChange={(e) => setContrasenaAprendiz(e.target.value)}
+                                                onChange={(e) => setContrasenaAprendiz(e.target.value)}
                                                 type="password"
+                                                placeholder=" "
                                                 name="validationCustom02"
-                                                className="form-control"
+                                                className="form__input"
                                                 id="validationCustom02"
+
                                             />
                                             {errors.validationCustom02 && <span className="text-danger">{errors.validationCustom02}</span>}
+                                            <label htmlFor="validationCustom02" className="form__label">
+                                                Contraseña
+                                            </label>
                                         </div>
 
-                                        <div className="col-12">
+                                        <div className="form_paragraph col-12 d-flex justify-content-end align-items-center">
                                             <span className="mt-2 me-4 pe-2 d-flex justify-content-end align-items-center">
 
                                                 No tienes cuenta?{" "}
@@ -124,9 +139,9 @@ const InicioSesion = () => {
                                                 </button>
                                             </span>
                                         </div>
-                                        <div className="w-100 d-flex justify-content-center">
+                                        <div className="button w-100 d-flex justify-content-center">
                                             <button
-                                                className="col-12  mb-2 btn btn-green w-50"
+                                                className="col-12 mb-2 btn btn-green w-50"
                                                 type="submit"
                                             >
                                                 Iniciar Sesion
@@ -134,45 +149,49 @@ const InicioSesion = () => {
                                         </div>
                                     </form>
                                 </div>
+
                                 {/*Inicio Sesion Profesional */}
                                 <div className="tab-pane " id="pills-login-profesional" role="tabpanel" aria-labelledby="tab-login-profesional">
-                                    <form className="row pt-4 g-2 needs-validation" onSubmit={handleSumbitProfesional} >
-                                        <div className="col-12 mt-0" style={{ padding: "0 70px" }}>
-                                            <label htmlFor="validationCustom01" className="form-label">
-                                                Usuario
-                                            </label>
+                                    <form className="form__container row pt-4 g-2 needs-validation" onSubmit={handleSumbitProfesional} >
+                                        <div className="form__group" style={{ padding: "0 70px" }}>
+                                            <span className="icon">
+                                                <img src={Email} className="mail" alt="" />
+                                            </span>
                                             <input
                                                 type="email"
-                                                className="form-control"
+                                                className="form__input"
+                                                placeholder=" "
                                                 id="validationCustom01"
+                                                name="validationCustom01"
                                                 onChange={(e) => setCorreoProfesional(e.target.value)}
                                             />
-                                            <div className="invalid-feedback">
-                                                Por favor, ingrese su nombre de usuario.
-                                            </div>
-                                        </div>
-                                        <div className="col-12 " style={{ padding: "0 70px" }}>
-                                            <label htmlFor="validationCustom02" className="form-label">
-                                                Contraseña
+                                            <label htmlFor="validationCustom01" className="form__label">
+                                                Correo
                                             </label>
+                                        </div>
+                                        <div className="form__group" style={{ padding: "0 70px" }}>
+                                            <span className="icon">
+                                                <img src={Lock} className="mail" alt="" />
+                                            </span>
                                             <input
                                                 type="password"
-                                                className="form-control"
+                                                className="form__input"
+                                                placeholder=" "
                                                 id="validationCustom02"
                                                 onChange={(e) => setContrasenaProfesional(e.target.value)}
                                             />
-                                            <div className="invalid-feedback">
-                                                Por favor, ingrese su contraseña.
-                                            </div>
+                                            <label htmlFor="validationCustom02" className="form__label">
+                                                Contraseña
+                                            </label>
                                         </div>
 
-                                        <div className="col-12">
+                                        <div className="form_paragraph col-12 d-flex justify-content-end align-items-center">
                                             <span className="mt-2 me-4 pe-2 d-flex justify-content-end align-items-center">
 
                                                 No tienes cuenta?{" "}
                                                 <button
                                                     type="button"
-                                                    className="btn text-primary"
+                                                    className=" btn text-primary"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#registroProfesional"
                                                 >
@@ -180,7 +199,7 @@ const InicioSesion = () => {
                                                 </button>
                                             </span>
                                         </div>
-                                        <div className="w-100 d-flex justify-content-center">
+                                        <div className="button w-100 d-flex justify-content-center">
                                             <button
                                                 className="col-12  mb-2 btn btn-green w-50"
                                                 type="submit"
@@ -200,46 +219,46 @@ const InicioSesion = () => {
                 <div className="modal-dialog">
                     <div className="modal-content text-black">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">Inicia Sesion</h1>
-
+                            <h1 className="modal-title fs-5 w-100 text-center" id="exampleModalLabel">Inicia Sesion</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <form className="row pt-4 g-2 needs-validation" onSubmit={handleSumbitAdmin} >
+                            <form className="row pt-2 g-2 needs-validation" onSubmit={handleSumbitAdmin} >
                                 <div className="text-center w-100">
                                     <h2 className="mb-5">Administrador</h2>
                                 </div>
-                                <div className="col-12 mt-0" style={{ padding: "0 70px" }}>
-                                    <label htmlFor="validationCustom01" className="form-label">
-                                        Usuario
-                                    </label>
+                                <div className="form__group" style={{ padding: "0 70px" }}>
+                                    <span className="icon">
+                                        <img src={Email} className="mail" alt="" />
+                                    </span>
                                     <input
                                         type="email"
-                                        className="form-control"
+                                        className="form__input"
+                                        placeholder=" "
                                         id="validationCustom01"
                                         onChange={(e) => setCorreoAdmin(e.target.value)}
                                     />
-                                    <div className="invalid-feedback">
-                                        Por favor, ingrese su nombre de usuario.
-                                    </div>
-                                </div>
-                                <div className="col-12 " style={{ padding: "0 70px" }}>
-                                    <label htmlFor="validationCustom02" className="form-label">
-                                        Contraseña
+                                    <label htmlFor="validationCustom01" className="form__label">
+                                        Usuario
                                     </label>
+                                </div>
+                                <div className="form__group " style={{ padding: "0 70px" }}>
+                                    <span className="icon">
+                                        <img src={Pass} className="mail" alt="" />
+                                    </span>
                                     <input
                                         type="password"
-                                        className="form-control"
+                                        className="form__input"
+                                        placeholder=" "
                                         id="validationCustom02"
                                         onChange={(e) => setContrasenaAdmin(e.target.value)}
                                     />
-                                    <div className="invalid-feedback">
-                                        Por favor, ingrese su contraseña.
-                                    </div>
+                                    <label htmlFor="validationCustom02" className="form__label">
+                                        Contraseña
+                                    </label>
                                 </div>
 
-
-                                <div className="w-100 pt-5 d-flex justify-content-center">
+                                <div className="w-100 pt-2 d-flex justify-content-center">
                                     <button
                                         className="col-12  mb-2 btn btn-green w-50"
                                         type="submit"

@@ -43,7 +43,7 @@ const Cronograma = () => {
           <img src={Calentdar2} className="me-4" alt="" />
           LISTADO DE ACTIVIDADES
         </p>
-        <hr />
+        <hr /> 
         <div className="container-fluid mt-6">
           <div className="row d-flex justify-content-around">
             {dataCronograma.map((data, i) => (
