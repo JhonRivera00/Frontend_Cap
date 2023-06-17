@@ -12,6 +12,7 @@ const Charlas = () => {
   useEffect(() => {
     const dataCharlas = async () => {
       const dataCharla = await dataVerCharlas()
+      console.log(dataCharla)
       setData(dataCharla.reverse())
     }
     dataCharlas()

@@ -147,7 +147,6 @@ const Profesional = () => {
                 <th>NOMBRE</th>
                 <th>NIT</th>
                 <th>PROFESION</th>
-                <th>ESTADO</th>
                 <th>OPCIONES</th>
                 <th>ACTIVAR</th>
               </tr>
@@ -159,9 +158,7 @@ const Profesional = () => {
                   <td data-label="paciente">{`${p.nombres} ${p.apellidos}`}</td>
                   <td data-label="Nit">{p.documento.numeroDocumento}</td>
                   <td data-label="profesion">{p.profesion}</td>
-                  <td data-label="descripcion">
-                    <Link className="text-decoration-none" data-bs-toggle="modal" data-bs-target="#profesional" onClick={() => enviarDataPro(p.nombres, p.apellidos, p.documento.tipo, p.documento.numeroDocumento, p.profesion, p.correo, p.numTelefono, p._id)} style={{ cursor: "pointer" }}> Ver mas...</Link>
-                  </td>
+           
                   <td className="link-light">
                     <div>
                       <p

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { crearEvento } from '../data/DataAdmin';
 
 const CrearEvento = () => {
-  const [evento, setEvento] = usenhState("");
+  const [evento, setEvento] = useState("");
   const [tipoEvento, setTipoEvento] = useState("");
   const [lugar, setLugar] = useState("");
   const [fechaInicial, setFechaInicial] = useState("");
@@ -14,11 +14,6 @@ const CrearEvento = () => {
   const fechaActual = new Date();
   fechaActual.setHours(fechaActual.getHours() - 5);
   const fechaInicio = fechaActual.toISOString().slice(0, 16);
-
-
-
-
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
