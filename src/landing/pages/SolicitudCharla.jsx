@@ -107,13 +107,10 @@ const Charla = () => {
           {dataPro.map((d) => (
             <div className="text-center mx-auto mt-4" key={d._id}>
 
-              <div className="container">
-                <input type="radio" name="dot" id='one' />
-                <input type="radio" name='dot' id='two' />
-                <div className="main-card">
-                  <div className="cards">
+           
+                
+                  
                     <div className="card">
-                      <div className="content" >
                         <div className="img">
                           <img src={d.perfil.urlImg} className="img-profesionales" alt="" />
                         </div>
@@ -121,11 +118,7 @@ const Charla = () => {
                           <p className="fs-5 mb-2">
                             {d.nombres}{" "}{d.apellidos} <br /> {d.profesion}
                           </p>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -138,6 +131,8 @@ const Charla = () => {
       {/* <!-- Profesionales --> */}
       <main className="text-center d-flex flex-column justify-content-center align-items-center" id="form-charla">
         <div className='w-50 '>
+
+
 
           <p className="fs-3 fw-semibold">SOLICITA TU CHARLA DE FORMA GRUPAL O PERSONAL CON UNO DE NUESTROS PROFESIONALES</p>
           <div className='w-100 d-flex justify-content-center'>
