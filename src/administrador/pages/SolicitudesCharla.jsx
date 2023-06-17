@@ -3,8 +3,7 @@ import ModalCharla from '../modales/ModalCharla';
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { dataVerCharlas } from '../data/DataAdmin'
-import { format, parseISO } from 'date-fns';
-import es from 'date-fns/locale/es';
+import { fechaLocal } from "../../funciones/fechaLocal";
 
 const Charlas = () => {
   const [data, setData] = useState([]);
@@ -12,19 +11,15 @@ const Charlas = () => {
   useEffect(() => {
     const dataCharlas = async () => {
       const dataCharla = await dataVerCharlas()
-      console.log(dataCharla)
       setData(dataCharla.reverse())
     }
     dataCharlas()
   }, []);
 
   
-  const handleModal = (nombre, ficha, telefono, correo, motivo, fechaSolicitadaA,apellidos,jornada,nombresProfesional,apellidosProfesional,idCharla,imgPro) => {
-    const fechaISO = fechaSolicitadaA;
-    const fecha = parseISO(fechaISO);
-    const fechaSolicitada = format(fecha, "eeee d 'de' MMMM 'del' yyyy", { locale: es });
-    
-    const datos = { nombre, ficha, telefono, correo, motivo, fechaSolicitada,apellidos,jornada,nombresProfesional,apellidosProfesional,idCharla,imgPro }
+  const handleModal = (nombre, ficha, telefono, correo, motivo, fechaSolicitadaA,apellidos,jornada,nombresProfesional,apellidosProfesional,idCharla,imgPro,imgApre) => {
+    const fechaSolicitada = fechaLocal(fechaSolicitadaA)
+    const datos = { nombre, ficha, telefono, correo, motivo, fechaSolicitada,apellidos,jornada,nombresProfesional,apellidosProfesional,idCharla,imgPro,imgApre }
    
     setdataAprendiz(datos)
   }
@@ -67,7 +62,7 @@ const Charlas = () => {
                     </div>
                   </td>
                   <td data-label="descripcion">
-                    <Link className="text-decoration-none" data-bs-toggle="modal" data-bs-target="#solicitud" style={{ cursor: "pointer" }} onClick={() => handleModal(d.id_aprendiz.nombres, d.id_aprendiz.programa.ficha, d.id_aprendiz.numTelefono, d.id_aprendiz.correo, d.motivo, d.fechaSolicitada,d.id_aprendiz.apellidos,d.id_aprendiz.programa.jornada,d.id_profesional.nombres,d.id_profesional.apellidos,d._id,d.id_profesional.perfil.urlImg)}> Ver mas...</Link>
+                    <Link className="text-decoration-none" data-bs-toggle="modal" data-bs-target="#solicitud" style={{ cursor: "pointer" }} onClick={() => handleModal(d.id_aprendiz.nombres, d.id_aprendiz.programa.ficha, d.id_aprendiz.numTelefono, d.id_aprendiz.correo, d.motivo, d.fechaSolicitada,d.id_aprendiz.apellidos,d.id_aprendiz.programa.jornada,d.id_profesional.nombres,d.id_profesional.apellidos,d._id,d.id_profesional.perfil.urlImg,d.id_aprendiz.perfil.urlImg)}> Ver mas...</Link>
                   </td>
                 </tr>
 

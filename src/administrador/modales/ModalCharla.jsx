@@ -25,10 +25,9 @@ charlaAceptada(props.dataAprendiz.idCharla);
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className=" modal-body">
-                            <h5>Psicologia</h5>
                             <div className="row mt-4 ">
                                 <div className="col-2">
-                                    <img className="w-100 rounded-circle" src={props.imgPro} />
+                                    <img className="w-100 rounded-circle" src={props.dataAprendiz.imgApre ? props.dataAprendiz.imgApre :"https://res.cloudinary.com/dvuzzneet/image/upload/v1684280453/sinF_ksqjai.png"} />
                                 </div>
                                 <div className="col-4">
                                     <div className=" d-flex">
