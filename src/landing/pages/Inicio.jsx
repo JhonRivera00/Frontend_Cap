@@ -31,7 +31,7 @@ const Contenido = () => {
     <Slider />
     <div className="card-group justify-content-around">
 
-      {dataInicio.map((data) => (
+    {dataInicio.map((data) => (
         <div className="card mx-sm-5 my-sm-5 border rounded-0" key={data._id}>
           <img className="card-img-top"
             src={data.imagen.urlImg}
@@ -44,10 +44,9 @@ const Contenido = () => {
               {data.descripcion}
             </p>
             <p>
-              Mas info en:
-              <Link href="https://www.sena.edu.co/es-co/Paginas/default.aspx">
-                Click aqui
-              </Link>
+              {data.pdf.urlPdf ? <p>
+                <a href={data.pdf.urlPdf} target="_blank" rel="noopener noreferrer">Ver documento</a>
+              </p> : ""}
             </p>
           </div>
           <div className="card-footer bg-green">
@@ -58,8 +57,8 @@ const Contenido = () => {
         </div>
 
       ))
-      }
 
+      }
     </div>
     <div>
       <section className="container-fluid py-5 ">
