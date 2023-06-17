@@ -75,7 +75,7 @@ const Contactanos = () => {
             <br /> le responderemos a la brevedad.
           </h6>
 
-          <form className="needs-validation" onSubmit={handleSubmit} >
+          <form className="needs-validation p-4" onSubmit={handleSubmit} >
               <div className="row g-2 my-2">
 
 

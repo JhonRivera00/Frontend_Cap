@@ -159,7 +159,7 @@ const BtnInicioSesion = () => {
                     data-bs-target="#modalInicioDatos"
                   >
                     <img src={gear} alt="icon-ajustes" className="me-3" />
-                    Actualizar
+                    Perfil
                   </Link>
                 </li>
                 <li>

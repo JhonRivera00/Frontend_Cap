@@ -41,7 +41,7 @@ function MenuSup() {
                     <li>
                       <Link className="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#modalInicioDatos" ><img src={gear} alt="icon-ajustes"
                         className="me-3" />
-                        Actualizar</Link>
+                        Perfil</Link>
                     </li>
                     <li>
                       <Link className="dropdown-item text-white" data-bs-target="#agregarFicha"  data-bs-toggle="modal">  <img src={plus_circle}
