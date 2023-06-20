@@ -50,7 +50,7 @@
 
 .main-card .cards .card {
     background: #fff;
-    width: calc(128% / 3 - 10px);
+    width: calc(120% / 3 - 10px);
     padding: 30px;
     border-radius: 24px;
     transition: all 0.4s ease;

@@ -32,7 +32,6 @@ const DatosAjustes = () => {
 
             const fetProfesional = async () => {
                 const { data } = await verProfesional(id)
-                console.log(data)
                 setDatos(data);
             }
             fetProfesional()

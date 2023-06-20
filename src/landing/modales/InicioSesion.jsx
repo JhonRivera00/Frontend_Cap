@@ -135,7 +135,7 @@ const InicioSesion = () => {
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#registroAprendiz"
                                                 >
-                                                    Registrarte
+                                                    Regístrate
                                                 </button>
                                             </span>
                                         </div>
@@ -195,7 +195,7 @@ const InicioSesion = () => {
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#registroProfesional"
                                                 >
-                                                    Registrarte
+                                                    Regístrate
                                                 </button>
                                             </span>
                                         </div>

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { registroProfesional } from '../data/DataRegistro'
 import Swal from 'sweetalert2'
+import '../../assets/css/estilos.css'
 const Registrase = () => {
 
 
@@ -100,9 +101,9 @@ const Registrase = () => {
                     <div id="modal-usuario-registro ">
                         <div className="modal-dialog ">
 
-                            <div className="modal-content  bg-color-blue  text-white ">
+                            <div className="modal-content  text-dark ">
                                 <form className="needs-validation contenedor-registro rounded-3 mx-3" onSubmit={handleSubmit} >
-                                    <div className="row g-3  text-white  p-4 rounded-3 ">
+                                    <div className="row g-3  text-dark  p-4 rounded-3 ">
                                         <div className="w-100 d-flex justify-content-end ">
                                             <button type="button" className="btn-close bg-light" style={{ width: "20px", height: "20px" }} data-bs-dismiss="modal" aria-label="Close"></button>
 
@@ -172,13 +173,6 @@ const Registrase = () => {
                                         <div className="col-12">
                                             <label htmlFor="address2" className="form-label">Confirmar Contraseña</label>
                                             <input type="password" className="form-control" id="address2" placeholder="" value={contrasenaDos} onChange={(e) => setContrasenaDos(e.target.value)} />
-                                        </div>
-
-
-
-                                        <div className="ms-2">
-                                            <input type="checkbox" className="form-check-input" id="address3" />
-                                            <label className="form-check-label ms-2" htmlFor="address3">Recordar</label>
                                         </div>
 
                                         <div className="w-100 d-flex justify-content-center">

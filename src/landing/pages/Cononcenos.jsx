@@ -4,7 +4,7 @@ import Bullseye from '../../assets/img/icons/bullseye.svg'
 import Circle1 from '../../assets/img/icons/1-circle.svg'
 import Circle2 from '../../assets/img/icons/2-circle.svg'
 import Circle3 from '../../assets/img/icons/3-circle.svg'
-import Opjetivo from '../../assets/img/opjetivo1.webp'
+import Opjetivo from '../../assets/img/bienestar1.png'
 import Video from '../../assets/img/videos/Bienestar al Aprendiz SENA.mp4'
 import Centro from '../../assets/img/imgnav.jpg'
 
@@ -21,7 +21,7 @@ const Conocenos = () => {
           <div className="row">
             <div className="col-lg-6 col-md-12">
               <div className="">
-                <p className="fs-5 fw-semibold"> <img src={Circle1} className="me-3" alt="" />Objetivo </p>
+                <p className="fs-5 fw-semibold"> <img src={Circle1} className="me-3" alt="" />Objetivo</p>
                 <p>Implementar estrategias de acompañamiento para el desarrollo integral del aprendiz en su proceso formativo.</p>
                 <p className="fs-5 fw-semibold"><img src={Circle2} className="me-3" alt="" />Objetivo </p>
                 <p>Incentivar al aprendiz en su proceso de formación profesional integral mediante la implementación de un programa de estímulos.</p>
@@ -29,7 +29,7 @@ const Conocenos = () => {
                 <p>Entregar con oportunidad y calidad los servicios de bienestar al aprendiz documentando procedimientos que soporten una operación ágil y flexible.</p>
               </div>
             </div>
-            <div className="col-lg-6 col-md-12">
+            <div className="col-lg-5 col-md-12">
               <img src={Opjetivo} className="img-obj" alt="" />
             </div>
           </div>
