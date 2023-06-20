@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import ImagNav from '../../assets/img/imgnav.jpg'
-import Swal from 'sweetalert2'
-import InicioSesion from '../modales/InicioSesion'
-import axios from 'axios'
-import { dataSolicitudCharla } from '../data/DataSolicitudCharla'
-import { verPro, verProfesionales } from '../data/DataInicioSesion'
-import { verProfesional } from '../../profesionales/data/dataProfesional'
+import React, { useEffect, useState } from 'react';
+import ImagNav from '../../assets/img/imgnav.jpg';
+import Swal from 'sweetalert2';
+import InicioSesion from '../modales/InicioSesion';
+import axios from 'axios';
+import { dataSolicitudCharla } from '../data/DataSolicitudCharla';
+import { verPro } from '../data/DataInicioSesion';
 const Charla = () => {
 
   const [fecha, setFecha] = useState("");
@@ -17,7 +16,7 @@ const Charla = () => {
   const [dataPro, setDataPro] = useState([])
   useEffect(() => {
     const fetchData = async () => {
-      const dataPro = await verProfesionales();
+      const dataPro = await verPro();
       setDataPro(dataPro)
 
     }
@@ -106,10 +105,13 @@ const Charla = () => {
           {dataPro.map((d) => (
             <div className="text-center mx-auto mt-4" key={d._id}>
 
-           
-                
-                  
+              <div className="container">
+                <input type="radio" name="dot" id='one' />
+                <input type="radio" name='dot' id='two' />
+                <div className="main-card">
+                  <div className="cards">
                     <div className="card">
+                      <div className="content" >
                         <div className="img">
                           <img src={d.perfil.urlImg} className="img-profesionales" alt="" />
                         </div>
@@ -117,7 +119,11 @@ const Charla = () => {
                           <p className="fs-5 mb-2">
                             {d.nombres}{" "}{d.apellidos} <br /> {d.profesion}
                           </p>
-                  
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
               </div>
             </div>
@@ -129,8 +135,11 @@ const Charla = () => {
       </section>
       {/* <!-- Profesionales --> */}
       <main className="text-center d-flex flex-column justify-content-center align-items-center" id="form-charla">
-        <div className='contenedor-charla p-5 p-lg-0'>
-          <p className="fs-3 fw-semibold">SOLICITA TU CHARLA CON UNO DE NUESTROS PROFESIONALES</p>
+        <div className='w-50 '>
+
+
+
+          <p className="fs-3 fw-semibold">SOLICITA TU CHARLA DE FORMA GRUPAL O PERSONAL CON UNO DE NUESTROS PROFESIONALES</p>
           <div className='w-100 d-flex justify-content-center'>
 
             <div className="bg-green pt-1 w-25 "></div>
