@@ -90,7 +90,7 @@ const InicioSesion = () => {
                                     <form className="form__container row g-2 needs-validation pt-4" onSubmit={handleSumbitAprendiz}>
 
                                         <div className="form__group" style={{ padding: "0 70px" }}>
-                                            <span className="icon">
+                                            <span className="icon_login">
                                                 <img src={Email} className="mail" alt="" />
                                             </span>
                                             <input
@@ -107,7 +107,7 @@ const InicioSesion = () => {
                                         </div>
 
                                         <div className="form__group" style={{ padding: "0 70px" }}>
-                                            <span className="icon">
+                                            <span className="icon_login">
                                                 <img src={Lock} className="mail" alt="" />
                                             </span>
                                             <input
@@ -154,7 +154,7 @@ const InicioSesion = () => {
                                 <div className="tab-pane " id="pills-login-profesional" role="tabpanel" aria-labelledby="tab-login-profesional">
                                     <form className="form__container row pt-4 g-2 needs-validation" onSubmit={handleSumbitProfesional} >
                                         <div className="form__group" style={{ padding: "0 70px" }}>
-                                            <span className="icon">
+                                            <span className="icon_login">
                                                 <img src={Email} className="mail" alt="" />
                                             </span>
                                             <input
@@ -170,7 +170,7 @@ const InicioSesion = () => {
                                             </label>
                                         </div>
                                         <div className="form__group" style={{ padding: "0 70px" }}>
-                                            <span className="icon">
+                                            <span className="icon_login">
                                                 <img src={Lock} className="mail" alt="" />
                                             </span>
                                             <input
@@ -228,7 +228,7 @@ const InicioSesion = () => {
                                     <h2 className="mb-5">Administrador</h2>
                                 </div>
                                 <div className="form__group" style={{ padding: "0 70px" }}>
-                                    <span className="icon">
+                                    <span className="icon_login">
                                         <img src={Email} className="mail" alt="" />
                                     </span>
                                     <input
@@ -243,7 +243,7 @@ const InicioSesion = () => {
                                     </label>
                                 </div>
                                 <div className="form__group " style={{ padding: "0 70px" }}>
-                                    <span className="icon">
+                                    <span className="icon_login">
                                         <img src={Pass} className="mail" alt="" />
                                     </span>
                                     <input

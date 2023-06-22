@@ -69,11 +69,16 @@
   border-bottom: 1px solid #000000;
 }
 
-.icon {
+.icon_login {
   position: absolute;
+  right: 70px;
   font-size: 3em;
   color: #219015;
   line-height: 45px;
+}
+
+.clear {
+  clear: both;
 }
 
 .form_paragraph {
