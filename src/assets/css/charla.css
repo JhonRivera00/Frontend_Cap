@@ -1,0 +1,44 @@
+.contenedor_formulario {
+  width: 350px;
+  padding: 20px 0;
+  text-align: center;
+  margin: 0 auto;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+.contenedor {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+}
+
+.img_charla {
+  background-image: url(../img/charla.jpg);
+  background-position: center center;
+  background-size: cover;
+  flex: 0 0 calc(70%);
+  margin: 0 auto;
+}
+
+.contenedor_formulario {
+  display: flex;
+  justify-content: center;
+}
+
+.solicita {
+  color: white;
+  font-family: Georgia, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.formulario {
+  flex: 0 0 calc(70%);
+  padding: 30px;
+  background-color: #00324d;
+  margin: auto;
+}

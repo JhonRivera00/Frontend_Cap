@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import ImagNav from '../../assets/img/imgnav.jpg';
+import charla from '../../assets/img/charla.jpg'
 import Swal from 'sweetalert2';
 import InicioSesion from '../modales/InicioSesion';
 import axios from 'axios';
 import { dataSolicitudCharla } from '../data/DataSolicitudCharla';
 import { verPro } from '../data/DataInicioSesion';
+import '../../assets/css/charla.css';
 const Charla = () => {
 
   const [fecha, setFecha] = useState("");
@@ -137,50 +139,56 @@ const Charla = () => {
       <main className="text-center d-flex flex-column justify-content-center align-items-center" id="form-charla">
         <div className='w-50 '>
 
-
-
           <p className="fs-3 fw-semibold">SOLICITA TU CHARLA DE FORMA GRUPAL O PERSONAL CON UNO DE NUESTROS PROFESIONALES</p>
           <div className='w-100 d-flex justify-content-center'>
 
             <div className="bg-green pt-1 w-25 "></div>
           </div>
-          <form className="needs-validation  " onSubmit={validarToken} >
-            <div className="row g-2 my-2">
 
-              <div className="col-sm-12 mt-4 mt-md-5">
-                <div className="input-group has-validation">
-                  <input type="datetime-local" className="form-control border-green" id="fecha-hora"
-                    min={fechaNueva}
-                    onChange={(e) => setFecha(e.target.value)} />
 
+          <div className='contenedor_formulario contenedor'>
+
+            <div className='img_charla'>
+            </div>
+
+            <form className="formulario needs-validation  " onSubmit={validarToken} >
+
+            <h1 className='solicita'>Solicita tu charla</h1>
+
+              <div className="row g-2">
+                <div className="col-sm-12 mt-4 mt-md-5">
+                  <div className="input-group has-validation">
+                    <input type="datetime-local" className="form-control border-green" id="fecha-hora"
+                      min={fechaNueva}
+                      onChange={(e) => setFecha(e.target.value)} />
+
+                  </div>
+                </div>
+
+                <div className="col-md-12 mt-4 mt-md-5">
+                  <select className="form-select col-md-12 border-green" defaultValue="1" id="validationCustom04" onChange={(e) => { setProfesional(e.target.value) }}>
+                    <option disable="true" >Profesionales disponibles...</option>
+                    {profesionales.map((data) => (
+                      <option value={data._id} key={data._id}>{data.nombres}{" "}{data.apellidos}{"  -    "}{data.profesion}</option>
+                    ))
+                    }
+                  </select>
+                </div>
+
+                <div className="col-sm-12 mt-4 mt-md-5">
+                  <textarea type="text" className="form-control border-green" id="address2" rows="5"
+                    placeholder="Motivo de su cita..." onChange={(e) => setMotivo(e.target.value)}></textarea>
+                </div>
+
+
+                <div className="col-md-12 my-4 mt-md-5">
+                  <button
+                    type="submit"
+                    className="btn btn-green btn-lg">Solicitar</button>
                 </div>
               </div>
-
-              <div className="col-md-12 mt-4 mt-md-5">
-
-                <select className="form-select col-md-12 border-green" defaultValue="1" id="validationCustom04" onChange={(e) => { setProfesional(e.target.value) }}>
-                  <option disable="true" >Profesionales disponibles...</option>
-                  {profesionales.map((data) => (
-                    <option value={data._id} key={data._id}>{data.nombres}{" "}{data.apellidos}{"  -    "}{data.profesion}</option>
-                  ))
-                  }
-                </select>
-
-              </div>
-
-              <div className="col-sm-12 mt-4 mt-md-5">
-                <textarea type="text" className="form-control border-green" id="address2" rows="5"
-                  placeholder="Motivo de su cita..." onChange={(e) => setMotivo(e.target.value)}></textarea>
-              </div>
-
-
-              <div className="col-md-12 my-4 mt-md-5">
-                <button
-                  type="submit"
-                  className="btn btn-green btn-lg">Solicitar</button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
           <InicioSesion />
         </div>
 
