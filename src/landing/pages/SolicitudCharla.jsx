@@ -4,8 +4,7 @@ import Swal from 'sweetalert2'
 import InicioSesion from '../modales/InicioSesion'
 import axios from 'axios'
 import { dataSolicitudCharla } from '../data/DataSolicitudCharla'
-import { verPro, verProfesionales } from '../data/DataInicioSesion'
-import { verProfesional } from '../../profesionales/data/dataProfesional'
+import { verProfesionales } from '../data/DataInicioSesion'
 const Charla = () => {
 
   const [fecha, setFecha] = useState("");
@@ -161,7 +160,7 @@ const Charla = () => {
 
               <div className="col-sm-12 mt-4 mt-md-5">
                 <textarea type="text" className="form-control border-green" id="address2" rows="5"
-                  placeholder="Motivo de su cita..." onChange={(e) => setMotivo(e.target.value)}></textarea>
+                  placeholder="Motivo de tu charla..." onChange={(e) => setMotivo(e.target.value)}></textarea>
               </div>
 
 
