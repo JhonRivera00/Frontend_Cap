@@ -101,30 +101,30 @@ const Fotter = () => {
             </div>
           </div>
           
-          <hr className="text-white mt-5" />
-          <div className="d-flex flex-wrap justify-content-center pb-4">
+          <hr className="text-white mt-4" />
+          <div className="d-flex flex-wrap justify-content-center pb-3">
             <a
               href="https://www.facebook.com/CTPISENACauca" target="_blank"
-              className="text-decoration-none m-2"
+              className="text-decoration-none"
             >
               <img src={Facebook} className="me-2 icon" alt="logofacebook" />
             </a>
 
             <a
               href="https://twitter.com/CTPIsenacauca" target="_blank"
-              className="ms-4 text-decoration-none m-2"
+              className="ms-4 text-decoration-none"
             >
               <img src={Twitter} className="me-2 icon" alt="logotwiter" />
             </a>
 
             <a
               href="https://instagram.com/ctpisenacauca?igshid=YmMyMTA2M2Y=" target="_blank"
-              className="ms-4 text-decoration-none m-2"
+              className="ms-4 text-decoration-none"
             >
               <img src={Instagram} className="me-2 icon" alt="logoinstagram" />
             </a>
 
-            <a href="#" target="_blank" className="ms-4 text-decoration-none m-2">
+            <a href="#" target="_blank" className="ms-4 text-decoration-none ">
               <img src={Whatsapp} className="me-2 icon" alt="logoWhatsaap" />
             </a>
             
