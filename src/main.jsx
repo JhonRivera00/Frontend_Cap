@@ -7,7 +7,7 @@ import axios from 'axios'
 
 // http://localhost:3000
 //https://backend-cap-273v.vercel.app
-axios.defaults.baseURL = 'http://192.168.100.12:3000/';
+axios.defaults.baseURL = 'https://backend-cap-273v.vercel.app';
 
 
 

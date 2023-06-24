@@ -27,7 +27,10 @@
   margin: 0 auto;
 }
 
-
+.charla1 {
+  max-width: 800px;
+  min-width: 650px;
+}
 @media (max-width:1000px) {
  .img_charla{
   display: none;
