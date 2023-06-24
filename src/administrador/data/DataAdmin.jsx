@@ -75,17 +75,29 @@ export const aplazarCharlaData = async (
   nuevoProfesional
 ) => {
   try {
+    let loading = Swal.fire({
+      title: 'Aplazando charla',
+      text: 'Espere un momento por favor...',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
     const response = await axios.put(`/solicitudesAplazar/${id}`, {
       motivo,
       nuevaFecha,
       nuevoProfesional,
     });
+    loading.close();
     if (response.status === 200) {
       Swal.fire({
         title: response.data,
         icon: "success",
         timer: 2000,
-      }).then(location.reload());
+      }).then(()=>{
+        location.reload()
+      });
     }
   } catch (error) {
     if (error.response.status === 400) {
@@ -140,13 +152,26 @@ export const solicitudesRechazadasProfesional = async () => {
 };
 export const charlaAceptada = async (id) => {
   try {
+    let loading = Swal.fire({
+      title: 'Aceptando Charla',
+      text: 'Espere un momento por favor...',
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
     const response = await axios.put(`/solicitudesAceptar/${id}`);
+
+    loading.close();
     if (response.status === 200) {
       Swal.fire({
         title: response.data,
         icon: "success",
         timer: 2000,
-      }).then(location.reload());
+      }).then(()=>{
+        location.reload()
+      });
     }
   } catch (error) {
     if (error.response.status === 400) {
@@ -172,7 +197,9 @@ export const aceptarProfesional = async (id) => {
         title: response.data,
         icon: "success",
         timer: 2000,
-      }).then(location.reload());
+      }).then(()=>{
+        location.reload()
+      });
     }
   } catch (error) {
     if (error.response.status === 400) {
@@ -200,7 +227,9 @@ export const rechazarProfesional = async (motivoRechazo, id) => {
         title: response.data,
         icon: "success",
         timer: 2000,
-      }).then(location.reload());
+      }).then(()=>{
+        location.reload()
+      });
     }
   } catch (error) {
     if (error.response.status === 400) {
@@ -229,7 +258,9 @@ export const responderPqrs = async (respuesta, id) => {
         title: response.data,
         icon: "success",
         timer: 2000,
-      }).then(location.reload());
+      }).then(()=>{
+        location.reload()
+      });
     }
   } catch (error) {
     if (error.response.status === 400) {
@@ -335,7 +366,9 @@ export const actualizarEvento = async (id, data) => {
       showConfirmButton: false,
       timer: 2000,
     })
-      .then(location.reload())
+      .then(()=>{
+        location.reload()
+      })
 
   } catch (error) {
 
@@ -373,7 +406,9 @@ export const agregarPrograma = async (data) => {
       showConfirmButton: false,
       timer: 2000,
     })
-      .then(location.reload())
+      .then(()=>{
+        location.reload()
+      })
 
   } catch (error) {
 

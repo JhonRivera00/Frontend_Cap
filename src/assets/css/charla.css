@@ -1,7 +1,8 @@
 .contenedor_formulario {
   width: 350px;
   text-align: center;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
 
 .contenedor {
@@ -10,27 +11,27 @@
   width: 100%;
   text-align: center;
 }
+.color-charla{
+  width: 100%;
+  height: 100%;
+  background-color: #00324d;
+  opacity: 50%;
+}
 
 .img_charla {
   background-image: url(../img/charla.jpg);
+  background-color: black;
   background-position: center center;
   background-size: cover;
   flex: 0 0 calc(70%);
   margin: 0 auto;
 }
 
-.charla1 {
-  max-width: 800px;
-}
+
 @media (max-width:1000px) {
  .img_charla{
   display: none;
  }}
-
-.contenedor_formulario {
-  display: flex;
-  justify-content: center;
-}
 
 .solicita {
   color: white;
@@ -41,5 +42,4 @@
   flex: 0 0 calc(70%);
   padding: 30px;
   background-color: #00324d;
-  margin: auto;
 }

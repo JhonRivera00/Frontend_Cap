@@ -139,18 +139,19 @@ const Charla = () => {
       </section>
     {/* <!-- Profesionales --> */}
     <main className="text-center d-flex flex-column justify-content-center align-items-center" id="form-charla">
-        <div className='charla1 p-5'>
+        <div className='charla1 p-4'>
 
-          <p className="fs-3 fw-semibold">SOLICITA TU CHARLA DE FORMA GRUPAL O PERSONAL CON UNO DE NUESTROS PROFESIONALES</p>
-          <div className='w-100 d-flex justify-content-center'>
+          <p className="fs-3 fw-semibold">SOLICITA TU CHARLA CON UNO DE NUESTROS PROFESIONALES</p>
+          <div className='w-100 d-flex justify-content-center mb-3'>
 
-            <div className="bg-green pt-1 w-25 "></div>
+            <div className="bg-green pt-1 w-50 "></div>
           </div>
 
 
           <div className='contenedor_formulario contenedor'>
 
             <div className='img_charla'>
+              <div className='color-charla'></div>
             </div>
 
             <form className="formulario needs-validation  " onSubmit={validarToken} >
@@ -179,7 +180,7 @@ const Charla = () => {
 
                 <div className="col-sm-12 mt-4 mt-md-5">
                   <textarea type="text" className="form-control border-green" id="address2" rows="5"
-                    placeholder="Motivo de su cita..." onChange={(e) => setMotivo(e.target.value)}></textarea>
+                    placeholder="Motivo de tu charla..." onChange={(e) => setMotivo(e.target.value)}></textarea>
                 </div>
 
 
