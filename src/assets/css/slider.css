@@ -135,14 +135,14 @@ input[type="radio"] {
     display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 100px) {
     .main-card .cards .card {
     width: calc(100% / 2 - 10px);
     margin: 20px 0 10px 0;
     }   
 }
 
-@media (max-width: 600px) {
+@media (max-width: 100px) {
     .main-card .cards .card {
     width: calc(100% / 2 - 10px);
     margin: 100px;

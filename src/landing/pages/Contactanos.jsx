@@ -76,47 +76,45 @@ const Contactanos = () => {
           </h6>
 
           <form className="needs-validation p-4" onSubmit={handleSubmit} >
-              <div className="row g-2 my-2">
+            <div className="row g-2 my-2">
 
 
-                <div className="col-sm-12  mt-md-5" >
-                  <div className="col-md-12 ">
-
-                    <select className="form-select col-md-12 border-green" id="validationCustom04" onChange={(e) => setTipoPqrs(e.target.value)}>
-                      <option selected disabled value="" key={0}>Motivo mensaje...</option>
-                      <option defaultValue={"Felicitacion"} key={1}>Felicitacion</option>
-                      <option defaultValue={"Peticion"} key={2}>Peticion</option>
-                      <option defaultValue={"Queja"} key={3}>Queja</option>
-                      <option defaultValue={"Reclamo"} key={4}>Reclamo</option>
-                      <option defaultValue={"Sugerencia"} key={5}>Sugerencia</option>
-
-                    </select>
-                  </div>
-                </div>
-
-                <div className="col-sm-12  mt-md-5">
-                  <textarea
-                    type="text"
-                    defaultValue={motivo}
-                    className="form-control border-green"
-                    id="address2"
-                    rows="5"
-                    placeholder="Mensaje..." onChange={(e) => setMotivo(e.target.value)}
-
-                  ></textarea>
-                </div>
-
-
-                <div className="col-md-12 my-4 mt-md-5">
-                  <button
-                    type="submit"
-                    className="btn btn-green btn-lg"
-                  >
-                    Enviar mensaje
-                  </button>
+              <div className="col-sm-12 mt-md-5">
+                <div className="col-md-12">
+                  <select className="form-select col-md-12 border-green" id="validationCustom04" onChange={(e) => setTipoPqrs(e.target.value)} defaultValue="">
+                    <option disabled value="" key={0}>Motivo mensaje...</option>
+                    <option value="Felicitacion" key={1}>Felicitacion</option>
+                    <option value="Peticion" key={2}>Peticion</option>
+                    <option value="Queja" key={3}>Queja</option>
+                    <option value="Reclamo" key={4}>Reclamo</option>
+                    <option value="Sugerencia" key={5}>Sugerencia</option>
+                  </select>
                 </div>
               </div>
-            </form>
+
+              <div className="col-sm-12  mt-md-5">
+                <textarea
+                  type="text"
+                  defaultValue={motivo}
+                  className="form-control border-green"
+                  id="address2"
+                  rows="5"
+                  placeholder="Mensaje..." onChange={(e) => setMotivo(e.target.value)}
+
+                ></textarea>
+              </div>
+
+
+              <div className="col-md-12 my-4 mt-md-5">
+                <button
+                  type="submit"
+                  className="btn btn-green btn-lg"
+                >
+                  Enviar mensaje
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </main>
 

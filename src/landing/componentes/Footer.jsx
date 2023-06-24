@@ -124,7 +124,7 @@ const Fotter = () => {
               <img src={Instagram} className="me-2 icon" alt="logoinstagram" />
             </a>
 
-            <a href="#" target="_blank" className="ms-4 text-decoration-none ">
+            <a href="https://wa.link/mtgdag" target="_blank" className="ms-4 text-decoration-none ">
               <img src={Whatsapp} className="me-2 icon" alt="logoWhatsaap" />
             </a>
             

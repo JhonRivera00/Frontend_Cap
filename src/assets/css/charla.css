@@ -1,14 +1,7 @@
 .contenedor_formulario {
   width: 350px;
-  padding: 20px 0;
   text-align: center;
   margin: 0 auto;
-}
-
-*,
-*::after,
-*::before {
-  box-sizing: inherit;
 }
 
 .contenedor {
@@ -25,6 +18,14 @@
   flex: 0 0 calc(70%);
   margin: 0 auto;
 }
+
+.charla1 {
+  max-width: 800px;
+}
+@media (max-width:1000px) {
+ .img_charla{
+  display: none;
+ }}
 
 .contenedor_formulario {
   display: flex;
