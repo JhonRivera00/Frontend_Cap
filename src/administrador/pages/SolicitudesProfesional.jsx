@@ -14,7 +14,6 @@ const Profesional = () => {
   const [solirechazadas, setSoliRechazadas] = useState([]);
   const [dataPro, setDataPro] = useState({});
   const [datosPro, setDatosPro] = useState([]);
-  console.log(datosPro)
 
 
   useEffect(() => {
@@ -81,6 +80,7 @@ const Profesional = () => {
                 <th>NIT</th>
                 <th>PROFESION</th>
                 <th>ESTADO</th>
+                <th>OPCIONES</th>
               </tr>
             </thead>
             <tbody>
@@ -110,14 +110,7 @@ const Profesional = () => {
                     <td data-label="descripcion">
                       <Link className="text-decoration-none" data-bs-toggle="modal" data-bs-target="#rechazoProfesional" onClick={() => enviarDataPro(d.nombres, d.apellidos, d.documento.tipo, d.documento.numeroDocumento, d.profesion, d.correo, d.numTelefono, d._id, d.motivoRechazo)} style={{ cursor: "pointer" }}> Ver mas...</Link>
                     </td>
-                    <td>
-                      <div className="form-check form-check-inline form-switch">
-                        <input
-                          type="checkbox"
-                          className="form-check-input"
-                        />
-                      </div>
-                    </td>
+                    
                   </tr>
 
                 ))
