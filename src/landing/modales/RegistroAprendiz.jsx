@@ -41,7 +41,7 @@ const Registrase = () => {
             });
         }        
 
-        if (!validarCampo(/^([a-zA-Z0-9\_\-]{1,40}\s*){1,2}$/, nombres)) {
+        if (!validarCampo(/^([a-zA-Z0-9\_\-]{1,40}\s*){1,2}$/, apellidos)) {
             return Swal.fire({
                 icon: "error",
                 title: "Error en el nombre",
