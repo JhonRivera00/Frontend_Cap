@@ -184,7 +184,6 @@ export const notificacionVista = async (id)=>{
 export const verPro = async () =>{
   try {
     const {data}= await axios.get(`/verProfesionales`);
-    console.log(data)
     return data
   } catch (error) {
   console.error(error.data)

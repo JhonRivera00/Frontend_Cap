@@ -19,7 +19,7 @@ const handleSubmit =(e)=>{
                 <div className="modal-dialog ">
                     <div className="modal-content bg-color-blue text-white">
                         <div className="modal-header">
-                            <h3 className="modal-title w-100 text-center " id="exampleModalINLabel">Aplazamiento</h3>
+                            <h3 className="modal-title w-100 text-center " id="exampleModalINLabel">Rechazo solicitud profesional</h3>
 
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
@@ -29,7 +29,7 @@ const handleSubmit =(e)=>{
 
                                 {/* Motivo rechazo */}
                                 <div className="col-12 mt-0" style={{ padding: "0 50px 0 50px" }}><br></br>
-                                    <label htmlFor="validationCustom01" className="form-label">MOTIVO APLAZAMIENTO</label>
+                                    <label htmlFor="validationCustom01" className="form-label">MOTIVO RECHAZO</label>
                                     <textarea type="text" className="form-control" id="validationCustom01" onChange={(e)=>setMotivoRechazo(e.target.value)} />
                                 </div>
 

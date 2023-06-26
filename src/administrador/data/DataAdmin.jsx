@@ -75,7 +75,7 @@ export const aplazarCharlaData = async (
   nuevoProfesional
 ) => {
   try {
-    let loading = Swal.fire({
+    const loading = Swal.fire({
       title: 'Aplazando charla',
       text: 'Espere un momento por favor...',
       allowOutsideClick: false,

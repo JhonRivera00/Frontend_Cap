@@ -99,8 +99,7 @@ const Contenido = () => {
           {dataPro.map((d) => (
             <div className="text-center mx-auto mt-2" key={d._id}>
               <div className="container">
-                <input type="radio" name="dot" id='one' />
-                <input type="radio" name='dot' id='two' />
+                
                 <div className="main-card">
                   <div className="cards">
                     <div className="card">
@@ -122,10 +121,6 @@ const Contenido = () => {
                     </div>
 
                   </div>
-                </div>
-                <div className="button">
-                  <label htmlFor="one" className='one active'></label>
-                  <label htmlFor="two" className='two'></label>
                 </div>
               </div>
             </div>
