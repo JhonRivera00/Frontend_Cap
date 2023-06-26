@@ -194,6 +194,7 @@ export const verPro = async () =>{
 export const verProfesionales = async ()=>{
   try {
     const {data}= await axios.get(`/verUsuariosProfesionales`);
+    console.log(data)
     return data
   } catch (error) {
   console.error(error.data)

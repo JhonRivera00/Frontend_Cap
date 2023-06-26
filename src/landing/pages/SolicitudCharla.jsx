@@ -21,6 +21,7 @@ const Charla = () => {
   useEffect(() => {
     const fetchData = async () => {
       const dataPro = await verProfesionales();
+      console.log(dataPro)
       setDataPro(dataPro)
 
     }
