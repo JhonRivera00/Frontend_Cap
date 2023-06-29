@@ -1,7 +1,7 @@
 import Imgnav from "../../assets/img/imgnav.jpg";
 import { datosCronograma } from "../data/DataAdmin";
 import { useState,useEffect} from "react";
-import ActualizarCronograma from '../modales/ActualizarCronograma'
+import ActualizarCronograma from '../modales/ActualizarCronograma';
 import Check from '../../assets/img/icons/check-circle.svg'
 import { horaLocal } from '../../assets/js/FormatoHora';
 import { format, subDays } from 'date-fns';

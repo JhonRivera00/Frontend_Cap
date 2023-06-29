@@ -34,19 +34,19 @@ const Registrase = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        if (!validarCampo(/^([a-zA-Z0-9\_\-]{1,40}\s*){1,2}$/, nombres)) {
-            return Swal.fire({
-                icon: "error",
-                title: "Error en el nombre",
-            });
-        }        
+        // if (!validarCampo(/^([a-zA-Z0-9\_\-]{1,40}\s*){1,2}$/, nombres)) {
+        //     return Swal.fire({
+        //         icon: "error",
+        //         title: "Error en el nombre",
+        //     });
+        // }        
 
-        if (!validarCampo(/^([a-zA-Z0-9\_\-]{1,40}\s*){1,2}$/, apellidos)) {
-            return Swal.fire({
-                icon: "error",
-                title: "Error en el nombre",
-            });
-        }               
+        // if (!validarCampo(/^([a-zA-Z0-9\_\-]{1,40}\s*){1,2}$/, apellidos)) {
+        //     return Swal.fire({
+        //         icon: "error",
+        //         title: "Error en el nombre",
+        //     });
+        // }               
 
         if (!validarCampo(/^3\d{8,13}$/, numTelefono)) {
             return Swal.fire({
@@ -66,8 +66,10 @@ const Registrase = () => {
             return Swal.fire({
                 icon: "error",
                 title: "Error en la contraseña",
+                text: "La contraseña debe tener entre 8 y 20 caracteres.",
             });
         }
+        
 
         if (contrasenaUno != contrasenaDos) {
             return Swal.fire({

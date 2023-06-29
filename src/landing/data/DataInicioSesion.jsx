@@ -22,12 +22,22 @@ export const datosCronograma= async () => {
 export const loginAprendiz= async (correo, contrasena) => {
 
   const URL = "/loginAprendiz";
+
+  const loading = Swal.fire({
+    title: 'Iniciando sesion',
+    text: 'Espere un momento por favor...',
+    allowOutsideClick: false,
+    showConfirmButton: false,
+    didOpen: () => {
+        Swal.showLoading();
+    },
+});
   try {
     const response = await axios.post(URL, {
       correo,
       contrasena,
     });
-
+loading.close();
 
     if (response.status === 200 && response.data.token) {
       Swal.fire({
@@ -59,13 +69,22 @@ export const loginAprendiz= async (correo, contrasena) => {
 export const loginProfesional= async (correo, contrasena) => {
 
   const URL = "/loginProfesional";
+  const loading = Swal.fire({
+    title: 'Iniciando sesion',
+    text: 'Espere un momento por favor...',
+    allowOutsideClick: false,
+    showConfirmButton: false,
+    didOpen: () => {
+        Swal.showLoading();
+    },
+});
   try {
     const response = await axios.post(URL, {
       correo,
       contrasena,
     });
 
-
+    loading.close();
     if (response.status === 200 && response.data.token) {
       Swal.fire({
         title: response.data.messagge,
@@ -95,13 +114,22 @@ export const loginProfesional= async (correo, contrasena) => {
 export const loginAdmin= async (correo, contrasena) => {
 
   const URL = "/loginAdministrador";
+  const loading = Swal.fire({
+    title: 'Iniciando sesion',
+    text: 'Espere un momento por favor...',
+    allowOutsideClick: false,
+    showConfirmButton: false,
+    didOpen: () => {
+        Swal.showLoading();
+    },
+});
   try {
     const response = await axios.post(URL, {
       correo,
       contrasena,
     });
 
-
+    loading.close();
     if (response.status === 200 && response.data.token) {
       Swal.fire({
         title: response.data.messagge,

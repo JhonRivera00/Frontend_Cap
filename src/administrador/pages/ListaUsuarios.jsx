@@ -72,7 +72,7 @@ const Solicitudes = () => {
                 <th scope="row">{i + 1}</th>
                 <td>{`${user.nombres} ${user.apellidos}`}</td>
                 <td>{user.documento.numeroDocumento}</td>
-                <td></td>
+                <td>{user.programa.ficha}</td>
                 <td className="link-light">
                   <div>
                     <p
